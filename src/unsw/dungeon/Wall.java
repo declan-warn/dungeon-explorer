@@ -8,9 +8,7 @@ public class Wall extends Entity implements PlayerMovementObserver {
 
 	@Override
 	public void update(PlayerMovementEvent e) {
-//		System.out.println("(" + this.getX() + "," + this.getY() + ")");
-		if (e.getX() ==(this.getX()) &&
-				e.getY() == (getY())) {
+		if (e.getX() == getX() && e.getY() == getY()) {
 			e.cancel();
 		}
 	}
