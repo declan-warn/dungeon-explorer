@@ -10,10 +10,10 @@ import javafx.scene.input.KeyCode;
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Entity implements Observable {
+public class Player extends Entity implements Movable {
 
     private Dungeon dungeon;
-    private Set<Observer> observers = new HashSet<>();
+    private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
 
     /**
      * Create a player positioned in square (x,y)
@@ -26,60 +26,57 @@ public class Player extends Entity implements Observable {
     }
     
     public void move(KeyCode keyCode) {
-    	PlayerMovementEvent e;
+    	MovementEvent event;
     	switch (keyCode) {
     	case LEFT:
-    		e = moveLeft();
+    		event = moveLeft();
     		break;
     	case RIGHT:
-    		e = moveRight();
+    		event = moveRight();
     		break;
     	case UP:
-    		e = moveUp();
+    		event = moveUp();
     		break;
     	case DOWN:
-    		e = moveDown();
+    		event = moveDown();
     		break;
     	default:
     		return;
     	}
     	
     	// Will broadcast the event to listeners which are able to cancel it
-    	this.notifyObservers(e);
+    	this.broadcastMovement(event);
     	
-    	if (!e.isCancelled()) {
-			x().set(e.getX());
-			y().set(e.getY());
+    	if (!event.isCancelled()) {
+			x().set(event.getX());
+			y().set(event.getY());
 		}
     }
     
-    public PlayerMovementEvent moveLeft() {
-    	return new PlayerMovementEvent(getX() - 1, getY());
+    public MovementEvent moveLeft() {
+    	return new MovementEvent(getX() - 1, getY());
     }
     
-    public PlayerMovementEvent moveRight() {
-    	return new PlayerMovementEvent(getX() + 1, getY());
+    public MovementEvent moveRight() {
+    	return new MovementEvent(getX() + 1, getY());
     }
     
-    public PlayerMovementEvent moveUp() {
-    	return new PlayerMovementEvent(getX(), getY() - 1);
+    public MovementEvent moveUp() {
+    	return new MovementEvent(getX(), getY() - 1);
     }
     
-    public PlayerMovementEvent moveDown() {
-    	return new PlayerMovementEvent(getX(), getY() + 1);
+    public MovementEvent moveDown() {
+    	return new MovementEvent(getX(), getY() + 1);
     }
 
 	@Override
-	public void attach(Observer o) {
-		this.observers.add(o);
+	public void onMovement(EventHandler<MovementEvent> eventHandler) {
+		this.movementHandlers.add(eventHandler);
 	}
-
+	
 	@Override
-	public void detach(Observer o) {
-		this.observers.remove(o);
+	public void broadcastMovement(MovementEvent event) {
+		this.movementHandlers.forEach(observer -> observer.handle(event));
 	}
-
-	public void notifyObservers(PlayerMovementEvent e) {
-		this.observers.forEach(observer -> observer.update(e));
-	}
+	
 }
