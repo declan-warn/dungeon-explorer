@@ -24,33 +24,6 @@ public class Player extends Entity implements Observable {
         super(x, y);
         this.dungeon = dungeon;
     }
-
-//    public void moveUp() {
-//        if (getY() > 0)
-//            y().set(getY() - 1);
-//    }
-//
-//    public void moveDown() {
-//        if (getY() < dungeon.getHeight() - 1)
-//            y().set(getY() + 1);
-//    }
-//
-//    public void moveLeft() {
-//        if (getX() > 0)
-//            x().set(getX() - 1);
-//    }
-
-//    public void moveRight() {
-////        if (getX() < dungeon.getWidth() - 1)
-////            x().set(getX() + 1);
-//    	int x = getX() + 1;
-//    	int y = getY();
-//    	PlayerMovementEvent e = new PlayerMovementEvent(x, y);
-//    	this.notifyObservers(e);
-//    	if (!e.isCancelled()) {
-//    		x().set(getX() + 1);
-//    	}
-//    }
     
     public void move(KeyCode keyCode) {
     	PlayerMovementEvent e;
@@ -71,8 +44,9 @@ public class Player extends Entity implements Observable {
     		return;
     	}
     	
-    	System.out.println("(" + e.getX() + "," + e.getY() + ")");
+    	// Will broadcast the event to listeners which are able to cancel it
     	this.notifyObservers(e);
+    	
     	if (!e.isCancelled()) {
 			x().set(e.getX());
 			y().set(e.getY());
