@@ -47,4 +47,9 @@ public class Dungeon {
     public void addEntity(Entity entity) {
         entities.add(entity);
     }
+    
+    public void onDungeonLoad() {
+    	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
+    }
+    
 }

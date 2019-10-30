@@ -39,4 +39,9 @@ public class Entity {
     public int getX() {
         return x().get();
     }
+    
+    public void onDungeonLoad(Dungeon d) {
+    	
+    }
+    
 }
