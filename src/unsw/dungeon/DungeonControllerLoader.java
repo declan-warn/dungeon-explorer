@@ -44,7 +44,13 @@ public class DungeonControllerLoader extends DungeonLoader {
         ImageView view = new ImageView(wallImage);
         addEntity(wall, view);
     }
-
+    
+    @Override
+    public void onLoad(Exit exit) {
+    	ImageView view = new ImageView(Exit.img);
+    	addEntity(exit, view);
+    }
+    
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
