@@ -3,20 +3,20 @@ package unsw.dungeon;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Inventory {
+public class Inventory<T> {
 
-	private Set<CollectableEntity> items = new HashSet<>();
+	private Set<T> items = new HashSet<>();
 	
 	// TODO: does this violate polymorphism?
-	public boolean contains(Class<? extends CollectableEntity> c) {
+	public boolean contains(Class<? extends T> c) {
 		return items.stream().anyMatch(item -> item.getClass().equals(c));
 	}
 	
-	public void add(CollectableEntity item) {
+	public void add(T item) {
 		this.items.add(item);
 	}
 	
-	public void remove(CollectableEntity item) { 
+	public void remove(T item) { 
 		this.items.remove(item);
 	}
 	

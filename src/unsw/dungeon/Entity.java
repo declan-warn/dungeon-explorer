@@ -13,6 +13,8 @@ public class Entity {
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
     private IntegerProperty x, y;
+    
+    protected Dungeon dungeon;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -40,8 +42,8 @@ public class Entity {
         return x().get();
     }
     
-    public void onDungeonLoad(Dungeon d) {
-    	
+    public void onDungeonLoad(Dungeon dungeon) {
+    	this.dungeon = dungeon;
     }
     
 }
