@@ -218,6 +218,16 @@
       "type": "wall"
     },
     {
+      "x": 3,
+      "y": 3,
+      "type": "door"
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "type": "door"
+    },
+    {
       "x": 7,
       "y": 3,
       "type": "wall"
