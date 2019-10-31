@@ -1,9 +1,15 @@
 package unsw.dungeon;
 
-public abstract class CollectableEntity extends Entity implements EventHandler<MovementEvent> {
+import java.util.HashSet;
+import java.util.Set;
 
+public abstract class CollectableEntity extends Entity implements EventHandler<MovementEvent>, EventEmitter<ItemPickupEvent> {
+
+	private Set<EventHandler<ItemPickupEvent>> pickupListeners;
+	
 	public CollectableEntity(int x, int y) {
 		super(x, y);
+		this.pickupListeners = new HashSet<>();
 	}
 	
 	public void onDungeonLoad(Dungeon dungeon) {
@@ -18,6 +24,8 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 			this.x().set(this.dungeon.getWidth());
 			
 			this.dungeon.giveItem(this);
+			
+			this.broadcast(new ItemPickupEvent(this.getType()));
 		}
 	}
 	
@@ -25,6 +33,20 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 	
 	public boolean isType(Item itemType) {
 		return this.getType().equals(itemType);
+	}
+	
+	@Override
+	public void addListener(EventHandler<ItemPickupEvent> eventHandler) {
+		this.pickupListeners.add(eventHandler);
+	}
+	
+	@Override
+	public void removeListener(EventHandler<ItemPickupEvent> eventHandler) {
+		this.pickupListeners.remove(eventHandler);
+	}
+	
+	protected void broadcast(ItemPickupEvent event) {
+		this.pickupListeners.forEach(listener -> listener.handle(event));
 	}
 
 }
