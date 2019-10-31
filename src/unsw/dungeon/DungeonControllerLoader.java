@@ -57,6 +57,15 @@ public class DungeonControllerLoader extends DungeonLoader {
     	addEntity(key, view);
     }
     
+    @Override
+    public void onLoad(Door door) {
+    	ImageView view = new ImageView(door.getImage());
+    	door.addListener(event -> {
+    		view.setImage(door.getImage());
+    	});
+    	addEntity(door, view);
+    }
+    
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);

@@ -66,4 +66,8 @@ public class Dungeon {
     	return this.inventory.contains(itemType);
     }
     
+    public CollectableEntity getItem(Class<? extends CollectableEntity> itemType) {
+    	return this.inventory.get(itemType);
+    }
+    
 }
