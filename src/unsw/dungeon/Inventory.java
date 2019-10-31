@@ -12,6 +12,10 @@ public class Inventory<T> {
 		return items.stream().anyMatch(item -> item.getClass().equals(c));
 	}
 	
+	public T get(Class<? extends T> c) {
+		return items.stream().filter(item -> item.getClass().equals(c)).findFirst().orElse(null);
+	}
+	
 	public void add(T item) {
 		this.items.add(item);
 	}
