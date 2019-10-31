@@ -14,5 +14,10 @@ public class Key extends CollectableEntity {
 	public Item getType() {
 		return Item.KEY;
 	}
+	
+	@Override
+	public void accept(Dungeon dungeon) {
+		dungeon.visit(this);
+	}
 
 }

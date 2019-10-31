@@ -16,5 +16,10 @@ public class Treasure extends CollectableEntity {
 	public Item getType() {
 		return Item.TREASURE;
 	}
+	
+	@Override
+	public void accept(Dungeon dungeon) {
+		dungeon.visit(this);
+	}
 
 }

@@ -15,7 +15,10 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
 		dungeon.getPlayer().onMovement(this);
+		this.accept(dungeon);
 	}
+	
+	public abstract void accept(Dungeon dungeon);
 	
 	@Override
 	public void handle(MovementEvent event) {
