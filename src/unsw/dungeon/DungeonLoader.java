@@ -68,6 +68,11 @@ public abstract class DungeonLoader {
         	onLoad(exit);
         	entity = exit;
         	break;
+        case "key":
+        	Key key = new Key(x, y);
+        	onLoad(key);
+        	entity = key;
+        	break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -78,6 +83,8 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Wall wall);
     
     public abstract void onLoad(Exit exit);
+    
+    public abstract void onLoad(Key key);
 
     // TODO Create additional abstract methods for the other entities
 
