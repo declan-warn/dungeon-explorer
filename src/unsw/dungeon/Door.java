@@ -5,10 +5,10 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 
-public class Door extends Entity implements EventHandler<MovementEvent>, EventEmitter<DoorOpenEvent> {
+public class Door extends Entity implements EventHandler<MovementEvent>, EventEmitter<DoorChangeEvent> {
 
 	private DoorState state;
-	private Set<EventHandler<DoorOpenEvent>> openListeners = new HashSet<>();
+	private Set<EventHandler<DoorChangeEvent>> openListeners = new HashSet<>();
 	
 	public Door(int x, int y) {
 		super(x, y);
@@ -22,21 +22,28 @@ public class Door extends Entity implements EventHandler<MovementEvent>, EventEm
 		}
 	}
 	
+	@Override
+	public void onDungeonLoad(Dungeon dungeon) {
+		super.onDungeonLoad(dungeon);
+		dungeon.getPlayer().onMovement(this);
+	}
+	
 	void setState(DoorState state) {
 		this.state = state;
+		this.broadcast(new DoorChangeEvent(this));
 	}
 
 	@Override
-	public void addListener(EventHandler<DoorOpenEvent> eventHandler) {
+	public void addListener(EventHandler<DoorChangeEvent> eventHandler) {
 		this.openListeners.add(eventHandler);
 	}
 
 	@Override
-	public void removeListener(EventHandler<DoorOpenEvent> eventHandler) {
+	public void removeListener(EventHandler<DoorChangeEvent> eventHandler) {
 		this.openListeners.remove(eventHandler);
 	}
 	
-	private void broadcast(DoorOpenEvent event) {
+	private void broadcast(DoorChangeEvent event) {
 		this.openListeners.forEach(listener -> listener.handle(event));
 	}
 	

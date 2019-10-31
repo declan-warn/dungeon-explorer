@@ -1,10 +1,10 @@
 package unsw.dungeon;
 
-public class DoorOpenEvent implements Event {
+public class DoorChangeEvent implements Event {
 
 	private Door door;
 	
-	public DoorOpenEvent(Door door) {
+	public DoorChangeEvent(Door door) {
 		this.door = door;
 	}
 	
