@@ -223,9 +223,19 @@
       "type": "door"
     },
     {
+      "x": 4,
+      "y": 3,
+      "type": "treasure"
+    },
+    {
       "x": 5,
       "y": 3,
       "type": "door"
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "type": "treasure"
     },
     {
       "x": 7,

@@ -20,14 +20,16 @@ public class Dungeon {
     private int width, height;
     private List<Entity> entities;
     private Player player;
-    private Inventory<CollectableEntity> inventory;
+    private Inventory inventory;
+    private int score;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
-        this.inventory = new Inventory<>();
+        this.inventory = new Inventory();
+        this.score = 0;
     }
 
     public int getWidth() {
@@ -50,10 +52,6 @@ public class Dungeon {
         entities.add(entity);
     }
     
-    public void onDungeonLoad() {
-    	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
-    }
-    
     public void giveItem(CollectableEntity item) {
     	this.inventory.add(item);
     }
@@ -62,12 +60,30 @@ public class Dungeon {
     	this.inventory.remove(item);
     }
     
-    public boolean hasItem(Class<? extends CollectableEntity> itemType) {
+    public boolean hasItem(Item itemType) {
     	return this.inventory.contains(itemType);
     }
     
-    public CollectableEntity getItem(Class<? extends CollectableEntity> itemType) {
+    public CollectableEntity getItem(Item itemType) {
     	return this.inventory.get(itemType);
+    }
+    
+    public void onDungeonLoad() {
+    	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
+    }
+    
+    public void visit(CollectableEntity collectable) {
+    	//System.out.println("COLLECTABLE: " + collectable.getType().toString());
+    }
+    
+    public void visit(Treasure treasure) {
+    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
+			@Override
+			public void handle(ItemPickupEvent event) {
+				score += Treasure.worth;
+				System.out.println("SCORE = " + score);
+			}
+    	});
     }
     
 }

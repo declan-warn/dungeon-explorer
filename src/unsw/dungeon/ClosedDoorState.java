@@ -8,8 +8,8 @@ public class ClosedDoorState implements DoorState {
 
 	@Override
 	public void handleCollision(Door door, Dungeon dungeon, MovementEvent event) {
-		if (dungeon.hasItem(Key.class)) {
-			dungeon.takeItem(dungeon.getItem(Key.class));
+		if (dungeon.hasItem(Item.KEY)) {
+			dungeon.takeItem(dungeon.getItem(Item.KEY));
 			door.setState(new OpenDoorState());
 		} else {
 			event.cancel();

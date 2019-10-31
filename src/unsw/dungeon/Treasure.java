@@ -2,17 +2,19 @@ package unsw.dungeon;
 
 import javafx.scene.image.Image;
 
-public class Key extends CollectableEntity {
+public class Treasure extends CollectableEntity {
+
+	public static Image img = new Image("/gold_pile.png");
 	
-	public static Image img = new Image("/key.png");
+	public static int worth = 100;
 	
-	public Key(int x, int y) {
+	public Treasure(int x, int y) {
 		super(x, y);
 	}
-
+	
 	@Override
 	public Item getType() {
-		return Item.KEY;
+		return Item.TREASURE;
 	}
 	
 	@Override
