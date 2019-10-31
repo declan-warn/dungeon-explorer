@@ -20,14 +20,14 @@ public class Dungeon {
     private int width, height;
     private List<Entity> entities;
     private Player player;
-    private Inventory<CollectableEntity> inventory;
+    private Inventory inventory;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.player = null;
-        this.inventory = new Inventory<>();
+        this.inventory = new Inventory();
     }
 
     public int getWidth() {
@@ -62,11 +62,11 @@ public class Dungeon {
     	this.inventory.remove(item);
     }
     
-    public boolean hasItem(Class<? extends CollectableEntity> itemType) {
+    public boolean hasItem(Item itemType) {
     	return this.inventory.contains(itemType);
     }
     
-    public CollectableEntity getItem(Class<? extends CollectableEntity> itemType) {
+    public CollectableEntity getItem(Item itemType) {
     	return this.inventory.get(itemType);
     }
     

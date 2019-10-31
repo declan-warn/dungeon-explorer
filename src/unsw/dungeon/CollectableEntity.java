@@ -20,5 +20,11 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 			this.dungeon.giveItem(this);
 		}
 	}
+	
+	public abstract Item getType();
+	
+	public boolean isType(Item itemType) {
+		return this.getType().equals(itemType);
+	}
 
 }
