@@ -6,6 +6,9 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import unsw.dungeon.goal.Goal;
+import unsw.dungeon.goal.GoalSystem;
+
 /**
  * A dungeon in the interactive dungeon player.
  *
@@ -24,6 +27,7 @@ public class Dungeon {
     private int score;
     private PortalNetwork portalNetwork;
     private PhysicsManager physics;
+    private GoalSystem goals;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -34,6 +38,7 @@ public class Dungeon {
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
         this.physics = new PhysicsManager();
+        this.goals = new GoalSystem();
     }
 
     public int getWidth() {
@@ -126,5 +131,9 @@ public class Dungeon {
     
     public void exit(ExitStatus status) {
     	System.out.println("DUNGEON STATUS: " + status);
+    }
+    
+    private void registerGoal(Goal goal) {
+    	this.goals.register(goal);
     }
 }

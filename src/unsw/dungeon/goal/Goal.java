@@ -1,6 +1,6 @@
 package unsw.dungeon.goal;
 
-interface Goal {
+public interface Goal {
 
 	public boolean isComplete();
 	
