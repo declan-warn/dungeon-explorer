@@ -50,7 +50,9 @@ public abstract class DungeonLoader {
         }
         
         JSONObject jsonGoal = json.getJSONObject("goal-condition");
-        loadGoal(jsonGoal);
+        Goal dungeonGoal = loadGoal(jsonGoal);
+        
+        dungeon.setGoal(dungeonGoal);
         
         dungeon.onDungeonLoad();
         
