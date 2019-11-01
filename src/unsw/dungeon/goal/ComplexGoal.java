@@ -6,14 +6,17 @@ import java.util.Set;
 class ComplexGoal implements Goal {
 	
 	private Set<Goal> subgoals;
+	private GoalCompletionStrategy completionStrategy;
 	
-	public ComplexGoal() {
+	private ComplexGoal(GoalCompletionStrategy completionStrategy) {
 		this.subgoals = new HashSet<>();
+		this.completionStrategy = completionStrategy;
 	}
 
 	@Override
 	public boolean isComplete() {
-		return this.subgoals.stream().allMatch(Goal::isComplete);
+		//return this.subgoals.stream().allMatch(Goal::isComplete);
+		return this.completionStrategy.isComplete(subgoals);
 	}
 	
 	public void add(Goal goal) {
