@@ -72,6 +72,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     	addEntity(treasure, view);
     }
     
+    @Override
+    public void onLoad(Portal portal) {
+    	ImageView view = new ImageView(Portal.img);
+    	addEntity(portal, view);
+    }
+    
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
