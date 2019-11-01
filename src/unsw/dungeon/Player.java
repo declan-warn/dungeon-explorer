@@ -29,16 +29,16 @@ public class Player extends Entity implements Movable {
     	MovementEvent event;
     	switch (keyCode) {
     	case LEFT:
-    		event = moveLeft();
+    		event = moveLeft(keyCode);
     		break;
     	case RIGHT:
-    		event = moveRight();
+    		event = moveRight(keyCode);
     		break;
     	case UP:
-    		event = moveUp();
+    		event = moveUp(keyCode);
     		break;
     	case DOWN:
-    		event = moveDown();
+    		event = moveDown(keyCode);
     		break;
     	default:
     		return;
@@ -53,20 +53,20 @@ public class Player extends Entity implements Movable {
 		}
     }
     
-    public MovementEvent moveLeft() {
-    	return new MovementEvent(getX() - 1, getY());
+    public MovementEvent moveLeft(KeyCode keyCode) {
+    	return new MovementEvent(getX() - 1, getY(), keyCode);
     }
     
-    public MovementEvent moveRight() {
-    	return new MovementEvent(getX() + 1, getY());
+    public MovementEvent moveRight(KeyCode keyCode) {
+    	return new MovementEvent(getX() + 1, getY(), keyCode);
     }
     
-    public MovementEvent moveUp() {
-    	return new MovementEvent(getX(), getY() - 1);
+    public MovementEvent moveUp(KeyCode keyCode) {
+    	return new MovementEvent(getX(), getY() - 1, keyCode);
     }
     
-    public MovementEvent moveDown() {
-    	return new MovementEvent(getX(), getY() + 1);
+    public MovementEvent moveDown(KeyCode keyCode) {
+    	return new MovementEvent(getX(), getY() + 1, keyCode);
     }
 
 	@Override

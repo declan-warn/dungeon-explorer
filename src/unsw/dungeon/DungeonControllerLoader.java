@@ -72,6 +72,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     	addEntity(treasure, view);
     }
     
+    @Override
+    public void onLoad(Boulder boulder) {
+    	ImageView view = new ImageView(Boulder.img);
+    	addEntity(boulder, view);
+    }
+    
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);
@@ -115,6 +121,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     public DungeonController loadController() throws FileNotFoundException {
         return new DungeonController(load(), entities);
     }
+
 
 
 }

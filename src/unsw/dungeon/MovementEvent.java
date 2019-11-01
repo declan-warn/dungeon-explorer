@@ -1,15 +1,19 @@
 package unsw.dungeon;
 
+import javafx.scene.input.KeyCode;
+
 public class MovementEvent implements Event {
 
-	public int x;
-	public int y;
+	private int x;
+	private int y;
+	private KeyCode direction;
 	private Boolean cancelled;
 
-	MovementEvent(int x, int y) {
+	MovementEvent(int x, int y, KeyCode direction) {
 		this.x = x;
 		this.y = y;
 		this.cancelled = false;
+		this.direction = direction;
 	}
 
 	public int getX() {
@@ -18,6 +22,10 @@ public class MovementEvent implements Event {
 
 	public int getY() {
 		return this.y;
+	}
+	
+	public KeyCode getDirection() {
+		return this.direction;
 	}
 
 	public void cancel() {

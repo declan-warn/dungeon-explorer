@@ -42,6 +42,14 @@ public class Entity {
         return x().get();
     }
     
+    public void setX(int newValue) {
+        x().set(newValue);
+    }
+    
+    public void setY(int newValue) {
+        y().set(newValue);
+    }
+    
     public void onDungeonLoad(Dungeon dungeon) {
     	this.dungeon = dungeon;
     }
