@@ -120,4 +120,14 @@ public class Dungeon {
     public void setGoal(Goal goal) {
     	this.goal.set(goal);
     }
+    
+    public List<Entity> getEntitiesOfType(String type) {
+    	return this.entities.stream()
+    			.filter(entity -> entity.getEntityType().equals(type))
+    			.collect(Collectors.toList());
+    }
+    
+    public List<Entity> getEntities() {
+    	return this.entities;
+    }
 }

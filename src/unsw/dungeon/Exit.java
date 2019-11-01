@@ -39,5 +39,10 @@ public class Exit extends Entity implements EventHandler<MovementEvent>, EventEm
 	private void broadcast(PlayerReachedExitEvent event) {
 		this.reachedHandlers.forEach(handler -> handler.handle(event));
 	}
+	
+	@Override
+	public void accept(EntityVisitor visitor) {
+		visitor.visit(this);
+	}
 
 }

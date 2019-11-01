@@ -18,4 +18,9 @@ public class Wall extends Entity implements EventHandler<MovementEvent> {
 	public void onDungeonLoad(Dungeon d) {
 		d.registerMovementHandler(this);
 	}
+	
+	@Override
+	public void accept(EntityVisitor visitor) {
+		visitor.visit(this);
+	}
 }

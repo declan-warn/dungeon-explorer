@@ -121,4 +121,10 @@ public class Enemy extends Entity implements Movable {
     	return false;
 	}
 
+	@Override
+	public void accept(EntityVisitor visitor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

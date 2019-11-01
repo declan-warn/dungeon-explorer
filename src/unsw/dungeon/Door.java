@@ -52,4 +52,9 @@ public class Door extends Entity implements EventHandler<MovementEvent>, EventEm
 		return this.state.getImage();
 	}
 	
+	@Override
+	public void accept(EntityVisitor visitor) {
+		visitor.visit(this);
+	}
+	
 }

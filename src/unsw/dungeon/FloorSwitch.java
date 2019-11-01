@@ -63,4 +63,10 @@ public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {
 	public boolean getStatus() {
 		return this.activated;
 	}
+
+	@Override
+	public void accept(EntityVisitor visitor) {
+		// TODO Auto-generated method stub
+		
+	}
 }

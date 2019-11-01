@@ -111,4 +111,10 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
 		this.movementHandlers.forEach(observer -> observer.handle(event));
 	}
 
+	@Override
+	public void accept(EntityVisitor visitor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
