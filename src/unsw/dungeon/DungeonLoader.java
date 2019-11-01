@@ -2,12 +2,15 @@ package unsw.dungeon;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import unsw.dungeon.goal.BouldersGoal;
+import unsw.dungeon.goal.ComplexGoal;
 import unsw.dungeon.goal.EnemiesGoal;
 import unsw.dungeon.goal.ExitGoal;
 import unsw.dungeon.goal.Goal;
@@ -54,10 +57,10 @@ public abstract class DungeonLoader {
         return dungeon;
     }
 
-    private void loadGoal(JSONObject json) {
+    private Goal loadGoal(JSONObject json) {
     	String type = json.getString("goal");
     	
-    	Goal goal;
+    	Goal goal = null;
     	
     	switch (type) {
     	case "enemies":
@@ -76,10 +79,26 @@ public abstract class DungeonLoader {
     		goal = new BouldersGoal();
     		break;
     		
-    	case "AND":    		
+    	case "AND":
+    		goal = loadSubgoals(json, ComplexGoal.allRequired());
+    		break;
+    		
     	case "OR":
+    		goal = loadSubgoals(json, ComplexGoal.someRequired());
     		break;
     	}
+    	
+    	return goal;
+    }
+    
+    private Goal loadSubgoals(JSONObject json, ComplexGoal goal) {
+    	JSONArray jsonSubgoals = json.getJSONArray("subgoals");
+    	for (int i = 0; i < jsonSubgoals.length(); i++) {
+    		JSONObject jsonSubgoal = jsonSubgoals.getJSONObject(i);
+    		Goal subgoal = this.loadGoal(jsonSubgoal);
+    		goal.add(subgoal);
+    	}
+		return goal;	
     }
 
 	private void loadEntity(Dungeon dungeon, JSONObject json) {

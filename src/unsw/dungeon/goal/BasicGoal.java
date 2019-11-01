@@ -1,6 +1,6 @@
 package unsw.dungeon.goal;
 
-interface BasicGoal extends Goal {
+public interface BasicGoal extends Goal {
 	
 		
 	

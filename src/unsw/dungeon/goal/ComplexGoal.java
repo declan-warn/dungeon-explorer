@@ -3,7 +3,15 @@ package unsw.dungeon.goal;
 import java.util.HashSet;
 import java.util.Set;
 
-class ComplexGoal implements Goal {
+public class ComplexGoal implements Goal {
+	
+	public static ComplexGoal allRequired() {
+		return new ComplexGoal(new AndCompletionStrategy());
+	}
+	
+	public static ComplexGoal someRequired() {
+		return new ComplexGoal(new OrCompletionStrategy());
+	}
 	
 	private Set<Goal> subgoals;
 	private GoalCompletionStrategy completionStrategy;
