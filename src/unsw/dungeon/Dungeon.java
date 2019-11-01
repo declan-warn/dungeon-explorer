@@ -5,6 +5,7 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
