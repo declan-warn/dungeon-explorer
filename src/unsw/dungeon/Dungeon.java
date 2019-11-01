@@ -22,6 +22,7 @@ public class Dungeon {
     private Player player;
     private Inventory inventory;
     private int score;
+    private PortalNetwork portalNetwork;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -30,6 +31,7 @@ public class Dungeon {
         this.player = null;
         this.inventory = new Inventory();
         this.score = 0;
+        this.portalNetwork = new PortalNetwork();
     }
 
     public int getWidth() {
@@ -84,6 +86,10 @@ public class Dungeon {
 				System.out.println("SCORE = " + score);
 			}
     	});
+    }
+    
+    public void registerPortal(Portal portal) {
+    	this.portalNetwork.register(portal);
     }
     
 }
