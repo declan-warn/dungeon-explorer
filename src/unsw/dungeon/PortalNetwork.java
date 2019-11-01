@@ -17,9 +17,9 @@ public class PortalNetwork {
 		this.portals.putIfAbsent(portal.getLinkId(), new ArrayList<>());
 		this.portals.get(portal.getLinkId()).add(portal);
 		
-		portal.addListener(new EventHandler<PlayerReachedPortalEvent>() {
+		portal.addListener(new EventHandler<EntityReachedPortalEvent>() {
 			@Override
-			public void handle(PlayerReachedPortalEvent event) {
+			public void handle(EntityReachedPortalEvent event) {
 				Portal link = getLink(event.getPortal());
 				event.getMovement().cancel();
 				event.getEntity().setPos(link.getX(), link.getY());

@@ -5,12 +5,12 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 
-public class Portal extends Entity implements EventHandler<MovementEvent>, EventEmitter<PlayerReachedPortalEvent> {
+public class Portal extends Entity implements EventHandler<MovementEvent>, EventEmitter<EntityReachedPortalEvent> {
 	
 	public static Image img = new Image("/portal.png");
 	
 	private int linkId;
-	private Set<EventHandler<PlayerReachedPortalEvent>> reachedListeners;
+	private Set<EventHandler<EntityReachedPortalEvent>> reachedListeners;
 
 	public Portal(int x, int y, int linkId) {
 		super(x, y);
@@ -36,21 +36,21 @@ public class Portal extends Entity implements EventHandler<MovementEvent>, Event
 	@Override
 	public void handle(MovementEvent event) {
 		if (event.getX() == getX() && event.getY() == getY()) {
-			this.broadcast(new PlayerReachedPortalEvent(this, event));
+			this.broadcast(new EntityReachedPortalEvent(this, event));
 		}
 	}
 
 	@Override
-	public void addListener(EventHandler<PlayerReachedPortalEvent> eventHandler) {
+	public void addListener(EventHandler<EntityReachedPortalEvent> eventHandler) {
 		this.reachedListeners.add(eventHandler);
 	}
 
 	@Override
-	public void removeListener(EventHandler<PlayerReachedPortalEvent> eventHandler) {
+	public void removeListener(EventHandler<EntityReachedPortalEvent> eventHandler) {
 		this.reachedListeners.remove(eventHandler);
 	}
 	
-	private void broadcast(PlayerReachedPortalEvent event) {
+	private void broadcast(EntityReachedPortalEvent event) {
 		this.reachedListeners.forEach(listener -> listener.handle(event));
 	}
 

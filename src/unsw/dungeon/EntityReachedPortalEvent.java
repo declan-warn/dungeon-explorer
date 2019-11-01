@@ -1,11 +1,11 @@
 package unsw.dungeon;
 
-public class PlayerReachedPortalEvent implements Event {
+public class EntityReachedPortalEvent implements Event {
 	
 	private Portal portal;
 	private MovementEvent movement;
 	
-	public PlayerReachedPortalEvent(Portal portal, MovementEvent movement) {
+	public EntityReachedPortalEvent(Portal portal, MovementEvent movement) {
 		this.portal = portal;
 		this.movement = movement;
 	}
