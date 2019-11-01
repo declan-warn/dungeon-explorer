@@ -16,14 +16,18 @@ public class Entity {
     
     protected Dungeon dungeon;
 
+	private String type;
+
+
     /**
      * Create an entity positioned in square (x,y)
      * @param x
      * @param y
      */
-    public Entity(int x, int y) {
+    public Entity(int x, int y, String type) {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
+        this.type = type;
     }
 
     public IntegerProperty x() {
@@ -53,5 +57,9 @@ public class Entity {
     public void onDungeonLoad(Dungeon dungeon) {
     	this.dungeon = dungeon;
     }
+
+	public String getEntityType() {
+		return this.type;
+	}
     
 }

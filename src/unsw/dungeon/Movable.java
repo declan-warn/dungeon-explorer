@@ -4,7 +4,7 @@ import javafx.scene.input.KeyCode;
 
 public interface Movable {
 	
-	public void move(KeyCode keyCode);
+	public boolean move(KeyCode keyCode);
 	
 	public void onMovement(EventHandler<MovementEvent> eventHandler);
 	

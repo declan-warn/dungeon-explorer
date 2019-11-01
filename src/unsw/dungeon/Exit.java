@@ -12,7 +12,7 @@ public class Exit extends Entity implements EventHandler<MovementEvent>, EventEm
 	private Set<EventHandler<PlayerReachedExitEvent>> reachedHandlers = new HashSet<>();
 	
     public Exit(int x, int y) {
-        super(x, y);
+        super(x, y, "Exit");
     }
 
 	public void handle(MovementEvent e) {

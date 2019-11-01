@@ -21,11 +21,11 @@ public class Player extends Entity implements Movable {
      * @param y
      */
     public Player(Dungeon dungeon, int x, int y) {
-        super(x, y);
+        super(x, y, "Player");
         this.dungeon = dungeon;
     }
     
-    public void move(KeyCode keyCode) {
+    public boolean move(KeyCode keyCode) {
     	MovementEvent event;
     	switch (keyCode) {
     	case LEFT:
@@ -41,7 +41,7 @@ public class Player extends Entity implements Movable {
     		event = moveDown(keyCode);
     		break;
     	default:
-    		return;
+    		return true;
     	}
     	
     	// Will broadcast the event to listeners which are able to cancel it
@@ -51,6 +51,8 @@ public class Player extends Entity implements Movable {
 			x().set(event.getX());
 			y().set(event.getY());
 		}
+    	
+    	return false;
     }
     
     public MovementEvent moveLeft(KeyCode keyCode) {

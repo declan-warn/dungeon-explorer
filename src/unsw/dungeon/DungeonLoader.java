@@ -89,7 +89,6 @@ public abstract class DungeonLoader {
         	entity = boulder;
         	break;
         
-        // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
     }

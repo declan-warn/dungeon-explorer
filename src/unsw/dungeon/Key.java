@@ -7,7 +7,7 @@ public class Key extends CollectableEntity {
 	public static Image img = new Image("/key.png");
 	
 	public Key(int x, int y) {
-		super(x, y);
+		super(x, y, "Key");
 	}
 
 	@Override
