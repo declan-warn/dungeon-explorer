@@ -7,6 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.goal.BouldersGoal;
+import unsw.dungeon.goal.EnemiesGoal;
+import unsw.dungeon.goal.ExitGoal;
+import unsw.dungeon.goal.Goal;
+import unsw.dungeon.goal.TreasureGoal;
+
 /**
  * Loads a dungeon from a .json file.
  *
@@ -40,12 +46,43 @@ public abstract class DungeonLoader {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
         
+        JSONObject jsonGoal = json.getJSONObject("goal-condition");
+        loadGoal(jsonGoal);
+        
         dungeon.onDungeonLoad();
         
         return dungeon;
     }
 
-    private void loadEntity(Dungeon dungeon, JSONObject json) {
+    private void loadGoal(JSONObject json) {
+    	String type = json.getString("goal");
+    	
+    	Goal goal;
+    	
+    	switch (type) {
+    	case "enemies":
+    		goal = new EnemiesGoal();
+    		break;
+    		
+    	case "treasure":
+    		goal = new TreasureGoal();
+    		break;
+    		
+    	case "exit":
+    		goal = new ExitGoal();
+    		break;
+    		
+    	case "boulders":
+    		goal = new BouldersGoal();
+    		break;
+    		
+    	case "AND":    		
+    	case "OR":
+    		break;
+    	}
+    }
+
+	private void loadEntity(Dungeon dungeon, JSONObject json) {
         String type = json.getString("type");
         int x = json.getInt("x");
         int y = json.getInt("y");
