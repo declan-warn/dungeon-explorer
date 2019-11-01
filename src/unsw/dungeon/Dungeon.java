@@ -78,25 +78,8 @@ public class Dungeon {
     }
     
     public void onDungeonLoad() {
-    	entities.forEach(entity -> {
-    		if (entity != null) {
-    			entity.onDungeonLoad(this);
-    		} 	
-    	});
-    	
-    	this.getPlayer().onMovement((event) -> this.tick());
-    	
-    	this.physics.onDungeonLoad(this);
-    }
-    
-    public List<Boulder> getBoulders() {
-    	List<Boulder> boulders = new ArrayList<>();
-    	entities.forEach(entity -> {
-    		if (entity.getEntityType().equals("Boulder")) {
-    			boulders.add((Boulder) entity);
-    		} 	
-    	});
-    	return boulders;
+    	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
+    	this.goal.onDungeonLoad(this);
     }
     
     public void visit(CollectableEntity collectable) {

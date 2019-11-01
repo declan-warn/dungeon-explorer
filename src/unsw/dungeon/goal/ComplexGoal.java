@@ -3,6 +3,8 @@ package unsw.dungeon.goal;
 import java.util.HashSet;
 import java.util.Set;
 
+import unsw.dungeon.Dungeon;
+
 public class ComplexGoal implements Goal {
 	
 	public static ComplexGoal allRequired() {
@@ -29,6 +31,11 @@ public class ComplexGoal implements Goal {
 	
 	public void add(Goal goal) {
 		this.subgoals.add(goal);
+	}
+	
+	@Override
+	public void onDungeonLoad(Dungeon dungeon) {
+		this.subgoals.forEach(subgoal -> subgoal.onDungeonLoad(dungeon));
 	}
 
 }
