@@ -114,4 +114,12 @@ public class Dungeon {
     	this.entities.forEach(Entity::tick);
     }
     
+    public void registerMovable(Movable movable) {
+    	this.physics.addMovable(movable);
+    }
+    
+    public void registerMovementHandler(EventHandler<MovementEvent> handler) {
+    	this.physics.addHandler(handler);
+    }
+    
 }

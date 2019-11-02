@@ -6,9 +6,11 @@ import java.util.Set;
 public class PhysicsManager {
 	
 	private Set<Movable> objects;
+	private Set<EventHandler<MovementEvent>> handlers;
 	
 	public PhysicsManager() {
 		this.objects = new HashSet<>();
+		this.handlers = new HashSet<>();
 	}
 	
 	public void addMovable(Movable movable) {
@@ -16,7 +18,15 @@ public class PhysicsManager {
 	}
 	
 	public void addHandler(EventHandler<MovementEvent> handler) {
-		this.objects.forEach(object -> object.onMovement(handler));
+		this.handlers.add(handler);
+	}
+	
+	public void onDungeonLoad(Dungeon dungeon) {
+		this.objects.forEach(object -> {
+			this.handlers.forEach(handler -> {
+				object.onMovement(handler);
+			});
+		});
 	}
 
 }
