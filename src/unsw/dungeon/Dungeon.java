@@ -124,4 +124,8 @@ public class Dungeon {
     	this.physics.addHandler(handler);
     }
     
+    public void exit(ExitStatus status) {
+    	System.out.println("DUNGEON STATUS: " + status);
+    }
+    
 }
