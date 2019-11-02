@@ -54,10 +54,7 @@ public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {
 	}
 	
 	public void onDungeonLoad(Dungeon d) {
-		List<Boulder> boulders = d.getBoulders();
-		boulders.forEach(boulder -> { 
-			boulder.onMovement(this);
-		});
+		d.registerMovementHandler(this);
 	}
 	
 	public boolean getStatus() {
