@@ -1,6 +1,9 @@
 package unsw.dungeon.goal;
 
+import java.util.List;
+
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.Entity;
 import unsw.dungeon.EntityVisitor;
 import unsw.dungeon.EventHandler;
 import unsw.dungeon.ItemPickupEvent;
@@ -22,12 +25,15 @@ public class TreasureGoal implements BasicGoal, EntityVisitor {
 	}
 
 	@Override
-	public void onDungeonLoad(Dungeon dungeon) {
-		this.treasureTotal = dungeon.getEntitiesOfType("Treasure").size();
+	public void onDungeonLoad(Dungeon dungeon) {		
+		List<Entity> treasure = dungeon.getEntitiesOfType("Treasure");
+		this.treasureTotal = treasure.size();
+		treasure.forEach(t -> t.accept(this));		
 	}
 	
 	@Override
 	public void visit(Treasure treasure) {
+		System.out.println("??");
 		treasure.addListener(new EventHandler<ItemPickupEvent>() {
 			@Override
 			public void handle(ItemPickupEvent event) {
