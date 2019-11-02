@@ -20,4 +20,12 @@ public class Sword extends CollectableEntity {
 	public void accept(Dungeon dungeon) {
 		dungeon.visit(this);
 	}
+	
+	public int gettotalHitsLeft() {
+		return this.totalHitsLeft;
+	}
+	
+	public void decreasetotalHitsLeft() {
+		totalHitsLeft = totalHitsLeft - 1;
+	}
 }
