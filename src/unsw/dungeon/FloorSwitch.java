@@ -50,7 +50,6 @@ public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {
 				});
 			}
 		}
-		System.out.println(activated);
 	}
 	
 	public void onDungeonLoad(Dungeon d) {
