@@ -19,6 +19,7 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
 	@Override
 	public void handle(MovementEvent e) {
 	    //Added a direction field to MovementEvent as need to know which side its being pushed from e.g. if player pushes boulder to the right boulder might need to know to move
+	    //Basically calls move in the direction the boulder should move and returns true/false if the boulder has moved and then cancels if the boulder hasn't moved
 		KeyCode direction = e.getDirection();
 		if (e.getX() == getX() && e.getY() == getY()) {
 			if (! move(direction)) {
@@ -30,7 +31,7 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
 	public void onDungeonLoad(Dungeon d) {
 		d.getPlayer().onMovement(this);
 	}
-
+    //Changed move to return a boolean in the movable interface since wasn't sure how to know if the boulder moved or not not sure if bad/another way to implement
 	@Override
     public boolean move(KeyCode keyCode) {
     	MovementEvent event;
