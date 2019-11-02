@@ -23,6 +23,7 @@ public class Dungeon {
     private Inventory inventory;
     private int score;
     private PortalNetwork portalNetwork;
+    private PhysicsManager physics;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -32,6 +33,7 @@ public class Dungeon {
         this.inventory = new Inventory();
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
+        this.physics = new PhysicsManager();
     }
 
     public int getWidth() {
@@ -76,6 +78,10 @@ public class Dungeon {
     			entity.onDungeonLoad(this);
     		} 	
     	});
+    	
+    	this.getPlayer().onMovement((event) -> this.tick());
+    	
+    	this.physics.onDungeonLoad(this);
     }
     
     public List<Boulder> getBoulders() {
@@ -104,6 +110,22 @@ public class Dungeon {
     
     public void registerPortal(Portal portal) {
     	this.portalNetwork.register(portal);
+    }
+    
+    public void tick() {
+    	this.entities.forEach(Entity::tick);
+    }
+    
+    public void registerMovable(Movable movable) {
+    	this.physics.addMovable(movable);
+    }
+    
+    public void registerMovementHandler(EventHandler<MovementEvent> handler) {
+    	this.physics.addHandler(handler);
+    }
+    
+    public void exit(ExitStatus status) {
+    	System.out.println("DUNGEON STATUS: " + status);
     }
     
 }

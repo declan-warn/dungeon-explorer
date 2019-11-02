@@ -26,11 +26,7 @@ public class Door extends Entity implements EventHandler<MovementEvent>, EventEm
 	@Override
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
-		dungeon.getPlayer().onMovement(this);
-		List<Boulder> boulders = dungeon.getBoulders();
-		boulders.forEach(boulder -> { 
-			boulder.onMovement(this);
-		});
+		dungeon.registerMovementHandler(this);
 	}
 	
 	void setState(DoorState state) {

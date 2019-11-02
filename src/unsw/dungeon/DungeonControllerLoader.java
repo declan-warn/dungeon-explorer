@@ -89,6 +89,13 @@ public class DungeonControllerLoader extends DungeonLoader {
     	ImageView view = new ImageView(FloorSwitch.img);
     	addEntity(floorswitch, view);	
     }
+
+    @Override
+    public void onLoad(Enemy enemy) {
+    	ImageView view = new ImageView(Enemy.img);
+    	addEntity(enemy, view);
+    }
+    
     private void addEntity(Entity entity, ImageView view) {
         trackPosition(entity, view);
         entities.add(view);

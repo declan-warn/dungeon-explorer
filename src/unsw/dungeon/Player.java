@@ -25,6 +25,12 @@ public class Player extends Entity implements Movable {
         this.dungeon = dungeon;
     }
     
+    @Override
+    public void onDungeonLoad(Dungeon dungeon) {
+    	super.onDungeonLoad(dungeon);
+    	dungeon.registerMovable(this);
+    }
+    
     public boolean move(KeyCode keyCode) {
     	MovementEvent event;
     	switch (keyCode) {
@@ -81,6 +87,13 @@ public class Player extends Entity implements Movable {
 	public void broadcastMovement(MovementEvent event) {
 		this.movementHandlers.forEach(observer -> observer.handle(event));
 		event.triggerEffects();
+	}
+	
+	@Override
+	public void kill() {
+		// TODO: probably emit an event which a sword can cancel if it's in the inventory
+		System.out.println("PLAYER DIED");
+		this.dungeon.exit(ExitStatus.FAILURE);
 	}
 	
 }

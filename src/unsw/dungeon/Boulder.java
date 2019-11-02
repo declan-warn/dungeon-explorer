@@ -34,13 +34,9 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
 	}
 	
 	public void onDungeonLoad(Dungeon d) {
-		d.getPlayer().onMovement(this);
-		List<Boulder> boulders = d.getBoulders();
-		boulders.forEach(boulder -> {
-			if (boulder.getX() == this.getX() || boulder.getY() == this.getY()) {
-				boulder.onMovement(this);
-			}
-		});
+		super.onDungeonLoad(d);
+		d.registerMovable(this);
+		d.registerMovementHandler(this);
 	}
     //Changed move to return a boolean in the movable interface since wasn't sure how to know if the boulder moved or not not sure if bad/another way to implement
 	@Override

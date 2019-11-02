@@ -66,5 +66,9 @@ public class Entity {
 	public String getEntityType() {
 		return this.type;
 	}
+	
+	public void tick() {}
+	
+	public void kill() {}
     
 }
