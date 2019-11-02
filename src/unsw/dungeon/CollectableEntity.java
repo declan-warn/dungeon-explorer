@@ -22,13 +22,20 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 	
 	@Override
 	public void handle(MovementEvent event ) {
-		if (event.getX() == getX() && event.getY() == getY() && !event.isCancelled()) {
-			// TODO: find a better way to hide the entity
-			this.x().set(this.dungeon.getWidth());
-			
-			this.dungeon.giveItem(this);
-			
-			this.broadcast(new ItemPickupEvent(this.getType()));
+//		if (event.getX() == getX() && event.getY() == getY() && !event.isCancelled()) {
+//			// TODO: find a better way to hide the entity
+//			this.x().set(this.dungeon.getWidth());
+//			
+//			this.dungeon.giveItem(this);
+//			
+//			this.broadcast(new ItemPickupEvent(this.getType()));
+//		}
+		if (event.wouldCollide(this)) {
+			event.andThen((e) -> {
+				this.x().set(this.dungeon.getWidth());
+				this.dungeon.giveItem(this);
+				this.broadcast(new ItemPickupEvent(this.getType()));
+			});
 		}
 	}
 	

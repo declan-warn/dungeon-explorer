@@ -79,6 +79,7 @@ public class Player extends Entity implements Movable {
 	@Override
 	public void broadcastMovement(MovementEvent event) {
 		this.movementHandlers.forEach(observer -> observer.handle(event));
+		event.triggerEffects();
 	}
 	
 }

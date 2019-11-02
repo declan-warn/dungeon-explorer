@@ -1,5 +1,9 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import javafx.scene.input.KeyCode;
 
 public class MovementEvent implements Event {
@@ -10,11 +14,14 @@ public class MovementEvent implements Event {
 	private Boolean cancelled;
 	private String flag = null;
 	
+	private List<Consumer<MovementEvent>> effects;
+
 	MovementEvent(int x, int y, KeyCode direction) {
 		this.x = x;
 		this.y = y;
 		this.cancelled = false;
 		this.direction = direction;
+		this.effects = new ArrayList<>();
 	}
 	
 	MovementEvent(int x, int y, KeyCode direction, String flag) {
@@ -47,6 +54,20 @@ public class MovementEvent implements Event {
 
 	public Boolean isCancelled() {
 		return cancelled;
+	}
+	
+	public boolean wouldCollide(Entity entity) {
+		return this.getX() == entity.getX() && this.getY() == entity.getY();
+	}
+	
+	public void andThen(Consumer<MovementEvent> effect) {
+		this.effects.add(effect);
+	}
+	
+	public void triggerEffects() {
+		if (!this.isCancelled()) {
+			this.effects.forEach(effect -> effect.accept(this));
+		}
 	}
 
 }
