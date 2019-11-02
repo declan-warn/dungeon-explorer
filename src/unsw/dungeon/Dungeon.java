@@ -76,6 +76,8 @@ public class Dungeon {
     			entity.onDungeonLoad(this);
     		} 	
     	});
+    	
+    	this.getPlayer().onMovement((event) -> this.tick());
     }
     
     public List<Boulder> getBoulders() {
@@ -104,6 +106,10 @@ public class Dungeon {
     
     public void registerPortal(Portal portal) {
     	this.portalNetwork.register(portal);
+    }
+    
+    public void tick() {
+    	this.entities.forEach(Entity::tick);
     }
     
 }
