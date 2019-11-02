@@ -3,14 +3,17 @@ package unsw.dungeon.goal;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
 import unsw.dungeon.EntityVisitor;
+import unsw.dungeon.EventHandler;
 import unsw.dungeon.Exit;
+import unsw.dungeon.PlayerReachedExitEvent;
 
 public class ExitGoal implements BasicGoal, EntityVisitor {
+	
+	private boolean isComplete = false;
 
 	@Override
 	public boolean isComplete() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.isComplete;
 	}
 
 	@Override
@@ -23,7 +26,13 @@ public class ExitGoal implements BasicGoal, EntityVisitor {
 	}
 	
 	public void visit(Exit exit) {
-		System.out.println("EXIT");
+		exit.addListener(new EventHandler<PlayerReachedExitEvent>() {
+			@Override
+			public void handle(PlayerReachedExitEvent event) {
+				// TODO: only if other goals complete
+				isComplete = true;
+			}
+		});
 	}
 
 }
