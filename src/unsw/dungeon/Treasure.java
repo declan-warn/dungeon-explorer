@@ -9,7 +9,7 @@ public class Treasure extends CollectableEntity {
 	public static int worth = 100;
 	
 	public Treasure(int x, int y) {
-		super(x, y);
+		super(x, y, "Treasure");
 	}
 	
 	@Override

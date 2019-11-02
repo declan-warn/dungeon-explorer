@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javafx.scene.image.Image;
@@ -11,7 +12,7 @@ public class Door extends Entity implements EventHandler<MovementEvent>, EventEm
 	private Set<EventHandler<DoorChangeEvent>> openListeners = new HashSet<>();
 	
 	public Door(int x, int y) {
-		super(x, y);
+		super(x, y, "Door");
 		this.setState(new ClosedDoorState());
 	}
 
@@ -26,6 +27,10 @@ public class Door extends Entity implements EventHandler<MovementEvent>, EventEm
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
 		dungeon.getPlayer().onMovement(this);
+		List<Boulder> boulders = dungeon.getBoulders();
+		boulders.forEach(boulder -> { 
+			boulder.onMovement(this);
+		});
 	}
 	
 	void setState(DoorState state) {

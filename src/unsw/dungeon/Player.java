@@ -21,27 +21,27 @@ public class Player extends Entity implements Movable {
      * @param y
      */
     public Player(Dungeon dungeon, int x, int y) {
-        super(x, y);
+        super(x, y, "Player");
         this.dungeon = dungeon;
     }
     
-    public void move(KeyCode keyCode) {
+    public boolean move(KeyCode keyCode) {
     	MovementEvent event;
     	switch (keyCode) {
     	case LEFT:
-    		event = moveLeft();
+    		event = moveLeft(keyCode);
     		break;
     	case RIGHT:
-    		event = moveRight();
+    		event = moveRight(keyCode);
     		break;
     	case UP:
-    		event = moveUp();
+    		event = moveUp(keyCode);
     		break;
     	case DOWN:
-    		event = moveDown();
+    		event = moveDown(keyCode);
     		break;
     	default:
-    		return;
+    		return true;
     	}
     	
     	// Will broadcast the event to listeners which are able to cancel it
@@ -51,22 +51,25 @@ public class Player extends Entity implements Movable {
 			x().set(event.getX());
 			y().set(event.getY());
 		}
+    	
+    	return false;
     }
     
-    public MovementEvent moveLeft() {
-    	return new MovementEvent(this, getX() - 1, getY());
+
+    public MovementEvent moveLeft(KeyCode keyCode) {
+    	return new MovementEvent(getX() - 1, getY(), keyCode, this);
     }
     
-    public MovementEvent moveRight() {
-    	return new MovementEvent(this, getX() + 1, getY());
+    public MovementEvent moveRight(KeyCode keyCode) {
+    	return new MovementEvent(getX() + 1, getY(), keyCode, this);
     }
     
-    public MovementEvent moveUp() {
-    	return new MovementEvent(this, getX(), getY() - 1);
+    public MovementEvent moveUp(KeyCode keyCode) {
+    	return new MovementEvent(getX(), getY() - 1, keyCode, this);
     }
     
-    public MovementEvent moveDown() {
-    	return new MovementEvent(this, getX(), getY() + 1);
+    public MovementEvent moveDown(KeyCode keyCode) {
+    	return new MovementEvent(getX(), getY() + 1, keyCode, this);
     }
 
 	@Override
@@ -77,6 +80,7 @@ public class Player extends Entity implements Movable {
 	@Override
 	public void broadcastMovement(MovementEvent event) {
 		this.movementHandlers.forEach(observer -> observer.handle(event));
+		event.triggerEffects();
 	}
 	
 }

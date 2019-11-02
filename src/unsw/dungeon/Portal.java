@@ -13,7 +13,7 @@ public class Portal extends Entity implements EventHandler<MovementEvent>, Event
 	private Set<EventHandler<EntityReachedPortalEvent>> reachedListeners;
 
 	public Portal(int x, int y, int linkId) {
-		super(x, y);
+		super(x, y, "Portal");
 		this.linkId = linkId;
 		this.reachedListeners = new HashSet<>();
 	}

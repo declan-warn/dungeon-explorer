@@ -7,8 +7,8 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 
 	private Set<EventHandler<ItemPickupEvent>> pickupListeners;
 	
-	public CollectableEntity(int x, int y) {
-		super(x, y);
+	public CollectableEntity(int x, int y, String type) {
+		super(x, y, type);
 		this.pickupListeners = new HashSet<>();
 	}
 	
@@ -21,14 +21,21 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 	public abstract void accept(Dungeon dungeon);
 	
 	@Override
-	public void handle(MovementEvent event) {
-		if (event.getX() == getX() && event.getY() == getY()) {
-			// TODO: find a better way to hide the entity
-			this.x().set(this.dungeon.getWidth());
-			
-			this.dungeon.giveItem(this);
-			
-			this.broadcast(new ItemPickupEvent(this.getType()));
+	public void handle(MovementEvent event ) {
+//		if (event.getX() == getX() && event.getY() == getY() && !event.isCancelled()) {
+//			// TODO: find a better way to hide the entity
+//			this.x().set(this.dungeon.getWidth());
+//			
+//			this.dungeon.giveItem(this);
+//			
+//			this.broadcast(new ItemPickupEvent(this.getType()));
+//		}
+		if (event.wouldCollide(this)) {
+			event.andThen((e) -> {
+				this.x().set(this.dungeon.getWidth());
+				this.dungeon.giveItem(this);
+				this.broadcast(new ItemPickupEvent(this.getType()));
+			});
 		}
 	}
 	

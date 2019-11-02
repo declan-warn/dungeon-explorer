@@ -71,7 +71,21 @@ public class Dungeon {
     }
     
     public void onDungeonLoad() {
-    	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
+    	entities.forEach(entity -> {
+    		if (entity != null) {
+    			entity.onDungeonLoad(this);
+    		} 	
+    	});
+    }
+    
+    public List<Boulder> getBoulders() {
+    	List<Boulder> boulders = new ArrayList<>();
+    	entities.forEach(entity -> {
+    		if (entity.getEntityType().equals("Boulder")) {
+    			boulders.add((Boulder) entity);
+    		} 	
+    	});
+    	return boulders;
     }
     
     public void visit(CollectableEntity collectable) {
