@@ -23,6 +23,7 @@ public class Dungeon {
     private Inventory inventory;
     private int score;
     private PortalNetwork portalNetwork;
+    private PhysicsManager physics;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -32,6 +33,7 @@ public class Dungeon {
         this.inventory = new Inventory();
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
+        this.physics = new PhysicsManager();
     }
 
     public int getWidth() {
