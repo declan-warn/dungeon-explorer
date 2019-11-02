@@ -80,5 +80,9 @@ public class MovementEvent implements Event {
 			this.effects.forEach(effect -> effect.accept(this));
 		}
 	}
+	
+	public boolean isPlayer() {
+		return this.entity.getEntityType().equals("Player");
+	}
 
 }

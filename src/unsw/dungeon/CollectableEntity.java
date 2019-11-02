@@ -31,7 +31,7 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 //			
 //			this.broadcast(new ItemPickupEvent(this.getType()));
 //		}
-		if (event.wouldCollide(this)) {
+		if (event.wouldCollide(this) && event.isPlayer()) {
 			event.andThen((e) -> {
 				this.x().set(this.dungeon.getWidth());
 				this.dungeon.giveItem(this);
