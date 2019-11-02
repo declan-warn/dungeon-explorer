@@ -90,19 +90,19 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
     }
     
     public MovementEvent moveLeft(KeyCode keyCode) {
-    	return new MovementEvent(getX() - 1, getY(), keyCode, "boulder");
+    	return new MovementEvent(getX() - 1, getY(), keyCode, this, "boulder");
     }
     
     public MovementEvent moveRight(KeyCode keyCode) {
-    	return new MovementEvent(getX() + 1, getY(), keyCode, "boulder");
+    	return new MovementEvent(getX() + 1, getY(), keyCode, this, "boulder");
     }
     
     public MovementEvent moveUp(KeyCode keyCode) {
-    	return new MovementEvent(getX(), getY() - 1, keyCode, "boulder");
+    	return new MovementEvent(getX(), getY() - 1, keyCode, this, "boulder");
     }
     
     public MovementEvent moveDown(KeyCode keyCode) {
-    	return new MovementEvent(getX(), getY() + 1, keyCode, "boulder");
+    	return new MovementEvent(getX(), getY() + 1, keyCode, this, "boulder");
     }
 
 	@Override

@@ -518,6 +518,12 @@
       "type": "wall"
     },
     {
+      "x": 1,
+      "y": 8,
+      "type": "portal",
+      "linkId": 0
+    },
+    {
       "x": 2,
       "y": 8,
       "type": "key"
@@ -526,6 +532,12 @@
       "x": 3,
       "y": 8,
       "type": "wall"
+    },
+    {
+      "x": 4,
+      "y": 8,
+      "type": "portal",
+      "linkId": 0
     },
     {
       "x": 7,

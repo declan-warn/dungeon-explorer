@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 
 public class MovementEvent implements Event {
 
+	private Entity entity;
 	private int x;
 	private int y;
 	private KeyCode direction;
@@ -16,19 +17,17 @@ public class MovementEvent implements Event {
 	
 	private List<Consumer<MovementEvent>> effects;
 
-	MovementEvent(int x, int y, KeyCode direction) {
+	MovementEvent(int x, int y, KeyCode direction, Entity entity) {
 		this.x = x;
 		this.y = y;
 		this.cancelled = false;
 		this.direction = direction;
 		this.effects = new ArrayList<>();
+		this.entity = entity;
 	}
 	
-	MovementEvent(int x, int y, KeyCode direction, String flag) {
-		this.x = x;
-		this.y = y;
-		this.cancelled = false;
-		this.direction = direction;
+	MovementEvent(int x, int y, KeyCode direction, Entity entity, String flag) {
+		this(x, y, direction, entity);
 		this.flag = flag;
 	}
 
@@ -38,6 +37,18 @@ public class MovementEvent implements Event {
 
 	public int getY() {
 		return this.y;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public Entity getEntity() {
+		return this.entity;
 	}
 	
 	public String getFlag() {

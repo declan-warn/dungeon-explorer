@@ -73,6 +73,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
     
     @Override
+    public void onLoad(Portal portal) {
+    	ImageView view = new ImageView(Portal.img);
+    	addEntity(portal, view);
+    }
+    	
+    @Override
     public void onLoad(Boulder boulder) {
     	ImageView view = new ImageView(Boulder.img);
     	addEntity(boulder, view);

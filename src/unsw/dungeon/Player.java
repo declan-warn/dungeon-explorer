@@ -55,20 +55,21 @@ public class Player extends Entity implements Movable {
     	return false;
     }
     
+
     public MovementEvent moveLeft(KeyCode keyCode) {
-    	return new MovementEvent(getX() - 1, getY(), keyCode);
+    	return new MovementEvent(getX() - 1, getY(), keyCode, this);
     }
     
     public MovementEvent moveRight(KeyCode keyCode) {
-    	return new MovementEvent(getX() + 1, getY(), keyCode);
+    	return new MovementEvent(getX() + 1, getY(), keyCode, this);
     }
     
     public MovementEvent moveUp(KeyCode keyCode) {
-    	return new MovementEvent(getX(), getY() - 1, keyCode);
+    	return new MovementEvent(getX(), getY() - 1, keyCode, this);
     }
     
     public MovementEvent moveDown(KeyCode keyCode) {
-    	return new MovementEvent(getX(), getY() + 1, keyCode);
+    	return new MovementEvent(getX(), getY() + 1, keyCode, this);
     }
 
 	@Override
