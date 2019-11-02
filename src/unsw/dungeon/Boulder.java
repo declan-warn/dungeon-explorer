@@ -9,13 +9,16 @@ import javafx.scene.input.KeyCode;
 public class Boulder extends Entity implements EventHandler<MovementEvent>, Movable {
 	public static Image img = new Image("/boulder.png");
     private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
-
+    
+    //I changed the constructor for entities to include the type as in the Dungeon class i have a get Boulder entities to allow stuff to observe the boulder idk if this is bad but
+    //look at the dungeon method cuz i feel might cause merge error and look at the onDungeonload of door and wall thats the majority of the change
 	public Boulder(int x, int y) {
 		super(x, y, "Boulder");
 	}
 
 	@Override
 	public void handle(MovementEvent e) {
+	    //Added a direction field to MovementEvent as need to know which side its being pushed from e.g. if player pushes boulder to the right boulder might need to know to move
 		KeyCode direction = e.getDirection();
 		if (e.getX() == getX() && e.getY() == getY()) {
 			if (! move(direction)) {
