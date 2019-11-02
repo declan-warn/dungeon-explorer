@@ -17,6 +17,12 @@ public class Enemy extends Entity implements Movable {
 	}
 	
 	@Override
+	public void onDungeonLoad(Dungeon dungeon) {
+		super.onDungeonLoad(dungeon);
+		dungeon.registerMovable(this);
+	}
+	
+	@Override
 	public void tick() { 
 		int targetX = this.dungeon.getPlayer().getX();
 		int targetY = this.dungeon.getPlayer().getY();

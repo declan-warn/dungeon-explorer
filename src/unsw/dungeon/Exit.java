@@ -22,7 +22,8 @@ public class Exit extends Entity implements EventHandler<MovementEvent>, EventEm
 	}
 	
 	public void onDungeonLoad(Dungeon d) {
-		d.getPlayer().onMovement(this);
+		super.onDungeonLoad(d);
+		d.registerMovementHandler(this);
 	}
 
 	@Override

@@ -80,6 +80,8 @@ public class Dungeon {
     	});
     	
     	this.getPlayer().onMovement((event) -> this.tick());
+    	
+    	this.physics.onDungeonLoad(this);
     }
     
     public List<Boulder> getBoulders() {
