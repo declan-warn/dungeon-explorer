@@ -8,4 +8,6 @@ public interface EntityVisitor {
 	
 	default public void visit(Treasure treasure) {};
 	
+	default public void visit(FloorSwitch floorSwitch) {};
+	
 }
