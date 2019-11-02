@@ -30,7 +30,9 @@ public class Enemy extends Entity implements Movable {
 		int dx = (targetX - this.getX());
 		int dy = (targetY - this.getY());
 		
-		if (Math.abs(dx) > Math.abs(dy)) {
+		if (dx == 0 && dy == 0) {
+			return;
+		} else if (Math.abs(dx) > Math.abs(dy)) {
 			if (dx < 0) {
 				this.move(KeyCode.LEFT);
 			} else {
@@ -98,6 +100,10 @@ public class Enemy extends Entity implements Movable {
     	if (!event.isCancelled()) {
 			x().set(event.getX());
 			y().set(event.getY());
+			
+			if (event.wouldCollide(dungeon.getPlayer())) {
+				dungeon.getPlayer().kill();
+			}
 		}
     	
     	return false;

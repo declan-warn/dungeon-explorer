@@ -68,5 +68,7 @@ public class Entity {
 	}
 	
 	public void tick() {}
+	
+	public void kill() {}
     
 }

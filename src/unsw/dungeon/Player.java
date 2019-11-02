@@ -89,4 +89,10 @@ public class Player extends Entity implements Movable {
 		event.triggerEffects();
 	}
 	
+	@Override
+	public void kill() {
+		// TODO: probably emit an event which a sword can cancel if it's in the inventory
+		System.out.println("PLAYER DIED");
+	}
+	
 }
