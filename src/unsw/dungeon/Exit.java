@@ -17,7 +17,9 @@ public class Exit extends Entity implements EventHandler<MovementEvent>, EventEm
 
 	public void handle(MovementEvent e) {
 		if (e.getX() == getX() && e.getY() == getY()) {
-			this.broadcast(new PlayerReachedExitEvent());
+			this.broadcast(new PlayerReachedExitEvent(true));
+		} else if (e.getEntity().getX() == getX() && e.getEntity().getY() == getY()) {
+			this.broadcast(new PlayerReachedExitEvent(false));
 		}
 	}
 	

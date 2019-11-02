@@ -29,8 +29,11 @@ public class ExitGoal implements BasicGoal, EntityVisitor {
 		exit.addListener(new EventHandler<PlayerReachedExitEvent>() {
 			@Override
 			public void handle(PlayerReachedExitEvent event) {
-				// TODO: only if other goals complete
-				isComplete = true;
+				isComplete = event.isAtExit();
+				if (isComplete()) {
+					// TODO: do something
+					System.out.println("DONE EXIT GOAL");
+				}
 			}
 		});
 	}
