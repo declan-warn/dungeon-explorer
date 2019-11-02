@@ -12,6 +12,8 @@ public class Enemy extends Entity implements Movable {
 	
 	private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
 
+	private boolean dead = false;
+	
 	public Enemy(int x, int y) {
 		super(x, y, "Enemy");
 	}
@@ -101,8 +103,18 @@ public class Enemy extends Entity implements Movable {
 			x().set(event.getX());
 			y().set(event.getY());
 			
-			if (event.wouldCollide(dungeon.getPlayer())) {
-				dungeon.getPlayer().kill();
+			if (event.wouldCollide(dungeon.getPlayer()) && !dead) {
+				if (dungeon.hasItem(Item.SWORD)) {
+					dead = true;
+					this.x().set(this.dungeon.getWidth());
+					Sword sword = (Sword) dungeon.getItem(Item.SWORD);
+					sword.decreasetotalHitsLeft();
+					if (sword.gettotalHitsLeft() == 0) {
+						dungeon.takeItem((CollectableEntity) sword); 
+					}
+				} else {
+					dungeon.getPlayer().kill();
+				}
 			}
 		}
     	
