@@ -81,6 +81,7 @@ public class Dungeon {
     public void onDungeonLoad() {
     	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
     	this.goal.onDungeonLoad(this);
+    	this.physics.onDungeonLoad(this);
     }
     
     public void visit(CollectableEntity collectable) {
