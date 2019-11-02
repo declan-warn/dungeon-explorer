@@ -21,8 +21,8 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 	public abstract void accept(Dungeon dungeon);
 	
 	@Override
-	public void handle(MovementEvent event) {
-		if (event.getX() == getX() && event.getY() == getY()) {
+	public void handle(MovementEvent event ) {
+		if (event.getX() == getX() && event.getY() == getY() && !event.isCancelled()) {
 			// TODO: find a better way to hide the entity
 			this.x().set(this.dungeon.getWidth());
 			
