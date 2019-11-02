@@ -98,6 +98,7 @@ public abstract class DungeonLoader {
         	FloorSwitch floorswitch = new FloorSwitch(x, y);
         	onLoad(floorswitch);
         	entity = floorswitch;
+        	break;
         case "enemy":
         	Enemy enemy = new Enemy(x, y);
         	onLoad(enemy);
