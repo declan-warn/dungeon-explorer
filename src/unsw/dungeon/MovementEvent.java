@@ -8,12 +8,21 @@ public class MovementEvent implements Event {
 	private int y;
 	private KeyCode direction;
 	private Boolean cancelled;
-
+	private String flag = null;
+	
 	MovementEvent(int x, int y, KeyCode direction) {
 		this.x = x;
 		this.y = y;
 		this.cancelled = false;
 		this.direction = direction;
+	}
+	
+	MovementEvent(int x, int y, KeyCode direction, String flag) {
+		this.x = x;
+		this.y = y;
+		this.cancelled = false;
+		this.direction = direction;
+		this.flag = flag;
 	}
 
 	public int getX() {
@@ -22,6 +31,10 @@ public class MovementEvent implements Event {
 
 	public int getY() {
 		return this.y;
+	}
+	
+	public String getFlag() {
+		return this.flag;
 	}
 	
 	public KeyCode getDirection() {

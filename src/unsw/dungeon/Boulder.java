@@ -23,6 +23,10 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
 	    //Basically calls move in the direction the boulder should move and returns true/false if the boulder has moved and then cancels if the boulder hasn't moved
 		KeyCode direction = e.getDirection();
 		if (e.getX() == getX() && e.getY() == getY()) {
+			if (e.getFlag() != null && this.getEntityType().equals("Boulder")) {
+				e.cancel();
+				return;
+			}
 			if (! move(direction)) {
 				e.cancel();
 			}		
@@ -86,19 +90,19 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
     }
     
     public MovementEvent moveLeft(KeyCode keyCode) {
-    	return new MovementEvent(getX() - 1, getY(), keyCode);
+    	return new MovementEvent(getX() - 1, getY(), keyCode, "boulder");
     }
     
     public MovementEvent moveRight(KeyCode keyCode) {
-    	return new MovementEvent(getX() + 1, getY(), keyCode);
+    	return new MovementEvent(getX() + 1, getY(), keyCode, "boulder");
     }
     
     public MovementEvent moveUp(KeyCode keyCode) {
-    	return new MovementEvent(getX(), getY() - 1, keyCode);
+    	return new MovementEvent(getX(), getY() - 1, keyCode, "boulder");
     }
     
     public MovementEvent moveDown(KeyCode keyCode) {
-    	return new MovementEvent(getX(), getY() + 1, keyCode);
+    	return new MovementEvent(getX(), getY() + 1, keyCode, "boulder");
     }
 
 	@Override
