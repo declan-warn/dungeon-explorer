@@ -10,4 +10,6 @@ public interface EntityVisitor {
 	
 	default public void visit(FloorSwitch floorSwitch) {};
 	
+	default public void visit(Enemy enemy) {};
+	
 }

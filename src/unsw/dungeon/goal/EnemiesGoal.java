@@ -1,19 +1,41 @@
 package unsw.dungeon.goal;
 
-import unsw.dungeon.Dungeon;
+import java.util.HashSet;
+import java.util.Set;
 
-public class EnemiesGoal implements BasicGoal {
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.Enemy;
+import unsw.dungeon.EntityVisitor;
+
+public class EnemiesGoal implements BasicGoal, EntityVisitor {
+	
+	private Set<Enemy> enemies;
+	
+	public EnemiesGoal() {
+		this.enemies = new HashSet<>();
+	}
 
 	@Override
 	public boolean isComplete() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.enemies.stream().allMatch(Enemy::isDead);
 	}
 
 	@Override
 	public void onDungeonLoad(Dungeon dungeon) {
-		// TODO Auto-generated method stub
-		
+		dungeon.getEntitiesOfType("Enemy").forEach(enemy -> {
+			enemy.accept(this);
+		});
+	}
+	
+	@Override
+	public void visit(Enemy enemy) {
+		this.enemies.add(enemy);
+		enemy.addListener(event -> {
+			if (this.isComplete()) {
+				// TODO: do something
+				System.out.println("ALL ENEMIES DEAD");
+			}
+		});
 	}
 
 }
