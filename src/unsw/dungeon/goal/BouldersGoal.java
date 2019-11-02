@@ -30,6 +30,12 @@ public class BouldersGoal implements BasicGoal, EntityVisitor {
 	@Override
 	public void visit(FloorSwitch floorSwitch) {
 		this.switches.add(floorSwitch);
+		floorSwitch.addListener(event -> {
+			if (this.isComplete()) {
+				// TODO: something else
+				System.out.println("ALL SWITCHES ACTIVE");
+			}
+		});
 	}
 
 }
