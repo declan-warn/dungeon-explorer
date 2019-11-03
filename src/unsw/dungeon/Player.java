@@ -96,4 +96,9 @@ public class Player extends Entity implements Movable {
 		this.dungeon.exit(ExitStatus.FAILURE);
 	}
 	
+	@Override
+	public void accept(EntityVisitor visitor) {
+		visitor.visit(this);
+	}
+	
 }

@@ -28,4 +28,9 @@ public class Sword extends CollectableEntity {
 	public void decreasetotalHitsLeft() {
 		totalHitsLeft = totalHitsLeft - 1;
 	}
+
+	@Override
+	public void accept(EntityVisitor visitor) {
+		visitor.visit(this);
+	}
 }

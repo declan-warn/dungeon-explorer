@@ -5,6 +5,10 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import unsw.dungeon.goal.Goal;
+import unsw.dungeon.goal.GoalSystem;
 
 /**
  * A dungeon in the interactive dungeon player.
@@ -24,6 +28,8 @@ public class Dungeon {
     private int score;
     private PortalNetwork portalNetwork;
     private PhysicsManager physics;
+//    private GoalSystem goal;
+    private Goal goal;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -53,7 +59,8 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
-        entities.add(entity);
+    	if (entity != null)
+    		entities.add(entity);
     }
     
     public void giveItem(CollectableEntity item) {
@@ -73,25 +80,16 @@ public class Dungeon {
     }
     
     public void onDungeonLoad() {
-    	entities.forEach(entity -> {
-    		if (entity != null) {
-    			entity.onDungeonLoad(this);
-    		} 	
-    	});
+    	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
     	
-    	this.getPlayer().onMovement((event) -> this.tick());
+    	if (this.goal != null)
+    		this.goal.onDungeonLoad(this);
     	
     	this.physics.onDungeonLoad(this);
-    }
-    
-    public List<Boulder> getBoulders() {
-    	List<Boulder> boulders = new ArrayList<>();
-    	entities.forEach(entity -> {
-    		if (entity.getEntityType().equals("Boulder")) {
-    			boulders.add((Boulder) entity);
-    		} 	
+    	
+    	this.getPlayer().onMovement((event) -> {
+    		this.tick();
     	});
-    	return boulders;
     }
     
     public void visit(CollectableEntity collectable) {
@@ -126,5 +124,23 @@ public class Dungeon {
     
     public void exit(ExitStatus status) {
     	System.out.println("DUNGEON STATUS: " + status);
+    }
+    
+    public void setGoal(Goal goal) {
+    	this.goal = goal;
+    	goal.addListener(event -> {
+    		System.out.println("DUNGEON GOAL COMPLETE");
+    		this.exit(ExitStatus.SUCCESS);
+    	});
+    }
+    
+    public List<Entity> getEntitiesOfType(String type) {
+    	return this.entities.stream()
+    			.filter(entity -> entity.getEntityType().equals(type))
+    			.collect(Collectors.toList());
+    }
+    
+    public List<Entity> getEntities() {
+    	return this.entities;
     }
 }

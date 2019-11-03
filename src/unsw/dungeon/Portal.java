@@ -54,4 +54,10 @@ public class Portal extends Entity implements EventHandler<MovementEvent>, Event
 		this.reachedListeners.forEach(listener -> listener.handle(event));
 	}
 
+	@Override
+	public void accept(EntityVisitor visitor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

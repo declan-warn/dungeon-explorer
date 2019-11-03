@@ -6,16 +6,19 @@ import java.util.Set;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
-public class Enemy extends Entity implements Movable {
+public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEvent> {
 	
 	public static Image img = new Image("/deep_elf_master_archer.png");
 	
-	private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
+	private Set<EventHandler<MovementEvent>> movementHandlers;
+	private Set<EventHandler<EnemyDeathEvent>> deathListeners;
 
 	private boolean dead = false;
 	
 	public Enemy(int x, int y) {
 		super(x, y, "Enemy");
+		this.movementHandlers = new HashSet<>();
+		this.deathListeners = new HashSet<>();
 	}
 	
 	@Override
@@ -106,6 +109,7 @@ public class Enemy extends Entity implements Movable {
 			if (event.wouldCollide(dungeon.getPlayer()) && !dead) {
 				if (dungeon.hasItem(Item.SWORD)) {
 					dead = true;
+					this.broadcast(new EnemyDeathEvent(this));
 					this.x().set(this.dungeon.getWidth());
 					Sword sword = (Sword) dungeon.getItem(Item.SWORD);
 					sword.decreasetotalHitsLeft();
@@ -119,6 +123,29 @@ public class Enemy extends Entity implements Movable {
 		}
     	
     	return false;
+	}
+
+	@Override
+	public void accept(EntityVisitor visitor) {
+		visitor.visit(this);
+	}
+	
+	public boolean isDead() {
+		return this.dead;
+	}
+
+	@Override
+	public void addListener(EventHandler<EnemyDeathEvent> eventHandler) {
+		this.deathListeners.add(eventHandler);
+	}
+
+	@Override
+	public void removeListener(EventHandler<EnemyDeathEvent> eventHandler) {
+		this.deathListeners.remove(eventHandler);
+	}
+	
+	private void broadcast(EnemyDeathEvent event) {
+		this.deathListeners.forEach(listener -> listener.handle(event));
 	}
 
 }
