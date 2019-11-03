@@ -6,6 +6,12 @@ public class FleePlayerState implements EnemyState {
 
 	@Override
 	public void move(Enemy enemy, Player player) {
+		if (!player.isInvincible()) {
+			enemy.setState(new ChasePlayerState());
+			System.out.println("I'm now chasing player");
+			return;
+		}
+		
 		int targetX = player.getX();
 		int targetY = player.getY();
 		

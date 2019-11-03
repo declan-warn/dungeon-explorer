@@ -27,10 +27,6 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
 		dungeon.registerMovable(this);
-		
-		dungeon.getEntitiesOfType("Potion").forEach(potion -> {
-			potion.accept(this);
-		});
 	}
 	
 	@Override
