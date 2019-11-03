@@ -42,6 +42,7 @@ public class Potion extends CollectableEntity {
 	@Override
 	public void tick() {
 		super.tick();
+		this.ticksLeft--;
 		if (this.ticksLeft > 0) {
 			this.dungeon.getPlayer().setInvincible(true);
 		} else {
