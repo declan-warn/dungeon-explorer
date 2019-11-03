@@ -6,7 +6,7 @@ import java.util.Set;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
-public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEvent> {
+public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEvent>, EntityVisitor {
 	
 	public static Image img = new Image("/deep_elf_master_archer.png");
 	
@@ -25,6 +25,10 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
 		dungeon.registerMovable(this);
+		
+		dungeon.getEntitiesOfType("Potion").forEach(potion -> {
+			potion.accept(this);
+		});
 	}
 	
 	@Override
@@ -116,6 +120,10 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 					if (sword.gettotalHitsLeft() == 0) {
 						dungeon.takeItem((CollectableEntity) sword); 
 					}
+				} else if (this.dungeon.getPlayer().isInvincible()) {
+					dead = true;
+					this.broadcast(new EnemyDeathEvent(this));
+					this.x().set(this.dungeon.getWidth());
 				} else {
 					dungeon.getPlayer().kill();
 				}

@@ -4,4 +4,5 @@ public enum Item {
 	KEY,
 	TREASURE,
 	SWORD,
+	POTION
 }

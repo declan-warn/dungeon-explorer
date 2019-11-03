@@ -33,4 +33,5 @@ public class Sword extends CollectableEntity {
 	public void accept(EntityVisitor visitor) {
 		visitor.visit(this);
 	}
+	
 }
