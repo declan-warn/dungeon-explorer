@@ -130,6 +130,7 @@ public class Dungeon {
     	this.goal = goal;
     	goal.addListener(event -> {
     		System.out.println("DUNGEON GOAL COMPLETE");
+    		this.exit(ExitStatus.SUCCESS);
     	});
     }
     
