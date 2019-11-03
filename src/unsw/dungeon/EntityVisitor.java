@@ -12,4 +12,6 @@ public interface EntityVisitor {
 	
 	default public void visit(Enemy enemy) {};
 	
+	default public void visit(Potion potion) {};
+	
 }

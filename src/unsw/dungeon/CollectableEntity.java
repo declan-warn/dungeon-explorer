@@ -65,4 +65,6 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 		this.pickupListeners.forEach(listener -> listener.handle(event));
 	}
 
+	public boolean isActive() { return false; }
+
 }

@@ -14,6 +14,7 @@ public class Player extends Entity implements Movable {
 
     private Dungeon dungeon;
     private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
+    private boolean isInvincible;
 
     /**
      * Create a player positioned in square (x,y)
@@ -23,6 +24,7 @@ public class Player extends Entity implements Movable {
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y, "Player");
         this.dungeon = dungeon;
+        this.isInvincible = false;
     }
     
     @Override
@@ -99,6 +101,14 @@ public class Player extends Entity implements Movable {
 	@Override
 	public void accept(EntityVisitor visitor) {
 		visitor.visit(this);
+	}
+	
+	public void setInvincible(boolean isInvincible) {
+		this.isInvincible = isInvincible;
+	}
+	
+	public boolean isInvincible() {
+		return this.isInvincible;
 	}
 	
 }
