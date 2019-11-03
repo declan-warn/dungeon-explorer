@@ -1,6 +1,10 @@
 package unsw.dungeon;
 
+import javafx.scene.image.Image;
+
 public class Potion extends CollectableEntity {
+	
+	public static Image img = new Image("/bubbly.png");
 
 	private int ticksLeft;
 	
