@@ -28,7 +28,8 @@ public class Dungeon {
     private int score;
     private PortalNetwork portalNetwork;
     private PhysicsManager physics;
-    private GoalSystem goal;
+//    private GoalSystem goal;
+    private Goal goal;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -39,7 +40,6 @@ public class Dungeon {
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
         this.physics = new PhysicsManager();
-        this.goal = new GoalSystem();
     }
 
     public int getWidth() {
@@ -59,7 +59,8 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
-        entities.add(entity);
+    	if (entity != null)
+    		entities.add(entity);
     }
     
     public void giveItem(CollectableEntity item) {
@@ -80,7 +81,10 @@ public class Dungeon {
     
     public void onDungeonLoad() {
     	entities.forEach(entity -> {if (entity != null) entity.onDungeonLoad(this);});
-    	this.goal.onDungeonLoad(this);
+    	
+    	if (this.goal != null)
+    		this.goal.onDungeonLoad(this);
+    	
     	this.physics.onDungeonLoad(this);
     	
     	this.getPlayer().onMovement((event) -> {
@@ -123,7 +127,10 @@ public class Dungeon {
     }
     
     public void setGoal(Goal goal) {
-    	this.goal.set(goal);
+    	this.goal = goal;
+    	goal.addListener(event -> {
+    		System.out.println("DUNGEON GOAL COMPLETE");
+    	});
     }
     
     public List<Entity> getEntitiesOfType(String type) {

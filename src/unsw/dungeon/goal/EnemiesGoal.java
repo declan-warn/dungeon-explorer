@@ -39,11 +39,5 @@ public class EnemiesGoal extends BasicGoal implements EntityVisitor {
 			}
 		});
 	}
-
-	@Override
-	public void broadcast(GoalCompletionEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }
