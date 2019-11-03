@@ -7,7 +7,7 @@ import unsw.dungeon.EventHandler;
 import unsw.dungeon.Exit;
 import unsw.dungeon.PlayerReachedExitEvent;
 
-public class ExitGoal implements BasicGoal, EntityVisitor {
+public class ExitGoal extends BasicGoal implements EntityVisitor {
 	
 	private boolean isComplete = false;
 
@@ -26,6 +26,7 @@ public class ExitGoal implements BasicGoal, EntityVisitor {
 	}
 	
 	public void visit(Exit exit) {
+		Goal goal = this;
 		exit.addListener(new EventHandler<PlayerReachedExitEvent>() {
 			@Override
 			public void handle(PlayerReachedExitEvent event) {
@@ -33,9 +34,16 @@ public class ExitGoal implements BasicGoal, EntityVisitor {
 				if (isComplete()) {
 					// TODO: do something
 					System.out.println("DONE EXIT GOAL");
+					broadcast(new GoalCompletionEvent(goal));
 				}
 			}
 		});
+	}
+
+	@Override
+	public void broadcast(GoalCompletionEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

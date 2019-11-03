@@ -5,13 +5,15 @@ import java.util.Set;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.EntityVisitor;
+import unsw.dungeon.EventHandler;
 import unsw.dungeon.FloorSwitch;
 
-public class BouldersGoal implements BasicGoal, EntityVisitor {
+public class BouldersGoal extends BasicGoal implements EntityVisitor {
 	
 	private Set<FloorSwitch> switches;
 	
 	public BouldersGoal() {
+		super();
 		this.switches = new HashSet<>();
 	}
 
@@ -34,6 +36,7 @@ public class BouldersGoal implements BasicGoal, EntityVisitor {
 			if (this.isComplete()) {
 				// TODO: something else
 				System.out.println("ALL SWITCHES ACTIVE");
+				this.broadcast(new GoalCompletionEvent(this));
 			}
 		});
 	}

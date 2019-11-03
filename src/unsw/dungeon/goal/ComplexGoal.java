@@ -5,7 +5,7 @@ import java.util.Set;
 
 import unsw.dungeon.Dungeon;
 
-public class ComplexGoal implements Goal {
+public class ComplexGoal extends Goal {
 	
 	public static ComplexGoal allRequired() {
 		return new ComplexGoal(new AndCompletionStrategy());
@@ -31,6 +31,11 @@ public class ComplexGoal implements Goal {
 	
 	public void add(Goal goal) {
 		this.subgoals.add(goal);
+		goal.addListener(event -> {
+			if (this.isComplete()) {
+				this.broadcast(new GoalCompletionEvent(this));
+			}
+		});
 	}
 	
 	@Override

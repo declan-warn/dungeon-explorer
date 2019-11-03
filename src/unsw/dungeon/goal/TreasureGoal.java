@@ -9,12 +9,13 @@ import unsw.dungeon.EventHandler;
 import unsw.dungeon.ItemPickupEvent;
 import unsw.dungeon.Treasure;
 
-public class TreasureGoal implements BasicGoal, EntityVisitor {
+public class TreasureGoal extends BasicGoal implements EntityVisitor {
 	
 	private int treasureTotal;
 	private int treasureCollected;
 
 	public TreasureGoal() {
+		super();
 		this.treasureTotal = 0;
 		this.treasureCollected = 0;
 	}	
@@ -33,7 +34,7 @@ public class TreasureGoal implements BasicGoal, EntityVisitor {
 	
 	@Override
 	public void visit(Treasure treasure) {
-		System.out.println("??");
+		Goal goal = this;
 		treasure.addListener(new EventHandler<ItemPickupEvent>() {
 			@Override
 			public void handle(ItemPickupEvent event) {
@@ -41,9 +42,16 @@ public class TreasureGoal implements BasicGoal, EntityVisitor {
 				if (isComplete()) {
 					// TODO: do something
 					System.out.println("All treasure collected");
+					broadcast(new GoalCompletionEvent(goal));
 				}
 			}
 		});
+	}
+
+	@Override
+	public void broadcast(GoalCompletionEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

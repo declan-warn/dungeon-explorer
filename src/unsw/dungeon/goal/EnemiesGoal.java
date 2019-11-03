@@ -7,11 +7,12 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.Enemy;
 import unsw.dungeon.EntityVisitor;
 
-public class EnemiesGoal implements BasicGoal, EntityVisitor {
+public class EnemiesGoal extends BasicGoal implements EntityVisitor {
 	
 	private Set<Enemy> enemies;
 	
 	public EnemiesGoal() {
+		super();
 		this.enemies = new HashSet<>();
 	}
 
@@ -34,8 +35,15 @@ public class EnemiesGoal implements BasicGoal, EntityVisitor {
 			if (this.isComplete()) {
 				// TODO: do something
 				System.out.println("ALL ENEMIES DEAD");
+				this.broadcast(new GoalCompletionEvent(this));
 			}
 		});
+	}
+
+	@Override
+	public void broadcast(GoalCompletionEvent event) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
