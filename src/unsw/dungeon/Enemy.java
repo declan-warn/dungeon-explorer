@@ -12,6 +12,7 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	
 	private Set<EventHandler<MovementEvent>> movementHandlers;
 	private Set<EventHandler<EnemyDeathEvent>> deathListeners;
+	private EnemyState state;
 
 	private boolean dead = false;
 	
@@ -19,6 +20,7 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 		super(x, y, "Enemy");
 		this.movementHandlers = new HashSet<>();
 		this.deathListeners = new HashSet<>();
+		this.state = new ChasePlayerState();
 	}
 	
 	@Override
@@ -32,28 +34,8 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	}
 	
 	@Override
-	public void tick() { 
-		int targetX = this.dungeon.getPlayer().getX();
-		int targetY = this.dungeon.getPlayer().getY();
-		
-		int dx = (targetX - this.getX());
-		int dy = (targetY - this.getY());
-		
-		if (dx == 0 && dy == 0) {
-			return;
-		} else if (Math.abs(dx) > Math.abs(dy)) {
-			if (dx < 0) {
-				this.move(KeyCode.LEFT);
-			} else {
-				this.move(KeyCode.RIGHT);
-			}
-		} else {
-			if (dy < 0) {
-				this.move(KeyCode.UP);
-			} else {
-				this.move(KeyCode.DOWN);
-			}
-		}
+	public void tick() {
+		this.state.move(this, this.dungeon.getPlayer());
 	}
 
 	public MovementEvent moveLeft(KeyCode keyCode) {
@@ -154,6 +136,10 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	
 	private void broadcast(EnemyDeathEvent event) {
 		this.deathListeners.forEach(listener -> listener.handle(event));
+	}
+	
+	public void setState(EnemyState state) {
+		this.state = state;
 	}
 
 }
