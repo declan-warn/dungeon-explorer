@@ -1,4 +1,4 @@
-package unsw.dungeon;
+package unsw.dungeon.event;
 
 public class PlayerReachedExitEvent implements Event {
 
@@ -10,6 +10,11 @@ public class PlayerReachedExitEvent implements Event {
 	
 	public boolean isAtExit() {
 		return this.atExit;
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 	
 }

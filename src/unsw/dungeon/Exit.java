@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javafx.scene.image.Image;
+import unsw.dungeon.event.PlayerReachedExitEvent;
 
-public class Exit extends Entity implements EventHandler<MovementEvent>, EventEmitter<PlayerReachedExitEvent> {
+public class Exit extends Entity implements EventHandler<MovementEvent> {
 
 	public static Image img = new Image("/exit.png");
 	
@@ -26,20 +27,6 @@ public class Exit extends Entity implements EventHandler<MovementEvent>, EventEm
 	public void onDungeonLoad(Dungeon d) {
 		super.onDungeonLoad(d);
 		d.registerMovementHandler(this);
-	}
-
-	@Override
-	public void addListener(EventHandler<PlayerReachedExitEvent> eventHandler) {
-		this.reachedHandlers.add(eventHandler);
-	}
-	
-	@Override
-	public void removeListener(EventHandler<PlayerReachedExitEvent> eventHandler) {
-		this.reachedHandlers.remove(eventHandler);
-	}
-
-	private void broadcast(PlayerReachedExitEvent event) {
-		this.reachedHandlers.forEach(handler -> handler.handle(event));
 	}
 	
 	@Override
