@@ -9,7 +9,7 @@ public class Door extends Entity implements EventHandler<MovementEvent> {
 	
 	public Door(int x, int y) {
 		super(x, y, "Door");
-		this.setState(new ClosedDoorState());
+		this.state = new ClosedDoorState();
 	}
 
 	@Override
