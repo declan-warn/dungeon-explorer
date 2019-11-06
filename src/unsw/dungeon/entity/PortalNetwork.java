@@ -1,4 +1,4 @@
-package unsw.dungeon;
+package unsw.dungeon.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

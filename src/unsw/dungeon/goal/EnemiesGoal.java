@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Enemy;
+import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.event.EnemyDeathEvent;
 import unsw.dungeon.event.GoalCompletionEvent;
 

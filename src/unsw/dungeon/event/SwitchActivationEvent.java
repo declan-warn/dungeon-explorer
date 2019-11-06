@@ -1,6 +1,6 @@
 package unsw.dungeon.event;
 
-import unsw.dungeon.FloorSwitch;
+import unsw.dungeon.entity.FloorSwitch;
 
 public class SwitchActivationEvent implements Event {
 	

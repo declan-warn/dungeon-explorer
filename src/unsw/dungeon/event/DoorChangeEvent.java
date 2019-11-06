@@ -1,6 +1,6 @@
 package unsw.dungeon.event;
 
-import unsw.dungeon.Door;
+import unsw.dungeon.entity.Door;
 
 public class DoorChangeEvent implements Event {
 

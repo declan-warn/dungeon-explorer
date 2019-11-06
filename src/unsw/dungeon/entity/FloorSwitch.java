@@ -1,4 +1,4 @@
- package unsw.dungeon;
+ package unsw.dungeon.entity;
 
 import java.util.HashSet;
 import java.util.List;

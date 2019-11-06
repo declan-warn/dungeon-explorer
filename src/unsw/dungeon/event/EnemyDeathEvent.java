@@ -1,6 +1,6 @@
 package unsw.dungeon.event;
 
-import unsw.dungeon.Enemy;
+import unsw.dungeon.entity.Enemy;
 
 public class EnemyDeathEvent implements Event {
 

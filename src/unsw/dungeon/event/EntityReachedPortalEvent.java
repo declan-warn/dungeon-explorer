@@ -1,7 +1,7 @@
 package unsw.dungeon.event;
 
-import unsw.dungeon.Entity;
-import unsw.dungeon.Portal;
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.Portal;
 
 public class EntityReachedPortalEvent implements Event {
 	

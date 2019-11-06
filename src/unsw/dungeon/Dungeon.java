@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import unsw.dungeon.entity.CollectableEntity;
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.ExitStatus;
+import unsw.dungeon.entity.Inventory;
+import unsw.dungeon.entity.Item;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.Portal;
+import unsw.dungeon.entity.PortalNetwork;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
 import unsw.dungeon.event.GoalCompletionEvent;

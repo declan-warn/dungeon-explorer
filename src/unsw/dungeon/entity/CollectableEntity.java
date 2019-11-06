@@ -1,8 +1,9 @@
-package unsw.dungeon;
+package unsw.dungeon.entity;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.MovementEvent;
 

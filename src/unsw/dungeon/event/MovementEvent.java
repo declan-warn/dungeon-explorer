@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.scene.input.KeyCode;
-import unsw.dungeon.Entity;
+import unsw.dungeon.entity.Entity;
 
 public class MovementEvent implements Event {
 

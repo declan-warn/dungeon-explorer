@@ -1,7 +1,8 @@
-package unsw.dungeon;
+package unsw.dungeon.entity;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.EventListener;
 
 /**

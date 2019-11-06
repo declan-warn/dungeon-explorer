@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.FloorSwitch;
+import unsw.dungeon.entity.FloorSwitch;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.SwitchActivationEvent;

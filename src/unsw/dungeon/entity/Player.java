@@ -1,9 +1,10 @@
-package unsw.dungeon;
+package unsw.dungeon.entity;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.MovementEvent;
 
 /**

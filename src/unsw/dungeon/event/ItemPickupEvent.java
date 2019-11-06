@@ -1,6 +1,6 @@
 package unsw.dungeon.event;
 
-import unsw.dungeon.Item;
+import unsw.dungeon.entity.Item;
 
 public class ItemPickupEvent implements Event {
 	

@@ -10,6 +10,18 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import unsw.dungeon.entity.Boulder;
+import unsw.dungeon.entity.Door;
+import unsw.dungeon.entity.Enemy;
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.Exit;
+import unsw.dungeon.entity.FloorSwitch;
+import unsw.dungeon.entity.Key;
+import unsw.dungeon.entity.Portal;
+import unsw.dungeon.entity.Potion;
+import unsw.dungeon.entity.Sword;
+import unsw.dungeon.entity.Treasure;
+import unsw.dungeon.entity.Wall;
 
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,
