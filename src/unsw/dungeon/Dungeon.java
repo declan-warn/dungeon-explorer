@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
@@ -152,5 +153,9 @@ public class Dungeon {
     public void broadcastEvent(unsw.dungeon.event.Event event) {
     	this.events.broadcast(event);
     }
+
+	public void registerListener(EventListener listener) {
+		this.events.addListener(listener);		
+	}
     
 }

@@ -6,6 +6,7 @@ import unsw.dungeon.EntityVisitor;
 import unsw.dungeon.EventHandler;
 import unsw.dungeon.Exit;
 import unsw.dungeon.PlayerReachedExitEvent;
+import unsw.dungeon.event.GoalCompletionEvent;
 
 public class ExitGoal extends BasicGoal implements EntityVisitor {
 	

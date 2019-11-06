@@ -1,6 +1,6 @@
-package unsw.dungeon.goal;
+package unsw.dungeon.event;
 
-import unsw.dungeon.Event;
+import unsw.dungeon.goal.Goal;
 
 public class GoalCompletionEvent implements Event {
 
@@ -12,6 +12,11 @@ public class GoalCompletionEvent implements Event {
 	
 	public Goal getGoal() {
 		return this.goal;
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 	
 }

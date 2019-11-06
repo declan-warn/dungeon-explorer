@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.event.GoalCompletionEvent;
 
 public class ComplexGoal extends Goal {
 	

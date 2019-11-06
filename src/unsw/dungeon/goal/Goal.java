@@ -6,9 +6,12 @@ import java.util.Set;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.EventEmitter;
 import unsw.dungeon.EventHandler;
+import unsw.dungeon.event.EventListener;
+import unsw.dungeon.event.GoalCompletionEvent;
 
-public abstract class Goal implements EventEmitter<GoalCompletionEvent> {
+public abstract class Goal implements EventEmitter<GoalCompletionEvent>, EventListener {
 	
+	protected Dungeon dungeon;
 	protected Set<EventHandler<GoalCompletionEvent>> completionListeners;
 	
 	public Goal() {
@@ -25,10 +28,14 @@ public abstract class Goal implements EventEmitter<GoalCompletionEvent> {
 	
 	public abstract boolean isComplete();
 	
-	public abstract void onDungeonLoad(Dungeon dungeon);
+	public void onDungeonLoad(Dungeon dungeon) {
+		this.dungeon = dungeon;
+		this.dungeon.registerListener(this);
+	}
 	
 	public void broadcast(GoalCompletionEvent event) {
 		this.completionListeners.forEach(listener -> listener.handle(event));
+		this.dungeon.broadcastEvent(event);
 	}
 	
 }

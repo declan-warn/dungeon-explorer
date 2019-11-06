@@ -4,4 +4,8 @@ public interface EventListener {
 
 	default public void handle(DoorChangeEvent event) {}
 	
+	default public void handle(SwitchActivationEvent event) {}
+	
+	default public void handle(GoalCompletionEvent event) {}
+	
 }

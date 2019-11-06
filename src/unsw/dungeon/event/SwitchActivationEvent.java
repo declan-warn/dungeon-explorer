@@ -1,4 +1,6 @@
-package unsw.dungeon;
+package unsw.dungeon.event;
+
+import unsw.dungeon.FloorSwitch;
 
 public class SwitchActivationEvent implements Event {
 	
@@ -14,6 +16,11 @@ public class SwitchActivationEvent implements Event {
 	
 	public boolean isActivated() {
 		return this.floorSwitch.isActivated();
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package unsw.dungeon;
+ package unsw.dungeon;
 
 import java.util.HashSet;
 import java.util.List;
@@ -6,17 +6,16 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.event.SwitchActivationEvent;
 
-public class FloorSwitch extends Entity implements EventHandler<MovementEvent>, EventEmitter<SwitchActivationEvent> {
+public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {
 	
 	public static Image img = new Image("/pressure_plate.png");
 	
 	private boolean activated = false;
-	private Set<EventHandler<SwitchActivationEvent>> activationListeners;
 	
 	public FloorSwitch(int x, int y) {
         super(x, y, "FloorSwitch");
-        this.activationListeners = new HashSet<>();
     }
 
 	@Override
@@ -62,6 +61,7 @@ public class FloorSwitch extends Entity implements EventHandler<MovementEvent>, 
 	}
 	
 	public void onDungeonLoad(Dungeon d) {
+		super.onDungeonLoad(d);
 		d.registerMovementHandler(this);
 	}
 	
@@ -77,18 +77,5 @@ public class FloorSwitch extends Entity implements EventHandler<MovementEvent>, 
 	public void accept(EntityVisitor visitor) {
 		visitor.visit(this);
 	}
-
-	@Override
-	public void addListener(EventHandler<SwitchActivationEvent> eventHandler) {
-		this.activationListeners.add(eventHandler);
-	}
-
-	@Override
-	public void removeListener(EventHandler<SwitchActivationEvent> eventHandler) {
-		this.activationListeners.remove(eventHandler);
-	}
 	
-	private void broadcast(SwitchActivationEvent event) {
-		this.activationListeners.forEach(listener -> listener.handle(event));
-	}
 }

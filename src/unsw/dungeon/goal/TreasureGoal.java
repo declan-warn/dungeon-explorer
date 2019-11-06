@@ -8,6 +8,7 @@ import unsw.dungeon.EntityVisitor;
 import unsw.dungeon.EventHandler;
 import unsw.dungeon.ItemPickupEvent;
 import unsw.dungeon.Treasure;
+import unsw.dungeon.event.GoalCompletionEvent;
 
 public class TreasureGoal extends BasicGoal implements EntityVisitor {
 	

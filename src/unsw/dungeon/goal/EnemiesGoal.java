@@ -6,6 +6,7 @@ import java.util.Set;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Enemy;
 import unsw.dungeon.EntityVisitor;
+import unsw.dungeon.event.GoalCompletionEvent;
 
 public class EnemiesGoal extends BasicGoal implements EntityVisitor {
 	
