@@ -1,4 +1,6 @@
-package unsw.dungeon;
+package unsw.dungeon.event;
+
+import unsw.dungeon.Item;
 
 public class ItemPickupEvent implements Event {
 	
@@ -14,6 +16,11 @@ public class ItemPickupEvent implements Event {
 	
 	public boolean isType(Item type) {
 		return this.type.equals(type);
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 
 }

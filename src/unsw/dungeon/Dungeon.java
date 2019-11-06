@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
+import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
 
@@ -102,15 +103,15 @@ public class Dungeon {
     	//System.out.println("COLLECTABLE: " + collectable.getType().toString());
     }
     
-    public void visit(Treasure treasure) {
-    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
-			@Override
-			public void handle(ItemPickupEvent event) {
-				score += Treasure.worth;
-				System.out.println("SCORE = " + score);
-			}
-    	});
-    }
+//    public void visit(Treasure treasure) {
+//    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
+//			@Override
+//			public void handle(ItemPickupEvent event) {
+//				score += Treasure.worth;
+//				System.out.println("SCORE = " + score);
+//			}
+//    	});
+//    }
     
     public void registerPortal(Portal portal) {
     	this.portalNetwork.register(portal);

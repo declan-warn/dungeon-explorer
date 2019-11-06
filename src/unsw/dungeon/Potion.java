@@ -1,6 +1,7 @@
 package unsw.dungeon;
 
 import javafx.scene.image.Image;
+import unsw.dungeon.event.ItemPickupEvent;
 
 public class Potion extends CollectableEntity {
 	
