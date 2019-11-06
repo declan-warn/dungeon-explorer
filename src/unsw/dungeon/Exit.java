@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javafx.scene.image.Image;
+import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.event.PlayerReachedExitEvent;
 
 public class Exit extends Entity implements EventHandler<MovementEvent> {

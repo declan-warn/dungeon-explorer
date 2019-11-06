@@ -1,10 +1,11 @@
-package unsw.dungeon;
+package unsw.dungeon.event;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.Entity;
 
 public class MovementEvent implements Event {
 
@@ -17,7 +18,7 @@ public class MovementEvent implements Event {
 	
 	private List<Consumer<MovementEvent>> effects;
 
-	MovementEvent(int x, int y, KeyCode direction, Entity entity) {
+	public MovementEvent(int x, int y, KeyCode direction, Entity entity) {
 		this.x = x;
 		this.y = y;
 		this.cancelled = false;
@@ -26,7 +27,7 @@ public class MovementEvent implements Event {
 		this.entity = entity;
 	}
 	
-	MovementEvent(int x, int y, KeyCode direction, Entity entity, String flag) {
+	public MovementEvent(int x, int y, KeyCode direction, Entity entity, String flag) {
 		this(x, y, direction, entity);
 		this.flag = flag;
 	}
@@ -63,7 +64,7 @@ public class MovementEvent implements Event {
 		this.cancelled = true;
 	}
 
-	public Boolean isCancelled() {
+	public boolean isCancelled() {
 		return cancelled;
 	}
 	
@@ -83,6 +84,11 @@ public class MovementEvent implements Event {
 	
 	public boolean isPlayer() {
 		return this.entity.getEntityType().equals("Player");
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 
 }

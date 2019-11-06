@@ -16,10 +16,10 @@ public class EventManager {
 	}
 	
 	public void broadcast(Event event) {
-		if (event instanceof SwitchActivationEvent) {
-			System.out.println("SWITCH ACTIVATED");
-		}
 		this.listeners.forEach(event::accept);
+		if (!event.isCancelled()) {
+			event.triggerEffects();
+		}
 	}
 	
 }

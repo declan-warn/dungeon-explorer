@@ -1,6 +1,6 @@
 package unsw.dungeon;
 
-import java.util.List;
+import unsw.dungeon.event.MovementEvent;
 
 public class Wall extends Entity implements EventHandler<MovementEvent> {
 
@@ -13,10 +13,6 @@ public class Wall extends Entity implements EventHandler<MovementEvent> {
 		if (e.getX() == getX() && e.getY() == getY()) {
 			e.cancel();
 		}
-	}
-	
-	public void onDungeonLoad(Dungeon d) {
-		d.registerMovementHandler(this);
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package unsw.dungeon;
 
 import javafx.scene.image.Image;
 import unsw.dungeon.event.DoorChangeEvent;
+import unsw.dungeon.event.MovementEvent;
 
 public class Door extends Entity implements EventHandler<MovementEvent> {
 

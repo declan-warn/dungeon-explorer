@@ -11,5 +11,7 @@ public interface EventListener {
 	default public void handle(PlayerReachedExitEvent event) {}
 	
 	default public void handle(ItemPickupEvent event) {}
+
+	default public void handle(MovementEvent event) {};
 	
 }

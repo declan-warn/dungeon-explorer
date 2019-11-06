@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.event.SwitchActivationEvent;
 
 public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {

@@ -6,8 +6,9 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.event.MovementEvent;
 
-public class Boulder extends Entity implements EventHandler<MovementEvent>, Movable {
+public class Boulder extends Entity implements Movable {
 	public static Image img = new Image("/boulder.png");
     private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
     
@@ -33,11 +34,6 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
 		}
 	}
 	
-	public void onDungeonLoad(Dungeon d) {
-		super.onDungeonLoad(d);
-		d.registerMovable(this);
-		d.registerMovementHandler(this);
-	}
     //Changed move to return a boolean in the movable interface since wasn't sure how to know if the boulder moved or not not sure if bad/another way to implement
 	@Override
     public boolean move(KeyCode keyCode) {
@@ -60,7 +56,7 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
     	}
     	
     	// Will broadcast the event to listeners which are able to cancel it
-    	this.broadcastMovement(event);
+    	this.broadcast(event);
     	
     	if (!event.isCancelled()) {
 			switch (keyCode) {
@@ -100,16 +96,6 @@ public class Boulder extends Entity implements EventHandler<MovementEvent>, Mova
     public MovementEvent moveDown(KeyCode keyCode) {
     	return new MovementEvent(getX(), getY() + 1, keyCode, this, "boulder");
     }
-
-	@Override
-	public void onMovement(EventHandler<MovementEvent> eventHandler) {
-		this.movementHandlers.add(eventHandler);
-	}
-	
-	@Override
-	public void broadcastMovement(MovementEvent event) {
-		this.movementHandlers.forEach(observer -> observer.handle(event));
-	}
 
 	@Override
 	public void accept(EntityVisitor visitor) {

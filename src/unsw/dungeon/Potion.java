@@ -29,7 +29,6 @@ public class Potion extends CollectableEntity {
 		visitor.visit(this);
 	}
 	
-	@Override
 	protected void broadcast(ItemPickupEvent event) {
 		super.broadcast(event);
 		this.ticksLeft = 10;

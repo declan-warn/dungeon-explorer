@@ -1,5 +1,7 @@
 package unsw.dungeon;
 
+import unsw.dungeon.event.MovementEvent;
+
 public class EntityReachedPortalEvent implements Event {
 	
 	private Portal portal;

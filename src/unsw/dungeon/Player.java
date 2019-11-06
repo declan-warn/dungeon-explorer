@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.event.MovementEvent;
 
 /**
  * The player entity
@@ -13,7 +14,6 @@ import javafx.scene.input.KeyCode;
 public class Player extends Entity implements Movable {
 
     private Dungeon dungeon;
-    private Set<EventHandler<MovementEvent>> movementHandlers = new HashSet<>();
     private boolean isInvincible;
 
     /**
@@ -53,7 +53,7 @@ public class Player extends Entity implements Movable {
     	}
     	
     	// Will broadcast the event to listeners which are able to cancel it
-    	this.broadcastMovement(event);
+    	this.broadcast(event);
     	
     	if (!event.isCancelled()) {
 			x().set(event.getX());
@@ -79,17 +79,6 @@ public class Player extends Entity implements Movable {
     public MovementEvent moveDown(KeyCode keyCode) {
     	return new MovementEvent(getX(), getY() + 1, keyCode, this);
     }
-
-	@Override
-	public void onMovement(EventHandler<MovementEvent> eventHandler) {
-		this.movementHandlers.add(eventHandler);
-	}
-	
-	@Override
-	public void broadcastMovement(MovementEvent event) {
-		this.movementHandlers.forEach(observer -> observer.handle(event));
-		event.triggerEffects();
-	}
 	
 	@Override
 	public void kill() {

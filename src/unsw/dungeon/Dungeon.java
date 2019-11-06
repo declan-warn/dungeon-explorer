@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
 import unsw.dungeon.event.ItemPickupEvent;
+import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
 
@@ -22,7 +23,7 @@ import unsw.dungeon.goal.GoalSystem;
  * @author Robert Clifton-Everest
  *
  */
-public class Dungeon {
+public class Dungeon implements EventListener {
 
     private int width, height;
     private List<Entity> entities;
@@ -43,8 +44,9 @@ public class Dungeon {
         this.inventory = new Inventory();
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
-        this.physics = new PhysicsManager();
         this.events = new EventManager();
+        
+        this.events.addListener(this);
     }
 
     public int getWidth() {
@@ -92,11 +94,18 @@ public class Dungeon {
     	if (this.goal != null)
     		this.goal.onDungeonLoad(this);
     	
-    	this.physics.onDungeonLoad(this);
-    	
-    	this.getPlayer().onMovement((event) -> {
+    	//this.physics.onDungeonLoad(this);
+//    	
+//    	this.getPlayer().onMovement((event) -> {
+//    		this.tick();
+//    	});
+    }
+    
+    @Override
+    public void handle(MovementEvent event) {
+    	if (event.isPlayer()) {
     		this.tick();
-    	});
+    	}
     }
     
     public void visit(CollectableEntity collectable) {
@@ -122,11 +131,11 @@ public class Dungeon {
     }
     
     public void registerMovable(Movable movable) {
-    	this.physics.addMovable(movable);
+//    	this.physics.addMovable(movable);
     }
     
     public void registerMovementHandler(EventHandler<MovementEvent> handler) {
-    	this.physics.addHandler(handler);
+//    	this.physics.addHandler(handler);
     }
     
     public void exit(ExitStatus status) {

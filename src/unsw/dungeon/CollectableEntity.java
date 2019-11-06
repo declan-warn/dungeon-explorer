@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import unsw.dungeon.event.ItemPickupEvent;
+import unsw.dungeon.event.MovementEvent;
 
-public abstract class CollectableEntity extends Entity implements EventHandler<MovementEvent> {
+public abstract class CollectableEntity extends Entity {
 	
 	public CollectableEntity(int x, int y, String type) {
 		super(x, y, type);
@@ -13,15 +14,13 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 	
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
-		//dungeon.getPlayer().onMovement(this);
-		dungeon.registerMovementHandler(this);
 		this.accept(dungeon);
 	}
 	
 	public abstract void accept(Dungeon dungeon);
 	
 	@Override
-	public void handle(MovementEvent event ) {
+	public void handle(MovementEvent event) {
 		if (event.wouldCollide(this) && event.isPlayer()) {
 			event.andThen((e) -> {
 				if (this.getType().equals(Item.SWORD) && dungeon.hasItem(Item.SWORD)) {
@@ -30,7 +29,6 @@ public abstract class CollectableEntity extends Entity implements EventHandler<M
 					this.x().set(this.dungeon.getWidth());
 					this.dungeon.giveItem(this);
 					this.broadcast(new ItemPickupEvent(this.getType()));
-					
 				}
 			});
 		}

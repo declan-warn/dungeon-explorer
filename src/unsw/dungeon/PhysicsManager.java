@@ -3,6 +3,8 @@ package unsw.dungeon;
 import java.util.HashSet;
 import java.util.Set;
 
+import unsw.dungeon.event.MovementEvent;
+
 public class PhysicsManager {
 	
 	private Set<Movable> objects;
@@ -19,14 +21,6 @@ public class PhysicsManager {
 	
 	public void addHandler(EventHandler<MovementEvent> handler) {
 		this.handlers.add(handler);
-	}
-	
-	public void onDungeonLoad(Dungeon dungeon) {
-		this.objects.forEach(object -> {
-			this.handlers.forEach(handler -> {
-				object.onMovement(handler);
-			});
-		});
 	}
 
 }

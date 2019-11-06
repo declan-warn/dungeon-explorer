@@ -5,12 +5,12 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.event.MovementEvent;
 
 public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEvent>, EntityVisitor {
 	
 	public static Image img = new Image("/deep_elf_master_archer.png");
 	
-	private Set<EventHandler<MovementEvent>> movementHandlers;
 	private Set<EventHandler<EnemyDeathEvent>> deathListeners;
 	private EnemyState state;
 
@@ -18,7 +18,6 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	
 	public Enemy(int x, int y) {
 		super(x, y, "Enemy");
-		this.movementHandlers = new HashSet<>();
 		this.deathListeners = new HashSet<>();
 		this.state = new ChasePlayerState();
 	}
@@ -51,17 +50,6 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
     }
 
 	@Override
-	public void onMovement(EventHandler<MovementEvent> eventHandler) {
-		this.movementHandlers.add(eventHandler);
-	}
-	
-	@Override
-	public void broadcastMovement(MovementEvent event) {
-		this.movementHandlers.forEach(observer -> observer.handle(event));
-		event.triggerEffects();
-	}
-
-	@Override
 	public boolean move(KeyCode keyCode) {
 		MovementEvent event;
     	switch (keyCode) {
@@ -82,7 +70,7 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
     	}
     	
     	// Will broadcast the event to listeners which are able to cancel it
-    	this.broadcastMovement(event);
+    	this.broadcast(event);
     	
     	if (!event.isCancelled()) {
 			x().set(event.getX());

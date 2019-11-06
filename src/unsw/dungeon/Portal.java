@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javafx.scene.image.Image;
+import unsw.dungeon.event.MovementEvent;
 
-public class Portal extends Entity implements EventHandler<MovementEvent>, EventEmitter<EntityReachedPortalEvent> {
+public class Portal extends Entity implements EventEmitter<EntityReachedPortalEvent> {
 	
 	public static Image img = new Image("/portal.png");
 	
@@ -30,7 +31,7 @@ public class Portal extends Entity implements EventHandler<MovementEvent>, Event
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
 		dungeon.registerPortal(this);
-		dungeon.getPlayer().onMovement(this);
+//		dungeon.getPlayer().onMovement(this);
 	}
 
 	@Override
