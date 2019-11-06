@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCode;
 import unsw.dungeon.event.EnemyDeathEvent;
 import unsw.dungeon.event.MovementEvent;
 
-public class Enemy extends Entity implements Movable, EntityVisitor {
+public class Enemy extends Entity implements Movable {
 	
 	public static Image img = new Image("/deep_elf_master_archer.png");
 	
@@ -90,11 +90,6 @@ public class Enemy extends Entity implements Movable, EntityVisitor {
 		}
     	
     	return false;
-	}
-
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
 	}
 	
 	public boolean isDead() {

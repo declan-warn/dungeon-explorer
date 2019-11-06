@@ -96,10 +96,4 @@ public class Boulder extends Entity implements Movable {
     	return new MovementEvent(getX(), getY() + 1, keyCode, this, "boulder");
     }
 
-	@Override
-	public void accept(EntityVisitor visitor) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -19,10 +19,5 @@ public class Key extends CollectableEntity {
 	public void accept(Dungeon dungeon) {
 		dungeon.visit(this);
 	}
-	
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
 
 }

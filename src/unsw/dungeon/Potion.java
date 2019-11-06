@@ -23,11 +23,6 @@ public class Potion extends CollectableEntity {
 	public Item getType() {
 		return Item.POTION;
 	}
-
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
 	
 	protected void broadcast(ItemPickupEvent event) {
 		super.broadcast(event);

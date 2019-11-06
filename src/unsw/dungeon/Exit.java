@@ -22,10 +22,5 @@ public class Exit extends Entity {
 			this.broadcast(new PlayerReachedExitEvent(false));
 		}
 	}
-	
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
 
 }

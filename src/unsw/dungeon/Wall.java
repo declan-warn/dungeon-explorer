@@ -15,8 +15,4 @@ public class Wall extends Entity {
 		}
 	}
 	
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
 }

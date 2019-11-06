@@ -68,10 +68,5 @@ public class FloorSwitch extends Entity {
 	public boolean isActivated() {
 		return this.activated;
 	}
-
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
 	
 }

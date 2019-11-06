@@ -39,10 +39,4 @@ public class Portal extends Entity {
 		}
 	}
 
-	@Override
-	public void accept(EntityVisitor visitor) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -21,10 +21,5 @@ public class Treasure extends CollectableEntity {
 	public void accept(Dungeon dungeon) {
 		dungeon.visit(this);
 	}
-	
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
 
 }

@@ -29,9 +29,4 @@ public class Door extends Entity {
 		return this.state.getImage();
 	}
 	
-	@Override
-	public void accept(EntityVisitor visitor) {
-		visitor.visit(this);
-	}
-	
 }

@@ -72,8 +72,6 @@ public abstract class Entity implements EventListener {
 	
 	public void kill() {}
     
-    public abstract void accept(EntityVisitor visitor);
-    
     public void broadcast(unsw.dungeon.event.Event event) {
     	this.dungeon.broadcastEvent(event);
     }
