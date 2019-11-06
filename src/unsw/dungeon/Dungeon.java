@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import unsw.dungeon.event.EventManager;
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
 
@@ -30,6 +31,7 @@ public class Dungeon {
     private PhysicsManager physics;
 //    private GoalSystem goal;
     private Goal goal;
+    private EventManager events;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -40,6 +42,7 @@ public class Dungeon {
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
         this.physics = new PhysicsManager();
+        this.events = new EventManager();
     }
 
     public int getWidth() {
