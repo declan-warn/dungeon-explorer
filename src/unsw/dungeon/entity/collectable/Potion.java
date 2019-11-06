@@ -2,6 +2,7 @@ package unsw.dungeon.entity.collectable;
 
 import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.event.Event;
 import unsw.dungeon.event.ItemPickupEvent;
 
 public class Potion extends CollectableEntity {
@@ -25,9 +26,11 @@ public class Potion extends CollectableEntity {
 		return Item.POTION;
 	}
 	
-	protected void broadcast(ItemPickupEvent event) {
-		super.broadcast(event);
-		this.ticksLeft = 10;
+	@Override
+	public void handle(ItemPickupEvent event) {
+		if (event.isItemInstance(this)) {
+			this.ticksLeft = 10;
+		}
 	}
 	
 	@Override
