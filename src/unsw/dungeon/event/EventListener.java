@@ -14,4 +14,6 @@ public interface EventListener {
 
 	default public void handle(MovementEvent event) {};
 	
+	default public void handle(EnemyDeathEvent event) {};
+	
 }

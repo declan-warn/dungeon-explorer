@@ -5,20 +5,19 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.event.EnemyDeathEvent;
 import unsw.dungeon.event.MovementEvent;
 
-public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEvent>, EntityVisitor {
+public class Enemy extends Entity implements Movable, EntityVisitor {
 	
 	public static Image img = new Image("/deep_elf_master_archer.png");
 	
-	private Set<EventHandler<EnemyDeathEvent>> deathListeners;
 	private EnemyState state;
 
 	private boolean dead = false;
 	
 	public Enemy(int x, int y) {
 		super(x, y, "Enemy");
-		this.deathListeners = new HashSet<>();
 		this.state = new ChasePlayerState();
 	}
 	
@@ -106,20 +105,6 @@ public class Enemy extends Entity implements Movable, EventEmitter<EnemyDeathEve
 	
 	public boolean isDead() {
 		return this.dead;
-	}
-
-	@Override
-	public void addListener(EventHandler<EnemyDeathEvent> eventHandler) {
-		this.deathListeners.add(eventHandler);
-	}
-
-	@Override
-	public void removeListener(EventHandler<EnemyDeathEvent> eventHandler) {
-		this.deathListeners.remove(eventHandler);
-	}
-	
-	private void broadcast(EnemyDeathEvent event) {
-		this.deathListeners.forEach(listener -> listener.handle(event));
 	}
 	
 	public void setState(EnemyState state) {
