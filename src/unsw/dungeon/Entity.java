@@ -2,13 +2,14 @@ package unsw.dungeon;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import unsw.dungeon.event.EventListener;
 
 /**
  * An entity in the dungeon.
  * @author Robert Clifton-Everest
  *
  */
-public abstract class Entity {
+public abstract class Entity implements EventListener {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.

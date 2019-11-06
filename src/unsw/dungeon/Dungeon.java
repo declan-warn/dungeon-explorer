@@ -62,8 +62,10 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
-    	if (entity != null)
+    	if (entity != null) {
     		entities.add(entity);
+    		this.events.addListener(entity);
+    	}
     }
     
     public void giveItem(CollectableEntity item) {
