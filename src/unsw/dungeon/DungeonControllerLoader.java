@@ -72,6 +72,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Door door) {
     	ImageView view = new ImageView(door.getImage());
+    	door.setImageView(view);
     	// TODO: Add a better way to change the sprite
 //    	door.addListener(event -> {
 //    		view.setImage(door.getImage());
