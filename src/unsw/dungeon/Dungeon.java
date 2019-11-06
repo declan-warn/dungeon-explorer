@@ -148,4 +148,9 @@ public class Dungeon {
     public List<Entity> getEntities() {
     	return this.entities;
     }
+    
+    public void broadcastEvent(unsw.dungeon.event.Event event) {
+    	this.events.broadcast(event);
+    }
+    
 }
