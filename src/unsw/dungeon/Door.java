@@ -1,15 +1,11 @@
 package unsw.dungeon;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javafx.scene.image.Image;
+import unsw.dungeon.event.DoorChangeEvent;
 
-public class Door extends Entity implements EventHandler<MovementEvent>, EventEmitter<DoorChangeEvent> {
+public class Door extends Entity implements EventHandler<MovementEvent> {
 
 	private DoorState state;
-	private Set<EventHandler<DoorChangeEvent>> openListeners = new HashSet<>();
 	
 	public Door(int x, int y) {
 		super(x, y, "Door");
@@ -32,20 +28,6 @@ public class Door extends Entity implements EventHandler<MovementEvent>, EventEm
 	void setState(DoorState state) {
 		this.state = state;
 		this.broadcast(new DoorChangeEvent(this));
-	}
-
-	@Override
-	public void addListener(EventHandler<DoorChangeEvent> eventHandler) {
-		this.openListeners.add(eventHandler);
-	}
-
-	@Override
-	public void removeListener(EventHandler<DoorChangeEvent> eventHandler) {
-		this.openListeners.remove(eventHandler);
-	}
-	
-	private void broadcast(DoorChangeEvent event) {
-		this.openListeners.forEach(listener -> listener.handle(event));
 	}
 	
 	public Image getImage() {

@@ -1,4 +1,6 @@
-package unsw.dungeon;
+package unsw.dungeon.event;
+
+import unsw.dungeon.Door;
 
 public class DoorChangeEvent implements Event {
 
@@ -10,6 +12,11 @@ public class DoorChangeEvent implements Event {
 	
 	public Door getDoor() {
 		return this.door;
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 	
 }
