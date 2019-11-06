@@ -8,23 +8,19 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.EntityReachedPortalEvent;
 import unsw.dungeon.event.MovementEvent;
 
-public class Portal extends Entity {
+public class Portal extends Entity implements Paired {
 	
 	public static Image img = new Image("/portal.png");
 	
-	private int linkId;
+	private final int id;
 
-	public Portal(int x, int y, int linkId) {
+	public Portal(int x, int y, int id) {
 		super(x, y, "Portal");
-		this.linkId = linkId;
+		this.id = id;
 	}
 	
-	public int getLinkId() {
-		return this.linkId;
-	}
-	
-	public boolean hasLinkId(int linkId) {
-		return this.linkId == linkId;
+	public int getId() {
+		return this.id;
 	}
 	
 	@Override

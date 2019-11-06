@@ -17,12 +17,12 @@ public class EntityReachedPortalEvent implements Event {
 		return this.portal;
 	}
 	
-	public int getLinkId() {
-		return this.portal.getLinkId();
+	public int getId() {
+		return this.portal.getId();
 	}
 	
-	public boolean hasLinkId(int linkId) {
-		return this.portal.hasLinkId(linkId);
+	public boolean hasId(int id) {
+		return this.portal.hasId(id);
 	}
 	
 	public Entity getEntity() {

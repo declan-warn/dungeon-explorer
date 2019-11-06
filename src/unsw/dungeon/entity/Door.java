@@ -4,13 +4,15 @@ import javafx.scene.image.Image;
 import unsw.dungeon.event.DoorChangeEvent;
 import unsw.dungeon.event.MovementEvent;
 
-public class Door extends Entity {
+public class Door extends Entity implements Paired {
 
 	private DoorState state;
+	private final int id;
 	
-	public Door(int x, int y) {
+	public Door(int x, int y, int id) {
 		super(x, y, "Door");
 		this.state = new ClosedDoorState();
+		this.id = id;
 	}
 
 	@Override
@@ -27,6 +29,11 @@ public class Door extends Entity {
 	
 	public Image getImage() {
 		return this.state.getImage();
+	}
+
+	@Override
+	public int getId() {
+		return this.id;
 	}
 	
 }

@@ -18,12 +18,12 @@ public class PortalNetwork implements EventListener {
 	}
 	
 	public void register(Portal portal) {
-		this.portals.putIfAbsent(portal.getLinkId(), new ArrayList<>());
-		this.portals.get(portal.getLinkId()).add(portal);
+		this.portals.putIfAbsent(portal.getId(), new ArrayList<>());
+		this.portals.get(portal.getId()).add(portal);
 	}
 	
 	private Portal getLink(Portal portal) {
-		List<Portal> linked = this.portals.get(portal.getLinkId());
+		List<Portal> linked = this.portals.get(portal.getId());
 		int pos = linked.indexOf(portal);
 		int size = linked.size();
 		
