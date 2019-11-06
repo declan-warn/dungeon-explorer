@@ -5,6 +5,9 @@ import java.util.Set;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.entity.collectable.CollectableEntity;
+import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.entity.collectable.Sword;
 import unsw.dungeon.event.EnemyDeathEvent;
 import unsw.dungeon.event.MovementEvent;
 

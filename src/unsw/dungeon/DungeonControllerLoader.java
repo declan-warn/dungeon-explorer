@@ -16,12 +16,12 @@ import unsw.dungeon.entity.Enemy;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.Exit;
 import unsw.dungeon.entity.FloorSwitch;
-import unsw.dungeon.entity.Key;
 import unsw.dungeon.entity.Portal;
-import unsw.dungeon.entity.Potion;
-import unsw.dungeon.entity.Sword;
-import unsw.dungeon.entity.Treasure;
 import unsw.dungeon.entity.Wall;
+import unsw.dungeon.entity.collectable.Key;
+import unsw.dungeon.entity.collectable.Potion;
+import unsw.dungeon.entity.collectable.Sword;
+import unsw.dungeon.entity.collectable.Treasure;
 
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,

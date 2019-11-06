@@ -1,4 +1,4 @@
-package unsw.dungeon.entity;
+package unsw.dungeon.entity.collectable;
 
 import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;

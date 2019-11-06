@@ -1,4 +1,4 @@
-package unsw.dungeon.entity;
+package unsw.dungeon.entity.collectable;
 
 public enum Item {
 	KEY,

@@ -1,7 +1,7 @@
 package unsw.dungeon.goal;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.entity.Item;
+import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.ItemPickupEvent;
 
