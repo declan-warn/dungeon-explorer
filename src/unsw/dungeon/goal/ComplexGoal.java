@@ -32,11 +32,13 @@ public class ComplexGoal extends Goal {
 	
 	public void add(Goal goal) {
 		this.subgoals.add(goal);
-		goal.addListener(event -> {
-			if (this.isComplete()) {
-				this.broadcast(new GoalCompletionEvent(this));
-			}
-		});
+	}
+	
+	@Override
+	public void handle(GoalCompletionEvent event) {
+		if (this.isComplete()) {
+			this.broadcast(new GoalCompletionEvent(this));
+		}
 	}
 	
 	@Override

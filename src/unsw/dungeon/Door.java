@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import unsw.dungeon.event.DoorChangeEvent;
 import unsw.dungeon.event.MovementEvent;
 
-public class Door extends Entity implements EventHandler<MovementEvent> {
+public class Door extends Entity {
 
 	private DoorState state;
 	
@@ -18,12 +18,6 @@ public class Door extends Entity implements EventHandler<MovementEvent> {
 		if (event.getX() == getX() && event.getY() == getY()) {
 			this.state.handleCollision(this, this.dungeon, event);
 		}
-	}
-	
-	@Override
-	public void onDungeonLoad(Dungeon dungeon) {
-		super.onDungeonLoad(dungeon);
-		dungeon.registerMovementHandler(this);
 	}
 	
 	void setState(DoorState state) {

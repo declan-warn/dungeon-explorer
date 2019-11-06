@@ -22,12 +22,6 @@ public class Enemy extends Entity implements Movable, EntityVisitor {
 	}
 	
 	@Override
-	public void onDungeonLoad(Dungeon dungeon) {
-		super.onDungeonLoad(dungeon);
-		dungeon.registerMovable(this);
-	}
-	
-	@Override
 	public void tick() {
 		this.state.move(this, this.dungeon.getPlayer());
 	}

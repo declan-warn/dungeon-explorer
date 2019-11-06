@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
 import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.event.SwitchActivationEvent;
 
-public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {
+public class FloorSwitch extends Entity {
 	
 	public static Image img = new Image("/pressure_plate.png");
 	
@@ -59,11 +59,6 @@ public class FloorSwitch extends Entity implements EventHandler<MovementEvent> {
 				});
 			}
 		}
-	}
-	
-	public void onDungeonLoad(Dungeon d) {
-		super.onDungeonLoad(d);
-		d.registerMovementHandler(this);
 	}
 	
 	public boolean getStatus() {

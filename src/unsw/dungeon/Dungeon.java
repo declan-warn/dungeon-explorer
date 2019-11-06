@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
+import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.goal.Goal;
@@ -31,8 +32,6 @@ public class Dungeon implements EventListener {
     private Inventory inventory;
     private int score;
     private PortalNetwork portalNetwork;
-    private PhysicsManager physics;
-//    private GoalSystem goal;
     private Goal goal;
     private EventManager events;
 
@@ -94,12 +93,6 @@ public class Dungeon implements EventListener {
     	
     	if (this.goal != null)
     		this.goal.onDungeonLoad(this);
-    	
-    	//this.physics.onDungeonLoad(this);
-//    	
-//    	this.getPlayer().onMovement((event) -> {
-//    		this.tick();
-//    	});
     }
     
     @Override
@@ -131,24 +124,20 @@ public class Dungeon implements EventListener {
     	this.entities.forEach(Entity::tick);
     }
     
-    public void registerMovable(Movable movable) {
-//    	this.physics.addMovable(movable);
-    }
-    
-    public void registerMovementHandler(EventHandler<MovementEvent> handler) {
-//    	this.physics.addHandler(handler);
-    }
-    
     public void exit(ExitStatus status) {
     	System.out.println("DUNGEON STATUS: " + status);
     }
     
     public void setGoal(Goal goal) {
     	this.goal = goal;
-    	goal.addListener(event -> {
+    }
+    
+    @Override
+    public void handle(GoalCompletionEvent event) {
+    	if (event.getGoal() == this.goal) {
     		System.out.println("DUNGEON GOAL COMPLETE");
     		this.exit(ExitStatus.SUCCESS);
-    	});
+    	}
     }
     
     public List<Entity> getEntitiesOfType(String type) {

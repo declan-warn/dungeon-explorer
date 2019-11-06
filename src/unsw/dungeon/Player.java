@@ -27,12 +27,6 @@ public class Player extends Entity implements Movable {
         this.isInvincible = false;
     }
     
-    @Override
-    public void onDungeonLoad(Dungeon dungeon) {
-    	super.onDungeonLoad(dungeon);
-    	dungeon.registerMovable(this);
-    }
-    
     public boolean move(KeyCode keyCode) {
     	MovementEvent event;
     	switch (keyCode) {

@@ -2,7 +2,7 @@ package unsw.dungeon;
 
 import unsw.dungeon.event.MovementEvent;
 
-public class Wall extends Entity implements EventHandler<MovementEvent> {
+public class Wall extends Entity {
 
     public Wall(int x, int y) {
         super(x, y, "Wall");
