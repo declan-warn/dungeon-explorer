@@ -1,6 +1,7 @@
-package unsw.dungeon;
+package unsw.dungeon.event;
 
-import unsw.dungeon.event.MovementEvent;
+import unsw.dungeon.Entity;
+import unsw.dungeon.Portal;
 
 public class EntityReachedPortalEvent implements Event {
 	
@@ -30,6 +31,11 @@ public class EntityReachedPortalEvent implements Event {
 	
 	public MovementEvent getMovement() {
 		return this.movement;
+	}
+
+	@Override
+	public void accept(EventListener listener) {
+		listener.handle(this);
 	}
 	
 }

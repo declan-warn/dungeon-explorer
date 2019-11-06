@@ -47,6 +47,7 @@ public class Dungeon implements EventListener {
         this.events = new EventManager();
         
         this.events.addListener(this);
+        this.events.addListener(this.portalNetwork);
     }
 
     public int getWidth() {
