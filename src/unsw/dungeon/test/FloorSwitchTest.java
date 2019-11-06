@@ -1,4 +1,4 @@
-package unsw.dungeon;
+package unsw.dungeon.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,18 +8,20 @@ import org.junit.jupiter.api.Test;
 
 import javafx.scene.input.KeyCode;
 
-public class ExitTest {
-	//Moving one square down into an exit
+public class FloorSwitchTest {
+	//Moving one square down into a boulder
 	@Test
 	public void testArea() throws FileNotFoundException {
 		DungeonTestLoader test = new DungeonTestLoader("maze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
-		Player player = new Player(dungeon, 18, 15);
+		Player player = new Player(dungeon, 2, 4);
 		dungeon.registerMovable(player);
 		player.move(keycode);
-		int answerX = 18;
-		int answerY = 16;
+		player.move(keycode);
+		player.move(keycode);
+		int answerX = 2;
+		int answerY = 7;
 		assertEquals(answerX, player.getX(), "new X coordinate is: " + answerX);
 		assertEquals(answerY, player.getY(), "new Y coordinate is: " + answerY);
 	}
