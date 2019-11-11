@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import unsw.dungeon.menu.MenuController;
+import unsw.dungeon.menu.SelectionController;
 
 public class DungeonApplication extends Application {
 	
@@ -30,13 +31,38 @@ public class DungeonApplication extends Application {
     	controller.attach(val -> {
     		if (val == "play") {
     			try {
-					showDungeon();
+					showSelection();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		}
     	});
+        loader.setController(controller);
+
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        root.requestFocus();
+        
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    public void showSelection() throws IOException {
+    	primaryStage.setTitle("Dungeon Explorer - Selection");
+    	
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("menu/SelectionView.fxml"));
+    	SelectionController controller = new SelectionController();
+//    	controller.attach(val -> {
+//    		if (val == "play") {
+//    			try {
+//					showDungeon();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//    		}
+//    	});
         loader.setController(controller);
 
         Parent root = loader.load();
