@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 
-public class SelectionController {
+public class SelectionController extends Controller {
 	
 	@FXML
     private TilePane grid;
@@ -28,7 +28,11 @@ public class SelectionController {
 	
 	public void addDungeon(Path dungeonPath) {
 		System.out.println("WTF" + dungeonPath);
-		Button button = new Button(dungeonPath.getFileName().toString());
+		String dungeonFileName = dungeonPath.getFileName().toString();
+		Button button = new Button(dungeonFileName);
+		button.setOnMouseClicked(event -> {
+			notify(dungeonFileName);
+		});		
 		grid.getChildren().add(button);
 	}
 	

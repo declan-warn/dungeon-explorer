@@ -53,16 +53,9 @@ public class DungeonApplication extends Application {
     	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("menu/SelectionView.fxml"));
     	SelectionController controller = new SelectionController();
-//    	controller.attach(val -> {
-//    		if (val == "play") {
-//    			try {
-//					showDungeon();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//    		}
-//    	});
+    	controller.attach(dungeon -> {
+    		System.out.println(dungeon);
+    	});
         loader.setController(controller);
 
         Parent root = loader.load();
