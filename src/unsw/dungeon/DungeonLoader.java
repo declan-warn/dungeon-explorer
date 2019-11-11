@@ -9,6 +9,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import unsw.dungeon.entity.Boulder;
+import unsw.dungeon.entity.Door;
+import unsw.dungeon.entity.Enemy;
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.Exit;
+import unsw.dungeon.entity.FloorSwitch;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.Portal;
+import unsw.dungeon.entity.Wall;
+import unsw.dungeon.entity.collectable.Key;
+import unsw.dungeon.entity.collectable.Potion;
+import unsw.dungeon.entity.collectable.Sword;
+import unsw.dungeon.entity.collectable.Treasure;
 import unsw.dungeon.goal.BouldersGoal;
 import unsw.dungeon.goal.ComplexGoal;
 import unsw.dungeon.goal.EnemiesGoal;
@@ -108,6 +121,7 @@ public abstract class DungeonLoader {
         int x = json.getInt("x");
         int y = json.getInt("y");
 
+        int id = -1;
         Entity entity = null;
         switch (type) {
         case "player":
@@ -127,12 +141,14 @@ public abstract class DungeonLoader {
         	entity = exit;
         	break;
         case "key":
-        	Key key = new Key(x, y);
+        	id = json.getInt("id");
+        	Key key = new Key(x, y, id);
         	onLoad(key);
         	entity = key;
         	break;
         case "door":
-        	Door door = new Door(x, y);
+        	id = json.getInt("id");
+        	Door door = new Door(x, y, id);
         	onLoad(door);
         	entity = door;
         	break;
@@ -142,8 +158,8 @@ public abstract class DungeonLoader {
         	entity = treasure;
         	break;
         case "portal":
-        	int linkId = json.getInt("linkId");
-        	Portal portal = new Portal(x, y, linkId);
+        	id = json.getInt("id");
+        	Portal portal = new Portal(x, y, id);
         	onLoad(portal);
         	entity = portal;
         	break;

@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.EntityVisitor;
-import unsw.dungeon.EventHandler;
-import unsw.dungeon.FloorSwitch;
+import unsw.dungeon.entity.FloorSwitch;
+import unsw.dungeon.event.EventListener;
+import unsw.dungeon.event.GoalCompletionEvent;
+import unsw.dungeon.event.SwitchActivationEvent;
 
-public class BouldersGoal extends BasicGoal implements EntityVisitor {
+public class BouldersGoal extends BasicGoal {
 	
 	private Set<FloorSwitch> switches;
 	
@@ -21,24 +22,22 @@ public class BouldersGoal extends BasicGoal implements EntityVisitor {
 	public boolean isComplete() {
 		return this.switches.stream().allMatch(FloorSwitch::isActivated);
 	}
-	
+
 	@Override
 	public void onDungeonLoad(Dungeon dungeon) {
+		super.onDungeonLoad(dungeon);
+		// TODO: try to do polymorphically instead of cast
 		dungeon
 			.getEntitiesOfType("FloorSwitch")
-			.forEach(floorSwitch -> floorSwitch.accept(this));
+			.forEach(floorSwitch -> this.switches.add((FloorSwitch) floorSwitch));
 	}
 	
 	@Override
-	public void visit(FloorSwitch floorSwitch) {
-		this.switches.add(floorSwitch);
-		floorSwitch.addListener(event -> {
-			if (this.isComplete()) {
-				// TODO: something else
-				System.out.println("ALL SWITCHES ACTIVE");
-				this.broadcast(new GoalCompletionEvent(this));
-			}
-		});
-	}
+	public void handle(SwitchActivationEvent event) {
+		if (this.isComplete()) {
+			System.out.println("All switches are now active.");
+			this.broadcast(new GoalCompletionEvent(this));
+		}
+	}	
 
 }

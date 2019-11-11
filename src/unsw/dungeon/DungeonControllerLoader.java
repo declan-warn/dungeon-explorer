@@ -10,6 +10,18 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import unsw.dungeon.entity.Boulder;
+import unsw.dungeon.entity.Door;
+import unsw.dungeon.entity.Enemy;
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.Exit;
+import unsw.dungeon.entity.FloorSwitch;
+import unsw.dungeon.entity.Portal;
+import unsw.dungeon.entity.Wall;
+import unsw.dungeon.entity.collectable.Key;
+import unsw.dungeon.entity.collectable.Potion;
+import unsw.dungeon.entity.collectable.Sword;
+import unsw.dungeon.entity.collectable.Treasure;
 
 /**
  * A DungeonLoader that also creates the necessary ImageViews for the UI,
@@ -60,9 +72,11 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Door door) {
     	ImageView view = new ImageView(door.getImage());
-    	door.addListener(event -> {
-    		view.setImage(door.getImage());
-    	});
+    	door.setImageView(view);
+    	// TODO: Add a better way to change the sprite
+//    	door.addListener(event -> {
+//    		view.setImage(door.getImage());
+//    	});
     	addEntity(door, view);
     }
     

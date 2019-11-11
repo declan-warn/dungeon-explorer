@@ -1,15 +1,11 @@
 package unsw.dungeon.goal;
 
-import java.util.List;
-
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
-import unsw.dungeon.EntityVisitor;
-import unsw.dungeon.EventHandler;
-import unsw.dungeon.ItemPickupEvent;
-import unsw.dungeon.Treasure;
+import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.event.GoalCompletionEvent;
+import unsw.dungeon.event.ItemPickupEvent;
 
-public class TreasureGoal extends BasicGoal implements EntityVisitor {
+public class TreasureGoal extends BasicGoal {
 	
 	private int treasureTotal;
 	private int treasureCollected;
@@ -26,26 +22,20 @@ public class TreasureGoal extends BasicGoal implements EntityVisitor {
 	}
 
 	@Override
-	public void onDungeonLoad(Dungeon dungeon) {		
-		List<Entity> treasure = dungeon.getEntitiesOfType("Treasure");
-		this.treasureTotal = treasure.size();
-		treasure.forEach(t -> t.accept(this));		
+	public void onDungeonLoad(Dungeon dungeon) {
+		super.onDungeonLoad(dungeon);
+		this.treasureTotal = dungeon.getEntitiesOfType("Treasure").size();
 	}
 	
 	@Override
-	public void visit(Treasure treasure) {
-		Goal goal = this;
-		treasure.addListener(new EventHandler<ItemPickupEvent>() {
-			@Override
-			public void handle(ItemPickupEvent event) {
-				treasureCollected++;
-				if (isComplete()) {
-					// TODO: do something
-					System.out.println("All treasure collected");
-					broadcast(new GoalCompletionEvent(goal));
-				}
+	public void handle(ItemPickupEvent event) {
+		if (event.isType(Item.TREASURE)) {
+			this.treasureCollected++;
+			if (this.isComplete()) {
+				System.out.println("ALL TREASURE COLLECTED");
+				this.broadcast(new GoalCompletionEvent(this));
 			}
-		});
+		}
 	}
 	
 }

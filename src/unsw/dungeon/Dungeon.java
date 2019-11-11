@@ -7,6 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import unsw.dungeon.entity.Entity;
+import unsw.dungeon.entity.ExitStatus;
+import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.Portal;
+import unsw.dungeon.entity.PortalNetwork;
+import unsw.dungeon.entity.collectable.CollectableEntity;
+import unsw.dungeon.entity.collectable.Inventory;
+import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.event.EventListener;
+import unsw.dungeon.event.EventManager;
+import unsw.dungeon.event.GoalCompletionEvent;
+import unsw.dungeon.event.ItemPickupEvent;
+import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
 
@@ -19,7 +32,7 @@ import unsw.dungeon.goal.GoalSystem;
  * @author Robert Clifton-Everest
  *
  */
-public class Dungeon {
+public class Dungeon implements EventListener {
 
     private int width, height;
     private List<Entity> entities;
@@ -27,9 +40,8 @@ public class Dungeon {
     private Inventory inventory;
     private int score;
     private PortalNetwork portalNetwork;
-    private PhysicsManager physics;
-//    private GoalSystem goal;
     private Goal goal;
+    private EventManager events;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -39,7 +51,10 @@ public class Dungeon {
         this.inventory = new Inventory();
         this.score = 0;
         this.portalNetwork = new PortalNetwork();
-        this.physics = new PhysicsManager();
+        this.events = new EventManager();
+        
+        this.events.addListener(this);
+        this.events.addListener(this.portalNetwork);
     }
 
     public int getWidth() {
@@ -59,8 +74,10 @@ public class Dungeon {
     }
 
     public void addEntity(Entity entity) {
-    	if (entity != null)
+    	if (entity != null) {
     		entities.add(entity);
+    		this.events.addListener(entity);
+    	}
     }
     
     public void giveItem(CollectableEntity item) {
@@ -84,27 +101,28 @@ public class Dungeon {
     	
     	if (this.goal != null)
     		this.goal.onDungeonLoad(this);
-    	
-    	this.physics.onDungeonLoad(this);
-    	
-    	this.getPlayer().onMovement((event) -> {
+    }
+    
+    @Override
+    public void handle(MovementEvent event) {
+    	if (event.isPlayer()) {
     		this.tick();
-    	});
+    	}
     }
     
     public void visit(CollectableEntity collectable) {
     	//System.out.println("COLLECTABLE: " + collectable.getType().toString());
     }
     
-    public void visit(Treasure treasure) {
-    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
-			@Override
-			public void handle(ItemPickupEvent event) {
-				score += Treasure.worth;
-				System.out.println("SCORE = " + score);
-			}
-    	});
-    }
+//    public void visit(Treasure treasure) {
+//    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
+//			@Override
+//			public void handle(ItemPickupEvent event) {
+//				score += Treasure.worth;
+//				System.out.println("SCORE = " + score);
+//			}
+//    	});
+//    }
     
     public void registerPortal(Portal portal) {
     	this.portalNetwork.register(portal);
@@ -114,24 +132,20 @@ public class Dungeon {
     	this.entities.forEach(Entity::tick);
     }
     
-    public void registerMovable(Movable movable) {
-    	this.physics.addMovable(movable);
-    }
-    
-    public void registerMovementHandler(EventHandler<MovementEvent> handler) {
-    	this.physics.addHandler(handler);
-    }
-    
     public void exit(ExitStatus status) {
     	System.out.println("DUNGEON STATUS: " + status);
     }
     
     public void setGoal(Goal goal) {
     	this.goal = goal;
-    	goal.addListener(event -> {
+    }
+    
+    @Override
+    public void handle(GoalCompletionEvent event) {
+    	if (event.getGoal() == this.goal) {
     		System.out.println("DUNGEON GOAL COMPLETE");
     		this.exit(ExitStatus.SUCCESS);
-    	});
+    	}
     }
     
     public List<Entity> getEntitiesOfType(String type) {
@@ -143,4 +157,13 @@ public class Dungeon {
     public List<Entity> getEntities() {
     	return this.entities;
     }
+    
+    public void broadcastEvent(unsw.dungeon.event.Event event) {
+    	this.events.broadcast(event);
+    }
+
+	public void registerListener(EventListener listener) {
+		this.events.addListener(listener);		
+	}
+    
 }
