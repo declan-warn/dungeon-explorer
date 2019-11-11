@@ -9,13 +9,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import unsw.dungeon.entity.Player;
+import unsw.dungeon.menu.Controller;
 
 /**
  * A JavaFX controller for the dungeon.
  * @author Robert Clifton-Everest
  *
  */
-public class DungeonController {
+public class DungeonController extends Controller {
 
     @FXML
     private GridPane squares;

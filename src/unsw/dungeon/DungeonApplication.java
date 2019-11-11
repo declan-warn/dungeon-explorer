@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import unsw.dungeon.menu.Controller;
 import unsw.dungeon.menu.MenuController;
 import unsw.dungeon.menu.SelectionController;
 
@@ -24,9 +25,6 @@ public class DungeonApplication extends Application {
     }
     
     public void showMenu() throws IOException {
-    	primaryStage.setTitle("Dungeon Explorer - Menu");
-    	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("menu/MenuView.fxml"));
     	MenuController controller = new MenuController();
     	controller.attach(val -> {
     		if (val == "play") {
@@ -38,50 +36,43 @@ public class DungeonApplication extends Application {
 				}
     		}
     	});
-        loader.setController(controller);
-
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        root.requestFocus();
         
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    	showScene("Menu", "menu/MenuView.fxml", controller);
     }
     
     public void showSelection() throws IOException {
-    	primaryStage.setTitle("Dungeon Explorer - Selection");
-    	
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("menu/SelectionView.fxml"));
     	SelectionController controller = new SelectionController();
-    	controller.attach(dungeon -> {
-    		System.out.println(dungeon);
-    	});
-        loader.setController(controller);
-
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        root.requestFocus();
+    	controller.attach(val -> {
+			try {
+				showDungeon(val);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
         
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        showScene("Selection", "menu/SelectionView.fxml", controller);
     }
     
-    public void showDungeon() throws IOException {
-    	primaryStage.setTitle("Dungeon Explorer - Dungeon");
-    	
-		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("maze.json");
-		
+    public void showDungeon(String dungeonFileName) throws IOException {    	
+		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonFileName);
 		DungeonController controller = dungeonLoader.loadController();
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
-		loader.setController(controller);
-		
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		root.requestFocus();
-		
-		primaryStage.setScene(scene);
-        primaryStage.show();
+		showScene("Dungeon", "DungeonView.fxml", controller);
+    }
+    
+    private void showScene(String title, String fxmlPath, Controller controller) throws IOException {
+    	primaryStage.setTitle("Dungeon Explorer - " + title);
+    	
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+    	loader.setController(controller);
+    	
+    	Parent root = loader.load();
+    	Scene scene = new Scene(root);
+    	root.requestFocus();
+    	
+    	primaryStage.setScene(scene);
+    	primaryStage.show();
     }
 
     public static void main(String[] args) {

@@ -9,7 +9,7 @@ import unsw.dungeon.util.Observable;
 import unsw.dungeon.util.Observer;
 import unsw.dungeon.util.SimpleObservable;
 
-public class MenuController implements Observable<String> {
+public class MenuController extends Controller {
 	
 	private SimpleObservable<String> observable = new SimpleObservable<>();
 
