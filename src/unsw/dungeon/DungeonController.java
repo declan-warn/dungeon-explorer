@@ -5,14 +5,20 @@ import java.util.List;
 
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.entity.collectable.Key;
 import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.menu.Controller;
 
@@ -55,16 +61,35 @@ public class DungeonController extends Controller {
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
         
-        Label keyIndicator = new Label("Holding key: " + dungeon.hasItem(Item.KEY));
+//        Label keyIndicator = new Label("Holding key: " + dungeon.hasItem(Item.KEY));
+        
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(new Color(0, 0, 0, 0.25));
+        shadow.setRadius(2);
+        shadow.setSpread(1);
+        
+        ColorAdjust greyscale = new ColorAdjust();
+        greyscale.setInput(shadow);
+        greyscale.setHue(-1);
+        
+        ImageView keyIndicator = new ImageView(Key.img);
+        keyIndicator.setEffect(greyscale);
+        keyIndicator.setOpacity(0.25);
         dungeon.attach(value -> {
         	if (value == "has_key=true") {
-        		keyIndicator.setText("Holding key: TRUE");
+//        		keyIndicator.setText("Holding key: TRUE");
+        		keyIndicator.setEffect(shadow);
+        		keyIndicator.setOpacity(1);
         	} else if (value == "has_key=false") {
-        		keyIndicator.setText("Holding key: FALSE");
+//        		keyIndicator.setText("Holding key: FALSE");
+        		keyIndicator.setEffect(greyscale);
+        		keyIndicator.setOpacity(0.25);
         	}
         });
         
         sidebar.getChildren().add(keyIndicator);
+        sidebar.setPadding(new Insets(16));
+        sidebar.setAlignment(Pos.TOP_CENTER);
         
     }
 
