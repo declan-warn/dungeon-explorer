@@ -6,7 +6,7 @@ import unsw.dungeon.event.ItemUseEvent;
 
 public class Sword extends CollectableEntity {
 
-	public static Image img = new Image("/greatsword_1_new.png");
+	public static Image img = new Image("/gold_sword.png");
 	private int totalHitsLeft = 5;
 	
 	public Sword(int x, int y) {

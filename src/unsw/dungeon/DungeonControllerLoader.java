@@ -42,7 +42,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         super(filename);
         entities = new ArrayList<>();
         playerImage = new Image("/human_new.png");
-        wallImage = new Image("/brick_brown_0.png");
+        wallImage = new Image("/stonebrick.png");
     }
 
     @Override

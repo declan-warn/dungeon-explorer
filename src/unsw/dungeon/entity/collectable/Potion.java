@@ -7,7 +7,7 @@ import unsw.dungeon.event.ItemPickupEvent;
 
 public class Potion extends CollectableEntity {
 	
-	public static Image img = new Image("/bubbly.png");
+	public static Image img = new Image("/experience_bottle.png");
 
 	private int ticksLeft;
 	

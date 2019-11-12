@@ -57,7 +57,7 @@ public class DungeonController extends Controller implements EventListener {
 
     @FXML
     public void initialize() {
-        Image ground = new Image("/dirt_0_new.png");
+        Image ground = new Image("/floor.png");
 
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {

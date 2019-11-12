@@ -11,7 +11,7 @@ import unsw.dungeon.event.SwitchActivationEvent;
 
 public class FloorSwitch extends Entity {
 	
-	public static Image img = new Image("/pressure_plate.png");
+	public static Image img = new Image("/painting.png");
 	
 	private boolean activated = false;
 	

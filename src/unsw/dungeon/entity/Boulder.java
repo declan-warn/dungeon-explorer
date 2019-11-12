@@ -9,7 +9,7 @@ import javafx.scene.input.KeyCode;
 import unsw.dungeon.event.MovementEvent;
 
 public class Boulder extends Entity implements Movable {
-	public static Image img = new Image("/boulder.png");
+	public static Image img = new Image("/fireball.png");
     
     //I changed the constructor for entities to include the type as in the Dungeon class i have a get Boulder entities to allow stuff to observe the boulder idk if this is bad but
     //look at the dungeon method cuz i feel might cause merge error and look at the onDungeonload of door and wall thats the majority of the change
