@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.entity.collectable.Key;
+import unsw.dungeon.entity.collectable.Sword;
 import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.menu.Controller;
 
@@ -63,6 +64,9 @@ public class DungeonController extends Controller {
         
 //        Label keyIndicator = new Label("Holding key: " + dungeon.hasItem(Item.KEY));
         
+        sidebar.setPadding(new Insets(16));
+        sidebar.setAlignment(Pos.TOP_CENTER);
+        
         DropShadow shadow = new DropShadow();
         shadow.setColor(new Color(0, 0, 0, 0.25));
         shadow.setRadius(2);
@@ -85,12 +89,14 @@ public class DungeonController extends Controller {
         		keyIndicator.setEffect(greyscale);
         		keyIndicator.setOpacity(0.25);
         	}
-        });
+        });        
         
         sidebar.getChildren().add(keyIndicator);
-        sidebar.setPadding(new Insets(16));
-        sidebar.setAlignment(Pos.TOP_CENTER);
         
+        ItemIndicator swordIndicator = new ItemIndicator(Sword.img);
+        swordIndicator.setText("1");
+        
+        sidebar.getChildren().add(swordIndicator);
     }
 
     @FXML
