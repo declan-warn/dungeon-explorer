@@ -15,6 +15,7 @@ import unsw.dungeon.entity.PortalNetwork;
 import unsw.dungeon.entity.collectable.CollectableEntity;
 import unsw.dungeon.entity.collectable.Inventory;
 import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.event.Event;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
 import unsw.dungeon.event.GoalCompletionEvent;
@@ -22,6 +23,7 @@ import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.goal.Goal;
 import unsw.dungeon.goal.GoalSystem;
+import unsw.dungeon.util.SimpleObservable;
 
 /**
  * A dungeon in the interactive dungeon player.
@@ -32,7 +34,7 @@ import unsw.dungeon.goal.GoalSystem;
  * @author Robert Clifton-Everest
  *
  */
-public class Dungeon implements EventListener {
+public class Dungeon extends SimpleObservable<String> implements EventListener {
 
     private int width, height;
     private List<Entity> entities;
@@ -82,10 +84,16 @@ public class Dungeon implements EventListener {
     
     public void giveItem(CollectableEntity item) {
     	this.inventory.add(item);
+    	if (item.isType(Item.KEY)) {
+    		this.notify("has_key=true");
+    	}
     }
     
     public void takeItem(CollectableEntity item) {
     	this.inventory.remove(item);
+    	if (item.isType(Item.KEY)) { 
+    		this.notify("has_key=false");
+    	}
     }
     
     public boolean hasItem(Item itemType) {
