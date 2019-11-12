@@ -2,8 +2,14 @@ package unsw.dungeon;
 
 import java.awt.Paint;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -21,10 +27,27 @@ public class ItemIndicator extends StackPane {
 	private Circle circle;
 	private StackPane bubble;
 	private Group group;
+	
+	private DropShadow shadow;
+	private ColorAdjust greyscale;
+	
+	private Boolean enabled;
 
 	public ItemIndicator(Image image) {
 		super();
+		
+		this.shadow = new DropShadow();
+        shadow.setColor(new Color(0, 0, 0, 0.25));
+        shadow.setRadius(2);
+        shadow.setSpread(1);
+        
+        this.greyscale = new ColorAdjust();
+        greyscale.setInput(shadow);
+        greyscale.setHue(-1);
+		
 		this.imageView = new ImageView(image);
+		
+		this.disable();
 		
 		this.circle = new Circle();
         circle.setFill(Color.WHITE);
@@ -47,6 +70,18 @@ public class ItemIndicator extends StackPane {
 		StackPane.setAlignment(group, Pos.BOTTOM_RIGHT);
 		
 		this.setText("");
+	}
+	
+	public void enable() {
+		this.enabled = true;
+		this.imageView.setEffect(shadow);
+		this.setOpacity(1);
+	}
+	
+	public void disable() {
+		this.enabled = false;
+		this.imageView.setEffect(greyscale);
+		this.setOpacity(0.25);
 	}
 	
 	public void setText(String text) {

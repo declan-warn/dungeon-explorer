@@ -86,6 +86,8 @@ public class Dungeon extends SimpleObservable<String> implements EventListener {
     	this.inventory.add(item);
     	if (item.isType(Item.KEY)) {
     		this.notify("has_key=true");
+    	} else if (item.isType(Item.SWORD)) {
+    		this.notify("has_sword=true");
     	}
     }
     
@@ -93,6 +95,8 @@ public class Dungeon extends SimpleObservable<String> implements EventListener {
     	this.inventory.remove(item);
     	if (item.isType(Item.KEY)) { 
     		this.notify("has_key=false");
+    	} else if (item.isType(Item.SWORD)) {
+    		this.notify("has_sword=false");
     	}
     }
     

@@ -89,12 +89,18 @@ public class DungeonController extends Controller {
         		keyIndicator.setEffect(greyscale);
         		keyIndicator.setOpacity(0.25);
         	}
-        });        
+        });
         
         sidebar.getChildren().add(keyIndicator);
         
         ItemIndicator swordIndicator = new ItemIndicator(Sword.img);
-        swordIndicator.setText("1");
+        dungeon.attach(value -> {
+        	if (value == "has_sword=true") {
+        		swordIndicator.enable();
+        	} else if (value == "has_sword=false") {
+        		swordIndicator.disable();
+        	}
+        });
         
         sidebar.getChildren().add(swordIndicator);
     }
