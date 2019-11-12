@@ -17,5 +17,7 @@ public interface EventListener {
 	default public void handle(EnemyDeathEvent event) {}
 
 	default public void handle(EntityReachedPortalEvent event) {}
+
+	default public void handle(ItemUseEvent event) {}
 	
 }

@@ -19,7 +19,10 @@ import javafx.scene.paint.Color;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.entity.collectable.Key;
+import unsw.dungeon.entity.collectable.Sword;
+import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.ItemPickupEvent;
+import unsw.dungeon.event.ItemUseEvent;
 import unsw.dungeon.menu.Controller;
 
 /**
@@ -27,7 +30,7 @@ import unsw.dungeon.menu.Controller;
  * @author Robert Clifton-Everest
  *
  */
-public class DungeonController extends Controller {
+public class DungeonController extends Controller implements EventListener {
 
     @FXML
     private GridPane squares;
@@ -45,7 +48,12 @@ public class DungeonController extends Controller {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        
+        dungeon.registerListener(this);
     }
+    
+    private ItemIndicator swordIndicator;
+    private ItemIndicator keyIndicator;
 
     @FXML
     public void initialize() {
@@ -61,36 +69,50 @@ public class DungeonController extends Controller {
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
         
-//        Label keyIndicator = new Label("Holding key: " + dungeon.hasItem(Item.KEY));
-        
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(new Color(0, 0, 0, 0.25));
-        shadow.setRadius(2);
-        shadow.setSpread(1);
-        
-        ColorAdjust greyscale = new ColorAdjust();
-        greyscale.setInput(shadow);
-        greyscale.setHue(-1);
-        
-        ImageView keyIndicator = new ImageView(Key.img);
-        keyIndicator.setEffect(greyscale);
-        keyIndicator.setOpacity(0.25);
-        dungeon.attach(value -> {
-        	if (value == "has_key=true") {
-//        		keyIndicator.setText("Holding key: TRUE");
-        		keyIndicator.setEffect(shadow);
-        		keyIndicator.setOpacity(1);
-        	} else if (value == "has_key=false") {
-//        		keyIndicator.setText("Holding key: FALSE");
-        		keyIndicator.setEffect(greyscale);
-        		keyIndicator.setOpacity(0.25);
-        	}
-        });
-        
-        sidebar.getChildren().add(keyIndicator);
         sidebar.setPadding(new Insets(16));
         sidebar.setAlignment(Pos.TOP_CENTER);
         
+        this.keyIndicator = new ItemIndicator(Key.img);
+        this.swordIndicator = new ItemIndicator(Sword.img);        
+        
+        sidebar.getChildren().addAll(keyIndicator, swordIndicator);
+    }
+    
+    @Override
+    public void handle(ItemPickupEvent event) {
+    	switch (event.getType()) {
+    	case SWORD:
+    		this.swordIndicator.enable();
+    		this.swordIndicator.setText("5");
+    		break;
+    		
+    	case KEY:
+    		this.keyIndicator.enable();
+    		break;
+
+		default:
+			break;
+    	}
+    }
+    
+    @Override
+    public void handle(ItemUseEvent event) {
+    	switch (event.getType()) {
+    	case SWORD:
+    		if (event.getRemainingUses() > 0) {
+    			this.swordIndicator.setText(String.valueOf(event.getRemainingUses()));
+    		} else {
+    			this.swordIndicator.disable();
+    		}
+    		break;
+    		
+    	case KEY:
+    		this.keyIndicator.disable();
+    		break;
+    		
+    	default:
+    		break;
+    	}
     }
 
     @FXML
