@@ -30,6 +30,7 @@ public class SelectionController extends Controller {
 		System.out.println("WTF" + dungeonPath);
 		String dungeonFileName = dungeonPath.getFileName().toString();
 		Button button = new Button(dungeonFileName);
+		button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 		button.setOnMouseClicked(event -> {
 			notify(dungeonFileName);
 		});		
