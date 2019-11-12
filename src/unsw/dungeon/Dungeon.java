@@ -34,7 +34,7 @@ import unsw.dungeon.util.SimpleObservable;
  * @author Robert Clifton-Everest
  *
  */
-public class Dungeon extends SimpleObservable<String> implements EventListener {
+public class Dungeon implements EventListener {
 
     private int width, height;
     private List<Entity> entities;
@@ -84,20 +84,10 @@ public class Dungeon extends SimpleObservable<String> implements EventListener {
     
     public void giveItem(CollectableEntity item) {
     	this.inventory.add(item);
-    	if (item.isType(Item.KEY)) {
-    		this.notify("has_key=true");
-    	} else if (item.isType(Item.SWORD)) {
-    		this.notify("has_sword=true");
-    	}
     }
     
     public void takeItem(CollectableEntity item) {
     	this.inventory.remove(item);
-    	if (item.isType(Item.KEY)) { 
-    		this.notify("has_key=false");
-    	} else if (item.isType(Item.SWORD)) {
-    		this.notify("has_sword=false");
-    	}
     }
     
     public boolean hasItem(Item itemType) {
