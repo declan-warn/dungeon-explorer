@@ -22,6 +22,7 @@ import unsw.dungeon.entity.collectable.Key;
 import unsw.dungeon.entity.collectable.Sword;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.ItemPickupEvent;
+import unsw.dungeon.event.ItemUseEvent;
 import unsw.dungeon.menu.Controller;
 
 /**
@@ -82,6 +83,7 @@ public class DungeonController extends Controller implements EventListener {
     	switch (event.getType()) {
     	case SWORD:
     		this.swordIndicator.enable();
+    		this.swordIndicator.setText("5");
     		break;
     		
     	case KEY:
@@ -90,6 +92,26 @@ public class DungeonController extends Controller implements EventListener {
 
 		default:
 			break;
+    	}
+    }
+    
+    @Override
+    public void handle(ItemUseEvent event) {
+    	switch (event.getType()) {
+    	case SWORD:
+    		if (event.getRemainingUses() > 0) {
+    			this.swordIndicator.setText(String.valueOf(event.getRemainingUses()));
+    		} else {
+    			this.swordIndicator.disable();
+    		}
+    		break;
+    		
+    	case KEY:
+    		this.keyIndicator.disable();
+    		break;
+    		
+    	default:
+    		break;
     	}
     }
 

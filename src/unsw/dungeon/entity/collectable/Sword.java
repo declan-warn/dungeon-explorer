@@ -2,6 +2,7 @@ package unsw.dungeon.entity.collectable;
 
 import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.event.ItemUseEvent;
 
 public class Sword extends CollectableEntity {
 
@@ -28,6 +29,7 @@ public class Sword extends CollectableEntity {
 	
 	public void decreasetotalHitsLeft() {
 		totalHitsLeft = totalHitsLeft - 1;
+		this.dungeon.broadcastEvent(new ItemUseEvent(Item.SWORD, totalHitsLeft));
 	}
 	
 }

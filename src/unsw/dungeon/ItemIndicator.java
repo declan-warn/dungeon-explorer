@@ -47,8 +47,6 @@ public class ItemIndicator extends StackPane {
 		
 		this.imageView = new ImageView(image);
 		
-		this.disable();
-		
 		this.circle = new Circle();
         circle.setFill(Color.WHITE);
         circle.setRadius(8);
@@ -69,7 +67,7 @@ public class ItemIndicator extends StackPane {
 		this.getChildren().addAll(imageView, group);
 		StackPane.setAlignment(group, Pos.BOTTOM_RIGHT);
 		
-		this.setText("");
+		this.disable();
 	}
 	
 	public void enable() {
@@ -80,6 +78,7 @@ public class ItemIndicator extends StackPane {
 	
 	public void disable() {
 		this.enabled = false;
+		this.setText("");
 		this.imageView.setEffect(greyscale);
 		this.setOpacity(0.25);
 	}
