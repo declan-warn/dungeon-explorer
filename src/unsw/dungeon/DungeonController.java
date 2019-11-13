@@ -79,66 +79,10 @@ public class DungeonController extends Controller implements EventListener {
         
         sidebar.setStyle("-fx-background-image: url('/stonebrick.png'); -fx-background-position: top right;");
         
-//        this.keyIndicator = new ItemIndicator(Key.img);
-//        this.swordIndicator = new ItemIndicator(Sword.img);
-//        this.potionIndicator = new ItemIndicator(Potion.img);
-//        
-//        sidebar.getChildren().addAll(keyIndicator, swordIndicator, potionIndicator);
-        
         InventoryView inv = new InventoryView();
         sidebar.getChildren().add(inv);
         dungeon.registerListener(inv);
     }
-    
-//    @Override
-//    public void handle(ItemPickupEvent event) {
-//    	switch (event.getType()) {
-//    	case SWORD:
-//    		this.swordIndicator.enable();
-//    		this.swordIndicator.setText("5");
-//    		break;
-//    		
-//    	case KEY:
-//    		this.keyIndicator.enable();
-//    		break;
-//    		
-//    	case POTION:
-//    		this.potionIndicator.enable();
-//    		this.potionIndicator.setText("10");
-//    		break;
-//
-//		default:
-//			break;
-//    	}
-//    }
-//    
-//    @Override
-//    public void handle(ItemUseEvent event) {
-//    	switch (event.getType()) {
-//    	case SWORD:
-//    		if (event.getRemainingUses() > 0) {
-//    			this.swordIndicator.setText(String.valueOf(event.getRemainingUses()));
-//    		} else {
-//    			this.swordIndicator.disable();
-//    		}
-//    		break;
-//    		
-//    	case KEY:
-//    		this.keyIndicator.disable();
-//    		break;
-//    		
-//    	case POTION:
-//    		if (event.getRemainingUses() > 0) {
-//    			this.potionIndicator.setText(String.valueOf(event.getRemainingUses()));
-//    		} else {
-//    			this.potionIndicator.disable();    			
-//    		}
-//    		break;
-//    		
-//    	default:
-//    		break;
-//    	}
-//    }
 
     @FXML
     public void handleKeyPress(KeyEvent event) {
