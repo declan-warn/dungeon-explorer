@@ -45,11 +45,16 @@ public class Potion extends CollectableEntity {
 		if (this.ticksLeft > 0) {
 			System.out.println("Potion has " + this.ticksLeft + " ticks left");
 			this.ticksLeft--;
-			this.dungeon.broadcastEvent(new ItemUseEvent(Item.POTION, this.ticksLeft));
+			this.dungeon.broadcastEvent(new ItemUseEvent(this, Item.POTION, this.ticksLeft));
 			this.dungeon.getPlayer().setInvincible(true);
 		} else {
 			this.dungeon.getPlayer().setInvincible(false);
 		}
+	}
+	
+	@Override
+	public void pickup() {
+		this.broadcast(new ItemPickupEvent(this, 10));
 	}
 
 }

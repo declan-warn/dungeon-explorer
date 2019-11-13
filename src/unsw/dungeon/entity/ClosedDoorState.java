@@ -2,6 +2,7 @@ package unsw.dungeon.entity;
 
 import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;
+import unsw.dungeon.entity.collectable.CollectableEntity;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.event.ItemUseEvent;
 import unsw.dungeon.event.MovementEvent;
@@ -13,8 +14,9 @@ public class ClosedDoorState implements DoorState {
 	@Override
 	public void handleCollision(Door door, Dungeon dungeon, MovementEvent event) {
 		if (dungeon.hasItem(Item.KEY)) {
-			dungeon.takeItem(dungeon.getItem(Item.KEY));
-			dungeon.broadcastEvent(new ItemUseEvent(Item.KEY));
+			CollectableEntity key = dungeon.getItem(Item.KEY);
+			dungeon.takeItem(key);
+			dungeon.broadcastEvent(new ItemUseEvent(key, Item.KEY));
 			door.setState(new OpenDoorState());
 		} else {
 			event.cancel();

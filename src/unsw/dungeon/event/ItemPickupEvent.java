@@ -6,9 +6,15 @@ import unsw.dungeon.entity.collectable.Item;
 public class ItemPickupEvent implements Event {
 	
 	private CollectableEntity item;
+	private int remainingUses;
+	
+	public ItemPickupEvent(CollectableEntity item, int remainingUses) {
+		this.item = item;
+		this.remainingUses = remainingUses;
+	}
 	
 	public ItemPickupEvent(CollectableEntity item) {
-		this.item = item;
+		this(item, 1);
 	}
 	
 	public Item getType() {
@@ -19,8 +25,16 @@ public class ItemPickupEvent implements Event {
 		return this.getType().equals(type);
 	}
 	
+	public CollectableEntity getItem() {
+		return this.item;
+	}
+	
 	public boolean isItemInstance(CollectableEntity item) {
 		return this.item == item;
+	}
+	
+	public int getRemainingUses() {
+		return this.remainingUses;
 	}
 
 	@Override
