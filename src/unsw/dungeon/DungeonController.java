@@ -19,6 +19,7 @@ import javafx.scene.paint.Color;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.entity.collectable.Key;
+import unsw.dungeon.entity.collectable.Potion;
 import unsw.dungeon.entity.collectable.Sword;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.ItemPickupEvent;
@@ -54,6 +55,7 @@ public class DungeonController extends Controller implements EventListener {
     
     private ItemIndicator swordIndicator;
     private ItemIndicator keyIndicator;
+    private ItemIndicator potionIndicator;
 
     @FXML
     public void initialize() {
@@ -73,9 +75,10 @@ public class DungeonController extends Controller implements EventListener {
         sidebar.setAlignment(Pos.TOP_CENTER);
         
         this.keyIndicator = new ItemIndicator(Key.img);
-        this.swordIndicator = new ItemIndicator(Sword.img);        
+        this.swordIndicator = new ItemIndicator(Sword.img);
+        this.potionIndicator = new ItemIndicator(Potion.img);
         
-        sidebar.getChildren().addAll(keyIndicator, swordIndicator);
+        sidebar.getChildren().addAll(keyIndicator, swordIndicator, potionIndicator);
     }
     
     @Override
@@ -88,6 +91,11 @@ public class DungeonController extends Controller implements EventListener {
     		
     	case KEY:
     		this.keyIndicator.enable();
+    		break;
+    		
+    	case POTION:
+    		this.potionIndicator.enable();
+    		this.potionIndicator.setText("10");
     		break;
 
 		default:
@@ -108,6 +116,14 @@ public class DungeonController extends Controller implements EventListener {
     		
     	case KEY:
     		this.keyIndicator.disable();
+    		break;
+    		
+    	case POTION:
+    		if (event.getRemainingUses() > 0) {
+    			this.potionIndicator.setText(String.valueOf(event.getRemainingUses()));
+    		} else {
+    			this.potionIndicator.disable();    			
+    		}
     		break;
     		
     	default:
