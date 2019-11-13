@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.Event;
 import unsw.dungeon.event.ItemPickupEvent;
+import unsw.dungeon.event.ItemUseEvent;
 
 public class Potion extends CollectableEntity {
 	
@@ -44,6 +45,7 @@ public class Potion extends CollectableEntity {
 		if (this.ticksLeft > 0) {
 			System.out.println("Potion has " + this.ticksLeft + " ticks left");
 			this.ticksLeft--;
+			this.dungeon.broadcastEvent(new ItemUseEvent(Item.POTION, this.ticksLeft));
 			this.dungeon.getPlayer().setInvincible(true);
 		} else {
 			this.dungeon.getPlayer().setInvincible(false);
