@@ -3,6 +3,7 @@ package unsw.dungeon;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import unsw.dungeon.goal.Goal;
 
@@ -15,6 +16,7 @@ public class GoalViewItem extends VBox {
 	public GoalViewItem() {
 		this.textNode = new Text();
 		this.getChildren().add(textNode);
+		this.textNode.setFont(FontManager.getBodyFont(16));
 	}
 	
 	public GoalViewItem(Goal goal, int level) {

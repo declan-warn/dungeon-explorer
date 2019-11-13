@@ -1,20 +1,13 @@
-.goal-view__cell .tree-disclosure-node,
-.goal-view__cell .arrow {
-
-    -fx-min-width: 0;
-    -fx-pref-width: 0;
-    -fx-max-width: 0;
-
-    -fx-min-height: 0;
-    -fx-pref-height: 0;
-    -fx-max-height: 0;
-
+#goals {
+	-fx-background-color: white;
+	-fx-padding: 16;
 }
 
-.goal-view__cell {
-	-fx-indent: 8;
-    -fx-border-width: 0 0 0 4;
+.separator .line {
     -fx-border-color: black;
-    -fx-padding: 0;
-    -fx-margin: 0;
+    -fx-border-width: 1;
+}
+
+.separator {
+	-fx-padding: 4 0 4 0;
 }
