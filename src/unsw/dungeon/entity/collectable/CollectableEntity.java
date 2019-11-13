@@ -30,7 +30,8 @@ public abstract class CollectableEntity extends Entity {
 				} else {
 					this.x().set(this.dungeon.getWidth());
 					this.dungeon.giveItem(this);
-					this.broadcast(new ItemPickupEvent(this));
+//					this.broadcast(new ItemPickupEvent(this));
+					this.pickup();
 				}
 			});
 		}
@@ -43,5 +44,9 @@ public abstract class CollectableEntity extends Entity {
 	}
 
 	public boolean isActive() { return false; }
+	
+	public void pickup() {
+		this.broadcast(new ItemPickupEvent(this));
+	}
 
 }
