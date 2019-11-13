@@ -86,11 +86,7 @@ public class DungeonController extends Controller implements EventListener {
         sidebar.getChildren().addAll(keyIndicator, swordIndicator, potionIndicator);
         
         
-        inventory.setStyle("-fx-background-image: url('/inventory-grid.png'); -fx-background-position: top 2px left 2px;");
-        inventory.setPadding(new Insets(4));
-        inventory.setAlignment(Pos.CENTER);
-        inventory.setHgap(4);
-        inventory.setVgap(4);
+        sidebar.getChildren().add(new InventoryView());
     }
     
     @Override
