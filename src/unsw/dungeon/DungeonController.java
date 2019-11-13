@@ -77,6 +77,8 @@ public class DungeonController extends Controller implements EventListener {
         sidebar.setPadding(new Insets(16));
         sidebar.setAlignment(Pos.TOP_CENTER);
         
+        sidebar.setStyle("-fx-background-image: url('/stonebrick.png'); -fx-background-position: top right;");
+        
         this.keyIndicator = new ItemIndicator(Key.img);
         this.swordIndicator = new ItemIndicator(Sword.img);
         this.potionIndicator = new ItemIndicator(Potion.img);
