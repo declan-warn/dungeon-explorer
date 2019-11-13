@@ -82,6 +82,9 @@ public class DungeonController extends Controller implements EventListener {
         InventoryView inv = new InventoryView();
         sidebar.getChildren().add(inv);
         dungeon.registerListener(inv);
+        
+        GoalView goals = new GoalView(dungeon.getGoal());
+        sidebar.getChildren().add(goals);
     }
 
     @FXML

@@ -19,4 +19,6 @@ public abstract class Goal implements EventListener, Iterable<Goal> {
 		this.dungeon.broadcastEvent(event);
 	}
 	
+	public abstract boolean hasSubgoals();
+	
 }

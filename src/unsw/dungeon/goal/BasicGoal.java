@@ -27,4 +27,9 @@ public abstract class BasicGoal extends Goal {
 		};
 	}
 	
+	@Override
+	public boolean hasSubgoals() {
+		return false;
+	}
+	
 }

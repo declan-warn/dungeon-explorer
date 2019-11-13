@@ -51,5 +51,10 @@ public class ComplexGoal extends Goal {
 	public Iterator<Goal> iterator() {
 		return this.subgoals.iterator();
 	}
+	
+	@Override
+	public boolean hasSubgoals() {
+		return true;
+	}
 
 }
