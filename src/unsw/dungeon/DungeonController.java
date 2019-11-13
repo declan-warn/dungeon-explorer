@@ -72,6 +72,7 @@ public class DungeonController extends Controller implements EventListener {
         
         sidebar.setPadding(new Insets(16));
         sidebar.setAlignment(Pos.TOP_CENTER);
+        sidebar.setSpacing(24);
         
         sidebar.setStyle("-fx-background-image: url('/stonebrick.png'); -fx-background-position: top right;");
         

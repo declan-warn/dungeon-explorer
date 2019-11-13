@@ -1,6 +1,9 @@
 #goals {
-	-fx-background-color: white;
+	-fx-background-image: url("/options_background.png"), url("/ice.png");
 	-fx-padding: 16;
+	
+	-fx-border-color: rgb(30, 30, 30);
+	-fx-border-width: 2;
 }
 
 .separator .line {
