@@ -35,6 +35,7 @@ public class InventoryView extends GridPane implements EventListener {
         this.setAlignment(Pos.CENTER);
         this.setHgap(PADDING);
         this.setVgap(PADDING);
+        this.setMaxWidth((CELL_SIZE + PADDING) * WIDTH);
         
         for (int x = 0; x < WIDTH; x++) {
         	this.getColumnConstraints().add(new ColumnConstraints(CELL_SIZE));

@@ -21,4 +21,6 @@ public abstract class Goal implements EventListener, Iterable<Goal> {
 	
 	public abstract boolean hasSubgoals();
 	
+	public abstract String toString();
+	
 }

@@ -56,5 +56,10 @@ public class ComplexGoal extends Goal {
 	public boolean hasSubgoals() {
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return this.completionStrategy.toString();
+	}
 
 }

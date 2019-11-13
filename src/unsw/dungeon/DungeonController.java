@@ -56,10 +56,6 @@ public class DungeonController extends Controller implements EventListener {
         dungeon.registerListener(this);
     }
     
-    private ItemIndicator swordIndicator;
-    private ItemIndicator keyIndicator;
-    private ItemIndicator potionIndicator;
-
     @FXML
     public void initialize() {
         Image ground = new Image("/floor.png");

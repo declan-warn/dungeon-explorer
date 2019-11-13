@@ -38,6 +38,11 @@ public class BouldersGoal extends BasicGoal {
 			System.out.println("All switches are now active.");
 			this.broadcast(new GoalCompletionEvent(this));
 		}
-	}	
+	}
+	
+	@Override
+	public String toString() {
+		return "Activate all floor switches with boulders";
+	}
 
 }
