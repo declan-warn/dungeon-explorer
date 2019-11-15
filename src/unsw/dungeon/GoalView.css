@@ -14,3 +14,26 @@
 .separator {
 	-fx-padding: 4 0 4 0;
 }
+
+.check-box:disabled {
+	-fx-opacity: 1;
+}
+
+.check-box > .box {
+	-fx-background-insets: 0;
+  	-fx-background-radius: 0;
+  	-fx-background-color: transparent;
+}
+
+.check-box > .box > .mark {
+  	-fx-background-image: url("/check_false.png");
+  	-fx-background-position: center;
+  	-fx-background-repeat: stretch;
+  	-fx-background-size: 100% 100%;
+  	-fx-shape: none;
+}
+
+.check-box:selected > .box > .mark{
+  	-fx-background-color: transparent;
+  	-fx-background-image: url("/check_true.png");
+}
