@@ -6,7 +6,7 @@ import unsw.dungeon.entity.Paired;
 
 public class Key extends CollectableEntity implements Paired {
 	
-	public static Image img = new Image("/new_key.png");
+	//public static Image img = new Image("/new_key.png");
 	
 	private int id;
 	

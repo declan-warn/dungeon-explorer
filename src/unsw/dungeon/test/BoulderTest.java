@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import org.junit.jupiter.api.Test;
 
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.entity.Player;
 
 public class BoulderTest {
 	//Moving one square down into a boulder
@@ -16,7 +18,6 @@ public class BoulderTest {
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 2, 2);
-		dungeon.registerMovable(player);
 		player.move(keycode);
 		int answerX = 2;
 		int answerY = 3;
@@ -31,7 +32,6 @@ public class BoulderTest {
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 1, 3);
-		dungeon.registerMovable(player);
 		player.move(keycode);
 		int answerX = 1;
 		int answerY = 3;
@@ -46,7 +46,6 @@ public class BoulderTest {
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 2, 2);
-		dungeon.registerMovable(player);
 		player.move(keycode);
 		int answerX = 2;
 		int answerY = 3;

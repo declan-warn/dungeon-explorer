@@ -9,7 +9,7 @@ import unsw.dungeon.event.PlayerReachedExitEvent;
 
 public class Exit extends Entity {
 
-	public static Image img = new Image("/beacon.png");
+	//public static Image img = new Image("/beacon.png");
 	
     public Exit(int x, int y) {
         super(x, y, "Exit");

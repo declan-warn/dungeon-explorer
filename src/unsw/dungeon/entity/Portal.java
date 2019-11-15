@@ -10,7 +10,7 @@ import unsw.dungeon.event.MovementEvent;
 
 public class Portal extends Entity implements Paired {
 	
-	public static Image img = new Image("/command_block.png");
+	//public static Image img = new Image("/command_block.png");
 	
 	private final int id;
 

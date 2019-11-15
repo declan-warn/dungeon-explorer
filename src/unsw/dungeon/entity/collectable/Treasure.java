@@ -5,7 +5,7 @@ import unsw.dungeon.Dungeon;
 
 public class Treasure extends CollectableEntity {
 
-	public static Image img = new Image("/gold_ingot.png");
+	//public static Image img = new Image("/gold_ingot.png");
 	
 	public static int worth = 100;
 	

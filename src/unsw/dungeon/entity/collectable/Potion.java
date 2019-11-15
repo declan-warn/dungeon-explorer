@@ -8,7 +8,7 @@ import unsw.dungeon.event.ItemUseEvent;
 
 public class Potion extends CollectableEntity {
 	
-	public static Image img = new Image("/experience_bottle.png");
+	//public static Image img = new Image("/experience_bottle.png");
 
 	private int ticksLeft;
 	
