@@ -1,0 +1,19 @@
+KeyTest
+	Collecting more than one key
+
+ExitTest
+	Unsure how to test for exit completion
+
+FloorSwitch
+	Check the specific floor switch is activated
+
+Sword 
+	5 total hits and sword breaks => maybe just spawn 5 enemies
+	Doesn't  properly work idk y
+
+Enemy 
+	Enemys are unable to move through walls
+
+Potion
+	Testing enemies running away
+	

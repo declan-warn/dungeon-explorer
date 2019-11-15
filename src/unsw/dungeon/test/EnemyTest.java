@@ -9,21 +9,22 @@ import org.junit.jupiter.api.Test;
 import javafx.scene.input.KeyCode;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.entity.Player;
+import unsw.dungeon.entity.collectable.Item;
 
-public class ExitTest {
-	//Moving one square down into an exit
+public class EnemyTest {
+	//Moving one square down into an enemy (kills player)
 	@Test
-	public void moveIntoExit() throws FileNotFoundException {
+	public void MoveIntoEnemy() throws FileNotFoundException {
 		DungeonTestLoader test = new DungeonTestLoader("maze.json");
 		Dungeon dungeon = test.load();
-		KeyCode keycode = KeyCode.DOWN;
-		Player player = new Player(dungeon, 18, 15);
-		
-		//Player moves down into exit 
+		KeyCode keycode = KeyCode.RIGHT;
+		Player player = new Player(dungeon, 13, 1);
 		player.move(keycode);
-		int answerX = 18;
-		int answerY = 16;
+		
+		//pLAYER SHOUld die here
+		int answerX = 14;
+		int answerY = 1;
 		assertEquals(answerX, player.getX(), "new X coordinate is: " + answerX);
 		assertEquals(answerY, player.getY(), "new Y coordinate is: " + answerY);
-	}
+	}	
 }

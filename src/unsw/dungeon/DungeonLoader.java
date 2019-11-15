@@ -216,6 +216,4 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Sword sword);
     
     public abstract void onLoad(Potion potion);
-    // TODO Create additional abstract methods for the other entities
-
 }

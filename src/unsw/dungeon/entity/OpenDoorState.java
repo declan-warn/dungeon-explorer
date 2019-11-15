@@ -6,7 +6,7 @@ import unsw.dungeon.event.MovementEvent;
 
 public class OpenDoorState implements DoorState {
 	
-	public static Image img = new Image("/door_open.png");
+	//public static Image img = new Image("/door_open.png");
 	
 	@Override
 	public void handleCollision(Door door, Dungeon dungeon, MovementEvent event) {

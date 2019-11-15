@@ -24,6 +24,8 @@ public class Player extends Entity implements Movable {
      */
     public Player(Dungeon dungeon, int x, int y) {
         super(x, y, "Player");
+        //VERY SHOTTY FIX IDK WHAT ELSE TO DO THO
+        super.dungeon = dungeon;
         this.dungeon = dungeon;
         this.isInvincible = false;
     }

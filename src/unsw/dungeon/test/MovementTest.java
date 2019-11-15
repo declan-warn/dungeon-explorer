@@ -11,16 +11,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import javafx.scene.input.KeyCode;
+import unsw.dungeon.Dungeon;
+import unsw.dungeon.entity.Player;
 
 public class MovementTest {
 	//Moving one square to the right
 	@Test
-	public void testArea() throws FileNotFoundException {
+	public void singleMovement() throws FileNotFoundException {
 		DungeonTestLoader test = new DungeonTestLoader("maze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 1, 2);
-		dungeon.registerMovable(player);
 		player.move(keycode);
 		int answerX = 2;
 		int answerY = 2;
@@ -30,12 +31,11 @@ public class MovementTest {
 	
 	//Moving multiple squares to the right
 	@Test
-	void testArea2() throws FileNotFoundException{
+	void multipleMovements() throws FileNotFoundException{
 		DungeonTestLoader test = new DungeonTestLoader("maze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 3, 1);
-		dungeon.registerMovable(player);
 		int originalX = 4;
 		for (int i = 0; i < 10; i++) {
 			player.move(keycode);
