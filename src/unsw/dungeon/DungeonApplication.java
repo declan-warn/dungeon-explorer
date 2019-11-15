@@ -58,6 +58,17 @@ public class DungeonApplication extends Application {
 		DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonFileName);
 		DungeonController controller = dungeonLoader.loadController();
 		
+		controller.attach(val -> {
+			if (val == "select") {
+				try {
+					showSelection();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		showScene("Dungeon", "DungeonView.fxml", controller);
     }
     

@@ -22,6 +22,7 @@ import unsw.dungeon.entity.collectable.Key;
 import unsw.dungeon.entity.collectable.Potion;
 import unsw.dungeon.entity.collectable.Sword;
 import unsw.dungeon.event.EventListener;
+import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.ItemUseEvent;
 import unsw.dungeon.menu.Controller;
@@ -94,9 +95,23 @@ public class DungeonController extends Controller implements EventListener {
         case RIGHT:
             player.move(event.getCode());
             break;
+        case ESCAPE:
+        	this.showSelection();
+        	break;
         default:
             break;
         }
+    }
+    
+    @Override
+    public void handle(GoalCompletionEvent event) {
+    	if (dungeon.getGoal() == event.getGoal()) {
+    		this.showSelection();
+    	}
+    }
+    
+    public void showSelection() {
+    	this.notify("select");
     }
 
 }
