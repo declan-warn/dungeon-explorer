@@ -82,6 +82,7 @@ public class DungeonController extends Controller implements EventListener {
         
         GoalView goals = new GoalView(dungeon.getGoal());
         sidebar.getChildren().add(goals);
+        dungeon.registerListener(goals);
     }
 
     @FXML

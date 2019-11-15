@@ -1,5 +1,8 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -14,11 +17,16 @@ public class GoalViewItem extends VBox {
 	
 	public static final int INDENT = 16;
 	
+	private Goal goal;
 	private HBox box;
 	private CheckBox check;
 	private Text textNode;
 	
-	public GoalViewItem() {
+	private List<GoalViewItem> subitems;
+	
+	public GoalViewItem(Goal goal, int level) {
+		this.goal = goal;
+		
 		this.box = new HBox();
 		this.box.setAlignment(Pos.CENTER_LEFT);
 		this.box.setSpacing(4);
@@ -32,10 +40,9 @@ public class GoalViewItem extends VBox {
 		
 		this.box.getChildren().addAll(check, textNode);
 		this.getChildren().add(box);
-	}
-	
-	public GoalViewItem(Goal goal, int level) {
-		this();
+		
+		this.subitems = new ArrayList<>();
+		
 		this.setPadding(new Insets(0, 0, 0, level * INDENT));
 		this.setText(goal.toString());
 		for (Goal subgoal : goal) {
@@ -48,12 +55,21 @@ public class GoalViewItem extends VBox {
 		this(goal, 0);
 	}
 	
-	public void addChild(Node node) {
+	public void addChild(GoalViewItem node) {
 		this.getChildren().add(node);
+		this.subitems.add(node);
 	}
 	
 	public void setText(String text) {
 		this.textNode.setText(text);
+	}
+
+	public void handleCompletion(Goal completedGoal) {
+		if (this.goal == completedGoal) {
+			this.check.setSelected(true);
+		} else {
+			this.subitems.forEach(item -> item.handleCompletion(completedGoal));
+		}
 	}
 	
 }

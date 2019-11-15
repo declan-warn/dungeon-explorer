@@ -37,6 +37,7 @@ public class ComplexGoal extends Goal {
 	
 	@Override
 	public void handle(GoalCompletionEvent event) {
+		if (this == event.getGoal()) return;
 		if (this.isComplete()) {
 			this.broadcast(new GoalCompletionEvent(this));
 		}
@@ -44,6 +45,7 @@ public class ComplexGoal extends Goal {
 	
 	@Override
 	public void onDungeonLoad(Dungeon dungeon) {
+		super.onDungeonLoad(dungeon);
 		this.subgoals.forEach(subgoal -> subgoal.onDungeonLoad(dungeon));
 	}
 
