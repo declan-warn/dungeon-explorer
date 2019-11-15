@@ -38,4 +38,9 @@ public class TreasureGoal extends BasicGoal {
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return "Collect all treasure";
+	}
+	
 }

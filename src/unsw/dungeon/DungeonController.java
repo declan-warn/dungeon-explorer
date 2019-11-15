@@ -56,10 +56,6 @@ public class DungeonController extends Controller implements EventListener {
         dungeon.registerListener(this);
     }
     
-    private ItemIndicator swordIndicator;
-    private ItemIndicator keyIndicator;
-    private ItemIndicator potionIndicator;
-
     @FXML
     public void initialize() {
         Image ground = new Image("/floor.png");
@@ -76,12 +72,17 @@ public class DungeonController extends Controller implements EventListener {
         
         sidebar.setPadding(new Insets(16));
         sidebar.setAlignment(Pos.TOP_CENTER);
+        sidebar.setSpacing(24);
         
         sidebar.setStyle("-fx-background-image: url('/stonebrick.png'); -fx-background-position: top right;");
         
         InventoryView inv = new InventoryView();
         sidebar.getChildren().add(inv);
         dungeon.registerListener(inv);
+        
+        GoalView goals = new GoalView(dungeon.getGoal());
+        sidebar.getChildren().add(goals);
+        dungeon.registerListener(goals);
     }
 
     @FXML

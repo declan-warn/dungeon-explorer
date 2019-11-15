@@ -4,7 +4,7 @@ import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.GoalCompletionEvent;
 
-public abstract class Goal implements EventListener {
+public abstract class Goal implements EventListener, Iterable<Goal> {
 	
 	protected Dungeon dungeon;
 	
@@ -18,5 +18,9 @@ public abstract class Goal implements EventListener {
 	public void broadcast(GoalCompletionEvent event) {
 		this.dungeon.broadcastEvent(event);
 	}
+	
+	public abstract boolean hasSubgoals();
+	
+	public abstract String toString();
 	
 }

@@ -8,5 +8,10 @@ public class AndCompletionStrategy implements GoalCompletionStrategy {
 	public boolean isComplete(Collection<Goal> subgoals) {
 		return subgoals.stream().allMatch(Goal::isComplete);
 	}
+	
+	@Override
+	public String toString() {
+		return "Complete all of:";
+	}
 
 }

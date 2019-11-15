@@ -20,5 +20,10 @@ public class ExitGoal extends BasicGoal {
 			this.broadcast(new GoalCompletionEvent(this));
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "Reach the exit";
+	}
 
 }

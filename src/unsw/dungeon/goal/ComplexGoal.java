@@ -1,6 +1,7 @@
 package unsw.dungeon.goal;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import unsw.dungeon.Dungeon;
@@ -36,6 +37,7 @@ public class ComplexGoal extends Goal {
 	
 	@Override
 	public void handle(GoalCompletionEvent event) {
+		if (this == event.getGoal()) return;
 		if (this.isComplete()) {
 			this.broadcast(new GoalCompletionEvent(this));
 		}
@@ -43,7 +45,23 @@ public class ComplexGoal extends Goal {
 	
 	@Override
 	public void onDungeonLoad(Dungeon dungeon) {
+		super.onDungeonLoad(dungeon);
 		this.subgoals.forEach(subgoal -> subgoal.onDungeonLoad(dungeon));
+	}
+
+	@Override
+	public Iterator<Goal> iterator() {
+		return this.subgoals.iterator();
+	}
+	
+	@Override
+	public boolean hasSubgoals() {
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return this.completionStrategy.toString();
 	}
 
 }

@@ -142,6 +142,10 @@ public class Dungeon implements EventListener {
     	this.goal = goal;
     }
     
+    public Goal getGoal() {
+    	return this.goal;
+    }
+    
     @Override
     public void handle(GoalCompletionEvent event) {
     	if (event.getGoal() == this.goal) {
