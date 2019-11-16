@@ -6,8 +6,6 @@ import unsw.dungeon.entity.Paired;
 
 public class Key extends CollectableEntity implements Paired {
 	
-	//public static Image img = new Image("/new_key.png");
-	
 	private int id;
 	
 	public Key(int x, int y, int id) {
@@ -30,6 +28,9 @@ public class Key extends CollectableEntity implements Paired {
 		dungeon.visit(this);
 	}
 
-	
+	@Override
+	public Image getImage() {
+		return new Image("/new_key.png");
+	}	
 
 }

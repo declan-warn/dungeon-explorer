@@ -7,8 +7,6 @@ import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.ItemUseEvent;
 
 public class Potion extends CollectableEntity {
-	
-	//public static Image img = new Image("/experience_bottle.png");
 
 	private int ticksLeft;
 	
@@ -55,6 +53,11 @@ public class Potion extends CollectableEntity {
 	@Override
 	public void pickup() {
 		this.broadcast(new ItemPickupEvent(this, 10));
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/experience_bottle.png");
 	}
 
 }

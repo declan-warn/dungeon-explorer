@@ -3,6 +3,7 @@ package unsw.dungeon.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.MovementEvent;
@@ -90,6 +91,11 @@ public class Player extends Entity implements Movable {
 	
 	public boolean isInvincible() {
 		return this.isInvincible;
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/human_new.png");
 	}
 	
 }

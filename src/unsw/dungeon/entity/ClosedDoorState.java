@@ -7,9 +7,7 @@ import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.event.ItemUseEvent;
 import unsw.dungeon.event.MovementEvent;
 
-public class ClosedDoorState implements DoorState {
-	
-	//public static Image img = new Image("/door_closed.png");
+public class ClosedDoorState implements DoorState { 
 
 	@Override
 	public void handleCollision(Door door, Dungeon dungeon, MovementEvent event) {
@@ -25,7 +23,7 @@ public class ClosedDoorState implements DoorState {
 
 	@Override
 	public Image getImage() {
-		return ClosedDoorState.img;
+		return new Image("/door_closed.png");
 	}
 
 }

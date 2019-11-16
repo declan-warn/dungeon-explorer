@@ -4,8 +4,6 @@ import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;
 
 public class Treasure extends CollectableEntity {
-
-	//public static Image img = new Image("/gold_ingot.png");
 	
 	public static int worth = 100;
 	
@@ -21,6 +19,11 @@ public class Treasure extends CollectableEntity {
 	@Override
 	public void accept(Dungeon dungeon) {
 		dungeon.visit(this);
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/gold_ingot.png");
 	}
 
 }

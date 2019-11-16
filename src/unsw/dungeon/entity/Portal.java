@@ -10,8 +10,6 @@ import unsw.dungeon.event.MovementEvent;
 
 public class Portal extends Entity implements Paired {
 	
-	//public static Image img = new Image("/command_block.png");
-	
 	private final int id;
 
 	public Portal(int x, int y, int id) {
@@ -34,6 +32,11 @@ public class Portal extends Entity implements Paired {
 		if (event.getX() == getX() && event.getY() == getY()) {
 			this.broadcast(new EntityReachedPortalEvent(this, event));
 		}
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/command_block.png");
 	}
 
 }

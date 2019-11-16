@@ -11,8 +11,6 @@ import unsw.dungeon.event.SwitchActivationEvent;
 
 public class FloorSwitch extends Entity {
 	
-	//public static Image img = new Image("/painting.png");
-	
 	private boolean activated = false;
 	
 	public FloorSwitch(int x, int y) {
@@ -67,6 +65,11 @@ public class FloorSwitch extends Entity {
 	
 	public boolean isActivated() {
 		return this.activated;
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/painting.png");
 	}
 	
 }
