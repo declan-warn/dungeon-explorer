@@ -1,0 +1,24 @@
+#back {
+	-fx-background-image: url('/options_background.png');
+}
+
+.button {
+	-fx-background-image: url('/button.png');
+	-fx-background-size: 100% 100%;
+	-fx-border-width: 0;
+	-fx-background-color: transparent;
+}
+
+.button .label .text {
+	-fx-fill: #637a7a;
+	-fx-stroke: #221815;
+	-fx-stroke-width: 0.5px;
+}
+
+.button:hover {
+	-fx-cursor: hand;
+}
+
+.button:hover .label .text {
+	-fx-fill: #8aaab3;
+}

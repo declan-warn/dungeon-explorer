@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import unsw.dungeon.menu.Controller;
+import unsw.dungeon.menu.InfoController;
 import unsw.dungeon.menu.MenuController;
 import unsw.dungeon.menu.SelectionController;
 
@@ -34,17 +35,42 @@ public class DungeonApplication extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+    		} else if (val == "info") {
+    			try {
+    				showInfo();
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
     		}
     	});
         
     	showScene("Menu", "menu/MenuView.fxml", controller);
     }
     
+    public void showInfo() throws IOException {
+    	InfoController controller = new InfoController();
+    	controller.attach(val -> {
+    		if (val == "menu") {
+    			try {
+    				showMenu();
+    			} catch (IOException e) {
+    				e.printStackTrace();
+    			}
+    		}
+    	});
+    	
+    	showScene("Info", "menu/InfoView.fxml", controller);
+    }
+    
     public void showSelection() throws IOException {
     	SelectionController controller = new SelectionController();
     	controller.attach(val -> {
 			try {
-				showDungeon(val);
+				if (val == "menu") {
+					showMenu();
+				} else {
+					showDungeon(val);
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -84,6 +110,8 @@ public class DungeonApplication extends Application {
     	
     	primaryStage.setScene(scene);
     	primaryStage.show();
+//    	primaryStage.setMaximized(true);
+    	primaryStage.centerOnScreen();
     }
 
     public static void main(String[] args) {
