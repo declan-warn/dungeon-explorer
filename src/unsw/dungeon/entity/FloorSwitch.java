@@ -19,7 +19,7 @@ public class FloorSwitch extends Entity {
 
 	@Override
 	public void handle(MovementEvent e) {
-		if (e.getX() == getX() && e.getY() == getY()) {
+		if (e.getX() == getX() && e.getY() == getY() && ! e.getEntity().getEntityType().equals("Player")) {
 			activated = true;
 			this.broadcast(new SwitchActivationEvent(this));
 		} else {
