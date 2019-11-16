@@ -108,7 +108,7 @@ public class Dungeon implements EventListener {
     @Override
     public void handle(MovementEvent event) {
     	if (event.isPlayer()) {
-    		this.tick();
+    		event.andThen(e -> this.tick());
     	}
     }
     
