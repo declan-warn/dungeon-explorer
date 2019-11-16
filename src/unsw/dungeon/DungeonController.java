@@ -7,6 +7,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import unsw.dungeon.entity.Player;
@@ -25,6 +27,7 @@ import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.ItemUseEvent;
+import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.menu.Controller;
 
 /**
@@ -34,6 +37,9 @@ import unsw.dungeon.menu.Controller;
  */
 public class DungeonController extends Controller implements EventListener {
 
+	@FXML
+    private StackPane centerStack;
+	
     @FXML
     private GridPane squares;
     
@@ -48,6 +54,8 @@ public class DungeonController extends Controller implements EventListener {
     private Player player;
 
     private Dungeon dungeon;
+    
+    private Group overlay;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -84,6 +92,17 @@ public class DungeonController extends Controller implements EventListener {
         GoalView goals = new GoalView(dungeon.getGoal());
         sidebar.getChildren().add(goals);
         dungeon.registerListener(goals);
+        
+//        this.overlay = new Group(new ImageView(new Image("/overlay.png")));
+//        centerStack.getChildren().add(overlay);
+//        StackPane.setAlignment(overlay, Pos.TOP_LEFT);
+//        overlay.setTranslateX((player.getX() - 5) * 32);
+//        overlay.setTranslateY((player.getY() - 5) * 32);
+//        
+        Vignette vignette = new Vignette(player, dungeon.getWidth(), dungeon.getHeight());
+        centerStack.getChildren().add(vignette);
+        StackPane.setAlignment(vignette, Pos.TOP_LEFT);
+        
     }
 
     @FXML
@@ -109,6 +128,16 @@ public class DungeonController extends Controller implements EventListener {
     		this.showSelection();
     	}
     }
+    
+//    @Override
+//    public void handle(MovementEvent event) {
+//    	if (event.isPlayer()) {
+//    		event.andThen(e -> {
+//    			overlay.setTranslateX((e.getX() - 5) * 32);
+//    			overlay.setTranslateY((e.getY() - 5) * 32);
+//    		});
+//    	}
+//    }
     
     public void showSelection() {
     	this.notify("select");
