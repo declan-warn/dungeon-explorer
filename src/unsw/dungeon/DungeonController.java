@@ -14,6 +14,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,6 +38,9 @@ import unsw.dungeon.menu.Controller;
  */
 public class DungeonController extends Controller implements EventListener {
 
+	@FXML
+	private BorderPane back;
+	
 	@FXML
     private StackPane centerStack;
 	
@@ -67,6 +71,8 @@ public class DungeonController extends Controller implements EventListener {
     
     @FXML
     public void initialize() {
+    	this.back.setStyle("-fx-background-image: url('/stonebrick.png')");
+    	
         Image ground = new Image("/floor.png");
 
         // Add the ground first so it is below all other entities
