@@ -66,7 +66,11 @@ public class DungeonApplication extends Application {
     	SelectionController controller = new SelectionController();
     	controller.attach(val -> {
 			try {
-				showDungeon(val);
+				if (val == "menu") {
+					showMenu();
+				} else {
+					showDungeon(val);
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.TilePane;
 import unsw.dungeon.FontManager;
 
@@ -64,5 +65,16 @@ public class SelectionController extends Controller {
 		}
 		return String.valueOf(display);
 	}
+	
+	@FXML
+    public void handleKeyPress(KeyEvent event) {
+        switch (event.getCode()) {
+        case ESCAPE:
+        	this.notify("menu");
+        	break;
+        default:
+            break;
+        }
+    }
 	
 }
