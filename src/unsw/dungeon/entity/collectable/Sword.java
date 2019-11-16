@@ -6,7 +6,7 @@ import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.ItemUseEvent;
 
 public class Sword extends CollectableEntity {
-	//public static Image img = new Image("/gold_sword.png");
+	
 	private int totalHitsLeft = 5;
 	
 	public Sword(int x, int y) {
@@ -35,6 +35,11 @@ public class Sword extends CollectableEntity {
 	@Override
 	public void pickup() {
 		this.broadcast(new ItemPickupEvent(this, totalHitsLeft));
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/gold_sword.png");
 	}
 	
 }

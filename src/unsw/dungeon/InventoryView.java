@@ -85,13 +85,7 @@ public class InventoryView extends GridPane implements EventListener {
 	
 	@Override
     public void handle(ItemPickupEvent event) {
-		Image img;
-		switch (event.getType()) {
-		case SWORD: img = Sword.img; break;
-		case KEY: img = Key.img; break;
-		case POTION: img = Potion.img; break;
-		default: return;
-		}
+		Image img = event.getItem().getImage();
 		
 		ItemIndicator indicator = new ItemIndicator(img);
 		indicator.enable();

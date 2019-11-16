@@ -8,8 +8,6 @@ import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.event.PlayerReachedExitEvent;
 
 public class Exit extends Entity {
-
-	//public static Image img = new Image("/beacon.png");
 	
     public Exit(int x, int y) {
         super(x, y, "Exit");
@@ -21,6 +19,11 @@ public class Exit extends Entity {
 		} else if (e.getEntity().getX() == getX() && e.getEntity().getY() == getY()) {
 			this.broadcast(new PlayerReachedExitEvent(false));
 		}
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/beacon.png");
 	}
 
 }

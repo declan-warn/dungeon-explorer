@@ -1,7 +1,10 @@
 package unsw.dungeon.entity;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.image.Image;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.event.EventListener;
 
@@ -10,7 +13,7 @@ import unsw.dungeon.event.EventListener;
  * @author Robert Clifton-Everest
  *
  */
-public abstract class Entity implements EventListener {
+public abstract class Entity implements EventListener, Displayable {
 
     // IntegerProperty is used so that changes to the entities position can be
     // externally observed.
@@ -19,7 +22,8 @@ public abstract class Entity implements EventListener {
     protected Dungeon dungeon;
 
 	private String type;
-
+	
+//	protected ObjectProperty<Image> imageProperty;
 
     /**
      * Create an entity positioned in square (x,y)
@@ -30,6 +34,7 @@ public abstract class Entity implements EventListener {
         this.x = new SimpleIntegerProperty(x);
         this.y = new SimpleIntegerProperty(y);
         this.type = type;
+//        this.imageProperty = new SimpleObjectProperty<>();
     }
 
     public IntegerProperty x() {

@@ -13,8 +13,6 @@ import unsw.dungeon.event.MovementEvent;
 
 public class Enemy extends Entity implements Movable {
 	
-	//public static Image img = new Image("/deep_elf_master_archer.png");
-	
 	private EnemyState state;
 
 	private boolean dead = false;
@@ -101,6 +99,11 @@ public class Enemy extends Entity implements Movable {
 	
 	public void setState(EnemyState state) {
 		this.state = state;
+	}
+
+	@Override
+	public Image getImage() {
+		return new Image("/deep_elf_master_archer.png");
 	}
 
 }
