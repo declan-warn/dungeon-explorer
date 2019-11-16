@@ -108,7 +108,13 @@ public class Dungeon implements EventListener {
     @Override
     public void handle(MovementEvent event) {
     	if (event.isPlayer()) {
-    		event.andThen(e -> this.tick());
+    		event.andThen(e -> {
+    			if (!e.isCancelled()) {
+    				player.setX(e.getX());
+    				player.setY(e.getY());
+    				this.tick();
+    			}
+    		});
     	}
     }
     

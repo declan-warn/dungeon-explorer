@@ -105,5 +105,27 @@ public class Enemy extends Entity implements Movable {
 	public Image getImage() {
 		return new Image("/deep_elf_master_archer.png");
 	}
+	
+	public void handle(MovementEvent e) {
+		if (e.getX() == this.getX() && e.getY() == this.getY() && !dead) {
+			System.out.println(e.getX() + " " + this.getX());
+			if (dungeon.hasItem(Item.SWORD)) {
+				dead = true;
+				this.broadcast(new EnemyDeathEvent(this));
+				this.x().set(this.dungeon.getWidth());
+				Sword sword = (Sword) dungeon.getItem(Item.SWORD);
+				sword.decreasetotalHitsLeft();
+				if (sword.gettotalHitsLeft() == 0) {
+					dungeon.takeItem((CollectableEntity) sword); 
+				}
+			} else if (this.dungeon.getPlayer().isInvincible()) {
+				dead = true;
+				this.broadcast(new EnemyDeathEvent(this));
+				this.x().set(this.dungeon.getWidth());
+			} else {
+				dungeon.getPlayer().kill();
+			}
+		}
+	}
 
 }
