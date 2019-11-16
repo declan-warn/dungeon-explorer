@@ -23,8 +23,7 @@ public class FloorSwitch extends Entity {
 			activated = true;
 			this.broadcast(new SwitchActivationEvent(this));
 		} else {
-			if (e.wouldCollide(this)) {
-				e.andThen((event) -> {
+			if (e.getEntity().getEntityType().equals("Boulder")) {
 					KeyCode direction = e.getDirection();
 					switch (direction) {
 					case LEFT:
@@ -54,7 +53,7 @@ public class FloorSwitch extends Entity {
 					default:
 						break;
 					}
-				});
+					System.out.println(this.activated + " " + this.getX());
 			}
 		}
 	}

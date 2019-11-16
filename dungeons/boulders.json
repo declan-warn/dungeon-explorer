@@ -53,11 +53,6 @@
       "type": "wall"
     },
     {
-      "x": 1,
-      "y": 2,
-      "type": "switch"
-    },
-    {
       "x": 6,
       "y": 2,
       "type": "wall"
@@ -80,7 +75,7 @@
     {
       "x": 5,
       "y": 3,
-      "type": "switch"
+      "type": "floorswitch"
     },
     {
       "x": 6,
@@ -93,11 +88,6 @@
       "type": "wall"
     },
     {
-      "x": 1,
-      "y": 4,
-      "type": "switch"
-    },
-    {
       "x": 2,
       "y": 4,
       "type": "wall"
@@ -125,7 +115,7 @@
     {
       "x": 4,
       "y": 5,
-      "type": "switch"
+      "type": "floorswitch"
     },
     {
       "x": 6,
@@ -143,16 +133,6 @@
       "type": "wall"
     },
     {
-      "x": 3,
-      "y": 6,
-      "type": "switch"
-    },
-    {
-      "x": 6,
-      "y": 6,
-      "type": "switch"
-    },
-    {
       "x": 7,
       "y": 6,
       "type": "wall"
@@ -161,11 +141,6 @@
       "x": 0,
       "y": 7,
       "type": "wall"
-    },
-    {
-      "x": 4,
-      "y": 7,
-      "type": "switch"
     },
     {
       "x": 7,
