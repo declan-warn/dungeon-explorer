@@ -6,6 +6,6 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <TilePane id="grid" fx:id="grid" alignment="CENTER" vgap="16" hgap="16" />
+      <TilePane id="back" fx:id="grid" alignment="CENTER" vgap="16" hgap="16" />
    </content>
 </ScrollPane>

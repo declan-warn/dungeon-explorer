@@ -37,18 +37,7 @@ public class SelectionController extends Controller {
 	
 	public void addDungeon(Path dungeonPath) {
 		System.out.println("WTF" + dungeonPath);
-		String dungeonFileName = dungeonPath.getFileName().toString();
-//		Button button = new Button(getDisplayName(dungeonFileName));
-//		button.setMinSize(398, 40);
-//		button.setStyle("-fx-background-image: url('/button.png')");
-//		Label lb = new Label(getDisplayName(dungeonFileName));
-//		lb.setFont(FontManager.getTitleFont(18));
-//		lb.setStyle("-fx-text-fill: #221815");
-//		button.setOnMouseClicked(event -> {
-//			notify(dungeonFileName);
-//		});		
-//		grid.getChildren().add(button);
-		
+		String dungeonFileName = dungeonPath.getFileName().toString();		
 		
 		Button btn = new SelectionButton(getDisplayName(dungeonFileName));
 		btn.setOnMouseClicked(event -> notify(dungeonFileName));
