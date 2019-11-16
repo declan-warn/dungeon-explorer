@@ -98,7 +98,7 @@ public class DungeonController extends Controller implements EventListener {
 //        StackPane.setAlignment(overlay, Pos.TOP_LEFT);
 //        overlay.setTranslateX((player.getX() - 5) * 32);
 //        overlay.setTranslateY((player.getY() - 5) * 32);
-//        
+//             
         Vignette vignette = new Vignette(player, dungeon.getWidth(), dungeon.getHeight());
         centerStack.getChildren().add(vignette);
         StackPane.setAlignment(vignette, Pos.TOP_LEFT);

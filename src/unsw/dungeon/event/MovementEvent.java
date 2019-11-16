@@ -69,7 +69,6 @@ public class MovementEvent implements Event {
 	}
 	
 	public boolean wouldCollide(Entity entity) {
-		System.out.println(this.getEntity().getEntityType());
 		return this.getX() == entity.getX() && this.getY() == entity.getY();
 	}
 	
