@@ -14,12 +14,7 @@ public class Potion extends CollectableEntity {
 		super(x, y, "Potion");
 		this.ticksLeft = 0;
 	}
-
-	@Override
-	public void accept(Dungeon dungeon) {
-		dungeon.visit(this);
-	}
-
+	
 	@Override
 	public Item getType() {
 		return Item.POTION;

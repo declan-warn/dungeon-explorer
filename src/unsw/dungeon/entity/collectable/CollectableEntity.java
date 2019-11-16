@@ -16,10 +16,7 @@ public abstract class CollectableEntity extends Entity {
 	
 	public void onDungeonLoad(Dungeon dungeon) {
 		super.onDungeonLoad(dungeon);
-		this.accept(dungeon);
 	}
-	
-	public abstract void accept(Dungeon dungeon);
 	
 	@Override
 	public void handle(MovementEvent event) {
@@ -29,7 +26,8 @@ public abstract class CollectableEntity extends Entity {
 					return;
 				} else {
 					this.x().set(this.dungeon.getWidth());
-					this.dungeon.giveItem(this);
+					if (!this.isType(Item.TREASURE))
+						this.dungeon.giveItem(this);
 //					this.broadcast(new ItemPickupEvent(this));
 					this.pickup();
 				}

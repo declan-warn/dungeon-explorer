@@ -15,6 +15,7 @@ import unsw.dungeon.entity.PortalNetwork;
 import unsw.dungeon.entity.collectable.CollectableEntity;
 import unsw.dungeon.entity.collectable.Inventory;
 import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.entity.collectable.Treasure;
 import unsw.dungeon.event.Event;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
@@ -118,20 +119,6 @@ public class Dungeon implements EventListener {
     	}
     }
     
-    public void visit(CollectableEntity collectable) {
-    	//System.out.println("COLLECTABLE: " + collectable.getType().toString());
-    }
-    
-//    public void visit(Treasure treasure) {
-//    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
-//			@Override
-//			public void handle(ItemPickupEvent event) {
-//				score += Treasure.worth;
-//				System.out.println("SCORE = " + score);
-//			}
-//    	});
-//    }
-    
     public void registerPortal(Portal portal) {
     	this.portalNetwork.register(portal);
     }
@@ -154,10 +141,23 @@ public class Dungeon implements EventListener {
     
     @Override
     public void handle(GoalCompletionEvent event) {
+    	this.score += Treasure.worth;
+    	
     	if (event.getGoal() == this.goal) {
     		System.out.println("DUNGEON GOAL COMPLETE");
     		this.exit(ExitStatus.SUCCESS);
     	}
+    }
+    
+    @Override
+    public void handle(ItemPickupEvent event) {
+    	if (event.isType(Item.TREASURE)) {
+    		this.score += Treasure.worth;
+    	}
+    }
+    
+    public int getScore() {
+    	return this.score;
     }
     
     public List<Entity> getEntitiesOfType(String type) {
