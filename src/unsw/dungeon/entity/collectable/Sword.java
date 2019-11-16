@@ -18,11 +18,6 @@ public class Sword extends CollectableEntity {
 		return Item.SWORD;
 	}
 	
-	@Override
-	public void accept(Dungeon dungeon) {
-		dungeon.visit(this);
-	}
-	
 	public int gettotalHitsLeft() {
 		return this.totalHitsLeft;
 	}

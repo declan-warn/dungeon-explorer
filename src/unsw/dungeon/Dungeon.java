@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.ExitStatus;
 import unsw.dungeon.entity.Player;
@@ -15,6 +17,8 @@ import unsw.dungeon.entity.PortalNetwork;
 import unsw.dungeon.entity.collectable.CollectableEntity;
 import unsw.dungeon.entity.collectable.Inventory;
 import unsw.dungeon.entity.collectable.Item;
+import unsw.dungeon.entity.collectable.Treasure;
+import unsw.dungeon.event.DungeonExitEvent;
 import unsw.dungeon.event.Event;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
@@ -40,7 +44,7 @@ public class Dungeon implements EventListener {
     private List<Entity> entities;
     private Player player;
     private Inventory inventory;
-    private int score;
+    private IntegerProperty score;
     private PortalNetwork portalNetwork;
     private Goal goal;
     private EventManager events;
@@ -51,7 +55,7 @@ public class Dungeon implements EventListener {
         this.entities = new ArrayList<>();
         this.player = null;
         this.inventory = new Inventory();
-        this.score = 0;
+        this.score = new SimpleIntegerProperty(0);
         this.portalNetwork = new PortalNetwork();
         this.events = new EventManager();
         
@@ -118,20 +122,6 @@ public class Dungeon implements EventListener {
     	}
     }
     
-    public void visit(CollectableEntity collectable) {
-    	//System.out.println("COLLECTABLE: " + collectable.getType().toString());
-    }
-    
-//    public void visit(Treasure treasure) {
-//    	treasure.addListener(new EventHandler<ItemPickupEvent>() {
-//			@Override
-//			public void handle(ItemPickupEvent event) {
-//				score += Treasure.worth;
-//				System.out.println("SCORE = " + score);
-//			}
-//    	});
-//    }
-    
     public void registerPortal(Portal portal) {
     	this.portalNetwork.register(portal);
     }
@@ -142,6 +132,7 @@ public class Dungeon implements EventListener {
     
     public void exit(ExitStatus status) {
     	System.out.println("DUNGEON STATUS: " + status);
+    	this.broadcastEvent(new DungeonExitEvent(status));
     }
     
     public void setGoal(Goal goal) {
@@ -154,10 +145,32 @@ public class Dungeon implements EventListener {
     
     @Override
     public void handle(GoalCompletionEvent event) {
+    	this.addScore(Treasure.worth);
+    	
     	if (event.getGoal() == this.goal) {
     		System.out.println("DUNGEON GOAL COMPLETE");
     		this.exit(ExitStatus.SUCCESS);
     	}
+    }
+    
+    @Override
+    public void handle(ItemPickupEvent event) {
+    	if (event.isType(Item.TREASURE)) {
+    		this.addScore(Treasure.worth);
+    	}
+    }
+    
+    public void addScore(int val) {
+    	int score = this.getScore();
+    	this.score.set(score + val);
+    }
+    
+    public int getScore() {
+    	return this.score.get();
+    }
+    
+    public IntegerProperty getScoreProperty() {
+    	return this.score;
     }
     
     public List<Entity> getEntitiesOfType(String type) {

@@ -1,0 +1,5 @@
+.label .text {
+	-fx-fill: linear-gradient(from 0% 0% to 100% 100%, #cd9f3c 0%, #dece7b 30%, #cd9f3c 35%, #a76022 75%, #cd9f3c 80%, #a76022 100%);
+	-fx-stroke: #74461a;
+	-fx-stroke-width: 0.5px;
+}

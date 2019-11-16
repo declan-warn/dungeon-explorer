@@ -22,11 +22,6 @@ public class Key extends CollectableEntity implements Paired {
 	public int getId() {
 		return this.id;
 	}
-	
-	@Override
-	public void accept(Dungeon dungeon) {
-		dungeon.visit(this);
-	}
 
 	@Override
 	public Image getImage() {

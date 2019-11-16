@@ -14,15 +14,18 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import unsw.dungeon.entity.ExitStatus;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.entity.collectable.Key;
 import unsw.dungeon.entity.collectable.Potion;
 import unsw.dungeon.entity.collectable.Sword;
+import unsw.dungeon.event.DungeonExitEvent;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.ItemPickupEvent;
@@ -37,6 +40,9 @@ import unsw.dungeon.menu.Controller;
  */
 public class DungeonController extends Controller implements EventListener {
 
+	@FXML
+	private BorderPane back;
+	
 	@FXML
     private StackPane centerStack;
 	
@@ -67,6 +73,8 @@ public class DungeonController extends Controller implements EventListener {
     
     @FXML
     public void initialize() {
+    	this.back.setStyle("-fx-background-image: url('/stonebrick.png')");
+    	
         Image ground = new Image("/floor.png");
 
         // Add the ground first so it is below all other entities
@@ -88,6 +96,10 @@ public class DungeonController extends Controller implements EventListener {
         InventoryView inv = new InventoryView();
         sidebar.getChildren().add(inv);
         dungeon.registerListener(inv);
+        
+        ScoreView score = new ScoreView(dungeon.getScoreProperty());
+        sidebar.getChildren().add(score);
+        dungeon.registerListener(score);
         
         GoalView goals = new GoalView(dungeon.getGoal());
         sidebar.getChildren().add(goals);
@@ -129,19 +141,22 @@ public class DungeonController extends Controller implements EventListener {
     	}
     }
     
-//    @Override
-//    public void handle(MovementEvent event) {
-//    	if (event.isPlayer()) {
-//    		event.andThen(e -> {
-//    			overlay.setTranslateX((e.getX() - 5) * 32);
-//    			overlay.setTranslateY((e.getY() - 5) * 32);
-//    		});
-//    	}
-//    }
-    
     public void showSelection() {
     	this.notify("select");
     }
+    
+    @Override
+    public void handle(DungeonExitEvent event) {
+    	if (event.isStatus(ExitStatus.SUCCESS)) {
+    		this.notify("exit=success");
+    	} else if (event.isStatus(ExitStatus.FAILURE)) {
+    		this.notify("exit=failure");
+    	}
+    }
+
+	public Dungeon getDungeon() {
+		return this.dungeon;
+	}
 
 }
 
