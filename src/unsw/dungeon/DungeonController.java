@@ -89,6 +89,10 @@ public class DungeonController extends Controller implements EventListener {
         sidebar.getChildren().add(inv);
         dungeon.registerListener(inv);
         
+        ScoreView score = new ScoreView(dungeon.getScoreProperty());
+        sidebar.getChildren().add(score);
+        dungeon.registerListener(score);
+        
         GoalView goals = new GoalView(dungeon.getGoal());
         sidebar.getChildren().add(goals);
         dungeon.registerListener(goals);

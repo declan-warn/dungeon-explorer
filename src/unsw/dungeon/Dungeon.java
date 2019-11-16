@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.entity.Entity;
 import unsw.dungeon.entity.ExitStatus;
 import unsw.dungeon.entity.Player;
@@ -41,7 +43,7 @@ public class Dungeon implements EventListener {
     private List<Entity> entities;
     private Player player;
     private Inventory inventory;
-    private int score;
+    private IntegerProperty score;
     private PortalNetwork portalNetwork;
     private Goal goal;
     private EventManager events;
@@ -52,7 +54,7 @@ public class Dungeon implements EventListener {
         this.entities = new ArrayList<>();
         this.player = null;
         this.inventory = new Inventory();
-        this.score = 0;
+        this.score = new SimpleIntegerProperty(0);
         this.portalNetwork = new PortalNetwork();
         this.events = new EventManager();
         
@@ -141,7 +143,7 @@ public class Dungeon implements EventListener {
     
     @Override
     public void handle(GoalCompletionEvent event) {
-    	this.score += Treasure.worth;
+    	this.addScore(Treasure.worth);
     	
     	if (event.getGoal() == this.goal) {
     		System.out.println("DUNGEON GOAL COMPLETE");
@@ -152,11 +154,20 @@ public class Dungeon implements EventListener {
     @Override
     public void handle(ItemPickupEvent event) {
     	if (event.isType(Item.TREASURE)) {
-    		this.score += Treasure.worth;
+    		this.addScore(Treasure.worth);
     	}
     }
     
+    public void addScore(int val) {
+    	int score = this.getScore();
+    	this.score.set(score + val);
+    }
+    
     public int getScore() {
+    	return this.score.get();
+    }
+    
+    public IntegerProperty getScoreProperty() {
     	return this.score;
     }
     
