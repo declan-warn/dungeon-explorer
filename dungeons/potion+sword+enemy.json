@@ -109,13 +109,8 @@
     },
     {
       "x": 1,
-      "y": 1,
+      "y": 9,
       "type": "player"
-    },
-    {
-      "x": 15,
-      "y": 1,
-      "type": "wall"
     },
     {
       "x": 19,
@@ -175,11 +170,6 @@
     },
     {
       "x": 15,
-      "y": 2,
-      "type": "wall"
-    },
-    {
-      "x": 15,
       "y": 3,
       "type": "wall"
     },
@@ -289,11 +279,6 @@
       "type": "wall"
     },
     {
-      "x": 3,
-      "y": 7,
-      "type": "wall"
-    },
-    {
       "x": 6,
       "y": 7,
       "type": "wall"
@@ -324,11 +309,6 @@
       "type": "wall"
     },
     {
-      "x": 3,
-      "y": 8,
-      "type": "wall"
-    },
-    {
       "x": 9,
       "y": 8,
       "type": "wall"
@@ -550,16 +530,6 @@
     },
     {
       "x": 0,
-      "y": 16,
-      "type": "wall"
-    },
-    {
-      "x": 6,
-      "y": 15,
-      "type": "wall"
-    },
-    {
-      "x": 6,
       "y": 16,
       "type": "wall"
     },
@@ -619,6 +589,11 @@
       "type": "wall"
     },
     {
+      "x": 8,
+      "y": 14,
+      "type": "enemy"
+    },
+    {
       "x": 7,
       "y": 17,
       "type": "wall"
@@ -659,6 +634,11 @@
       "type": "wall"
     },
     {
+      "x": 16,
+      "y": 9,
+      "type": "enemy"
+    },
+    {
       "x": 15,
       "y": 17,
       "type": "wall"
@@ -685,55 +665,35 @@
     },
     {
       "x": 2,
-      "y": 5,
-      "type": "portal",
-      "id": 0
+      "y": 11,
+      "type": "potion"
    	},
     {
       "x": 2,
-      "y": 10,
-      "type": "portal",
-      "id": 1
-   	},
-    {
-      "x": 16,
-      "y": 10,
-      "type": "portal",
-      "id": 1
-   	},	
-    {
-      "x": 17,
-      "y": 5,
-      "type": "treasure"
-   	},
-    {
-      "x": 16,
-      "y": 5,
-      "type": "portal",
-      "id": "3"
-   	},
-    {
-      "x": 14,
-      "y": 5,
-      "type": "portal",
-      "id": "3"
-   	},
-    {
-      "x": 14,
       "y": 16,
-      "type": "portal",
-      "id": "4"
+      "type": "enemy"
    	},
     {
-      "x": 11,
-      "y": 16,
-      "type": "portal",
-      "id": "4"
+      "x": 4,
+      "y": 14,
+      "type": "enemy"
    	},
     {
       "x": 10,
       "y": 8,
-      "type": "treasure"
+      "type": "portal",
+      "id": 0
+   	},
+    {
+      "x": 11,
+      "y": 14,
+      "type": "enemy",
+   	},
+    {
+      "x": 7,
+      "y": 8,
+      "type": "portal",
+      "id": 0
    	},
     {
       "x": 8,
@@ -741,22 +701,9 @@
       "type": "treasure"
    	},
     {
-      "x": 7,
-      "y": 5,
-      "type": "portal",
-      "id": 0
-   	},
-    {
       "x": 5,
-      "y": 10,
-      "type": "portal",
-      "id": 2
-   	},
-    {
-      "x": 8,
-      "y": 10,
-      "type": "portal",
-      "id": 2
+      "y": 5,
+      "type": "sword"
    	},
     {
       "x": 12,
@@ -801,16 +748,6 @@
     },
     {
       "x": 12,
-      "y": 9,
-      "type": "wall"
-    },
-    {
-      "x": 12,
-      "y": 10,
-      "type": "wall"
-    },
-    {
-      "x": 12,
       "y": 11,
       "type": "wall"
     },
@@ -846,6 +783,6 @@
     },  
   ],
   "goal-condition": {
-    "goal": "treasure"
+    "goal": "enemies"
   }
 }
