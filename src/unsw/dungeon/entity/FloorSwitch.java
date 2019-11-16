@@ -53,7 +53,7 @@ public class FloorSwitch extends Entity {
 					default:
 						break;
 					}
-					System.out.println(this.activated + " " + this.getX());
+				System.out.println(this.activated + " " + this.getX());
 			}
 		}
 	}
