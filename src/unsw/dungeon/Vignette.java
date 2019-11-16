@@ -73,11 +73,11 @@ public class Vignette extends Group {
 	private void draw() {		
 		gc.clearRect(0, 0, width, height);
 		
-		gc.setFill(Color.BLACK);
+		gc.setFill(Color.valueOf("#211f1b"));
 		gc.fillRect(0, 0, width, height);
 		gc.clearRect((x - SEE_ACROSS/2) * TILE_SIZE, (y - SEE_ACROSS/2) * TILE_SIZE, SEE_ACROSS * TILE_SIZE, SEE_ACROSS * TILE_SIZE);
 		
-		gc.setFill(RadialGradient.valueOf("radial-gradient(center 50% 50%, radius 50%, transparent 75%, black)"));
+		gc.setFill(RadialGradient.valueOf("radial-gradient(center 50% 50%, radius 50%, transparent 75%, #211f1b)"));
 		gc.fillRect((x - SEE_ACROSS/2) * TILE_SIZE - FUZZ, (y - SEE_ACROSS/2) * TILE_SIZE - FUZZ, SEE_ACROSS * TILE_SIZE + FUZZ * 2, SEE_ACROSS * TILE_SIZE + FUZZ * 2);
 	}
 	
