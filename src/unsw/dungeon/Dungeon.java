@@ -18,6 +18,7 @@ import unsw.dungeon.entity.collectable.CollectableEntity;
 import unsw.dungeon.entity.collectable.Inventory;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.entity.collectable.Treasure;
+import unsw.dungeon.event.DungeonExitEvent;
 import unsw.dungeon.event.Event;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.EventManager;
@@ -131,6 +132,7 @@ public class Dungeon implements EventListener {
     
     public void exit(ExitStatus status) {
     	System.out.println("DUNGEON STATUS: " + status);
+    	this.broadcastEvent(new DungeonExitEvent(status));
     }
     
     public void setGoal(Goal goal) {

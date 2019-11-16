@@ -19,11 +19,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import unsw.dungeon.entity.ExitStatus;
 import unsw.dungeon.entity.Player;
 import unsw.dungeon.entity.collectable.Item;
 import unsw.dungeon.entity.collectable.Key;
 import unsw.dungeon.entity.collectable.Potion;
 import unsw.dungeon.entity.collectable.Sword;
+import unsw.dungeon.event.DungeonExitEvent;
 import unsw.dungeon.event.EventListener;
 import unsw.dungeon.event.GoalCompletionEvent;
 import unsw.dungeon.event.ItemPickupEvent;
@@ -139,19 +141,22 @@ public class DungeonController extends Controller implements EventListener {
     	}
     }
     
-//    @Override
-//    public void handle(MovementEvent event) {
-//    	if (event.isPlayer()) {
-//    		event.andThen(e -> {
-//    			overlay.setTranslateX((e.getX() - 5) * 32);
-//    			overlay.setTranslateY((e.getY() - 5) * 32);
-//    		});
-//    	}
-//    }
-    
     public void showSelection() {
     	this.notify("select");
     }
+    
+    @Override
+    public void handle(DungeonExitEvent event) {
+    	if (event.isStatus(ExitStatus.SUCCESS)) {
+    		this.notify("exit=success");
+    	} else if (event.isStatus(ExitStatus.FAILURE)) {
+    		this.notify("exit=failure");
+    	}
+    }
+
+	public Dungeon getDungeon() {
+		return this.dungeon;
+	}
 
 }
 

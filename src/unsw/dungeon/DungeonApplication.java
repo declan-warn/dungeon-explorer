@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import unsw.dungeon.entity.ExitStatus;
 import unsw.dungeon.menu.Controller;
 import unsw.dungeon.menu.InfoController;
 import unsw.dungeon.menu.MenuController;
@@ -85,20 +86,43 @@ public class DungeonApplication extends Application {
 		DungeonController controller = dungeonLoader.loadController();
 		
 		controller.attach(val -> {
-			if (val == "select") {
-				try {
+			try {
+				if (val == "select") {
 					showSelection();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} else if (val == "exit=success") {
+					Dungeon dungeon = controller.getDungeon();
+					showResult(dungeonFileName, ExitStatus.SUCCESS, dungeon.getScore());
+				} else if (val == "exit=failure") {
+					Dungeon dungeon = controller.getDungeon();
+					showResult(dungeonFileName, ExitStatus.FAILURE, dungeon.getScore());
 				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		});
 		
 		showScene("Dungeon", "DungeonView.fxml", controller);
     }
     
-    private void showScene(String title, String fxmlPath, Controller controller) throws IOException {
+    private void showResult(String dungeonFileName, ExitStatus status, int score) throws IOException {
+		DungeonResultController controller = new DungeonResultController(status, score);
+		
+		controller.attach(val -> {
+			try {
+				if (val == "select") {
+					showSelection();
+				} else if (val == "retry") {
+					showDungeon(dungeonFileName);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+		
+		showScene("Dungeon Result", "DungeonResultView.fxml", controller);
+	}
+
+	private void showScene(String title, String fxmlPath, Controller controller) throws IOException {
     	primaryStage.setTitle("Dungeon Explorer - " + title);
     	
     	FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
