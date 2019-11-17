@@ -86,7 +86,6 @@ public class DungeonApplication extends Application {
 		controller.attach(val -> {
 			try {
 				if (val == "select") {
-					System.out.println("UM WHAT?");
 					showSelection();
 				} else if (val == "exit=success") {
 					Dungeon dungeon = controller.getDungeon();
@@ -111,7 +110,6 @@ public class DungeonApplication extends Application {
 		controller.attach(val -> {
 			try {
 				if (val == "select") {
-					System.out.println("DAADD??");
 					showSelection();
 				} else if (val == "retry") {
 					showDungeon(dungeonFileName);
