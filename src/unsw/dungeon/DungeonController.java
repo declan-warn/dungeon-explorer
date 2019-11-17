@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
@@ -32,6 +33,7 @@ import unsw.dungeon.event.ItemPickupEvent;
 import unsw.dungeon.event.ItemUseEvent;
 import unsw.dungeon.event.MovementEvent;
 import unsw.dungeon.menu.Controller;
+import unsw.dungeon.menu.SelectionButton;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -104,6 +106,26 @@ public class DungeonController extends Controller implements EventListener {
         GoalView goals = new GoalView(dungeon.getGoal());
         sidebar.getChildren().add(goals);
         dungeon.registerListener(goals);
+        
+        Button retry = new SelectionButton("Retry");
+        retry.getStylesheets().add("/unsw/dungeon/menu/selection.css");
+        retry.setMinWidth(128);
+        retry.setMaxWidth(128);        
+        retry.setOnMouseClicked(event -> {
+        	this.notify("retry");
+        });
+        sidebar.getChildren().add(retry);
+        
+        Button exit = new SelectionButton("Exit");
+        exit.getStylesheets().add("/unsw/dungeon/menu/selection.css");
+        exit.setMinWidth(128);
+        exit.setMaxWidth(128);
+        exit.setOnMouseClicked(event -> {
+        	this.notify("select");
+        });
+        sidebar.getChildren().add(exit);
+        
+        
         
 //        this.overlay = new Group(new ImageView(new Image("/overlay.png")));
 //        centerStack.getChildren().add(overlay);

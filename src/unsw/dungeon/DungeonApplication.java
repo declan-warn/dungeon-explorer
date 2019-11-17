@@ -93,6 +93,8 @@ public class DungeonApplication extends Application {
 				} else if (val == "exit=failure") {
 					Dungeon dungeon = controller.getDungeon();
 					showResult(dungeonFileName, ExitStatus.FAILURE, dungeon.getScore());
+				} else if (val == "retry") {
+					showDungeon(dungeonFileName);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

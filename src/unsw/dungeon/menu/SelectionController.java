@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.TilePane;
 import unsw.dungeon.FontManager;
 
@@ -24,6 +25,18 @@ public class SelectionController extends Controller {
 	public void initialize() {
 		grid.setPadding(new Insets(64));
 		grid.setPrefColumns(1);
+		
+		Button exit = new SelectionButton("Back");
+		exit.setOnMouseClicked(event -> {
+			this.notify("menu");
+		});
+		grid.getChildren().add(exit);
+		
+		Label title = new Label("Maps");
+    	title.setFont(FontManager.getTitleFont(24));
+    	title.setPadding(new Insets(16, 32, 16, 32));
+    	title.setStyle("-fx-background-image: url('/banner.png'); -fx-background-size: 100% 100%; -fx-text-fill: #634332");
+    	grid.getChildren().add(title);
 			
 		try (Stream<Path> paths = Files.walk(Paths.get("./dungeons"))) {
 		    paths
