@@ -14,7 +14,7 @@ public class ExitTest {
 	//Moving one square down into an exit
 	@Test
 	public void moveIntoExit() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 18, 15);

@@ -14,7 +14,7 @@ public class PortalTest {
 	//Moving one square down into a portal
 	@Test
 	public void portalTransportation() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		//Player spawns at (1,7) one square up from a portal

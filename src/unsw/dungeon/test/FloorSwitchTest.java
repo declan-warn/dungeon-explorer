@@ -14,7 +14,7 @@ public class FloorSwitchTest {
 	//Push boulder onto a floor switch activating it
 	@Test
 	public void BoulderOntoSwitch() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 2, 4);

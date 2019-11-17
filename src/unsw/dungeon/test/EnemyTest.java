@@ -15,7 +15,7 @@ public class EnemyTest {
 	//Moving one square down into an enemy (kills player)
 	@Test
 	public void MoveIntoEnemy() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 13, 1);

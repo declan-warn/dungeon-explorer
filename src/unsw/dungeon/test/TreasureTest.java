@@ -15,7 +15,7 @@ public class TreasureTest {
 	//Moving one square up into treasure 
 	@Test
 	public void treasureCollection() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.UP;
 		Player player = new Player(dungeon, 4, 4);

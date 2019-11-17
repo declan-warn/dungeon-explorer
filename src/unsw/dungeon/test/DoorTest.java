@@ -15,7 +15,7 @@ public class DoorTest {
 	//Moving one square down into a door (block movement)
 	@Test
 	public void lockedDoorTest() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 3, 2);
@@ -29,7 +29,7 @@ public class DoorTest {
 	//Moving one square up to get key and then down into a door opens door
 	@Test
 	public void collectKeyOpenDoor() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		
 		//Collects key by moving one square up

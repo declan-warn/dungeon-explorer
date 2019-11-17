@@ -14,7 +14,7 @@ public class BoulderTest {
 	//Moving one square down into a boulder
 	@Test
 	public void moveIntoBoulder() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 2, 2);
@@ -30,7 +30,7 @@ public class BoulderTest {
 	//Moving right into a boulder into a wall
 	@Test
 	public void moveBoulderWall() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 1, 3);
@@ -48,7 +48,7 @@ public class BoulderTest {
 	//Moving a boulder into another boulder (block movement)
 	@Test
 	public void moveBoulderIntoBoulder() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 2, 2);
@@ -64,7 +64,7 @@ public class BoulderTest {
 		//Remaining at (2,3) coordinate
 		player.move(keycode);
 		answerX = 2;
-		answerY = 3;
+		answerY = 4;
 		assertEquals(answerX, player.getX(), "new X coordinate is: " + answerX);
 		assertEquals(answerY, player.getY(), "new Y coordinate is: " + answerY);
 	}
