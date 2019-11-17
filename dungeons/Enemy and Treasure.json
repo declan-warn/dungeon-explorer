@@ -598,6 +598,11 @@
       "type": "treasure"
     },
     {
+      "x": 11,
+      "y": 2,
+      "type": "wall"
+    },
+    {
       "x": 16,
       "y": 3,
       "type": "wall"
