@@ -7,5 +7,4 @@ public interface Paired {
 	default public boolean hasId(int id) {
 		return this.getId() == id;
 	}
-
 }

@@ -25,5 +25,4 @@ public class ClosedDoorState implements DoorState {
 	public Image getImage() {
 		return new Image("/door_closed.png");
 	}
-
 }
