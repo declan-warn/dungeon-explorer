@@ -14,7 +14,7 @@ public class WallTest {
 	//Moving one square to the left wall should prevent movement 
 	@Test
 	public void singleMoveIntoWall() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.LEFT;
 		Player player = new Player(dungeon, 1, 2);

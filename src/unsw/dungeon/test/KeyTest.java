@@ -15,7 +15,7 @@ public class KeyTest {
 	//Moving one square up into a key
 	@Test
 	public void keyCollection() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.UP;
 		Player player = new Player(dungeon, 3, 2);

@@ -18,7 +18,7 @@ public class MovementTest {
 	//Moving one square to the right
 	@Test
 	public void singleMovement() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 1, 2);
@@ -32,7 +32,7 @@ public class MovementTest {
 	//Moving multiple squares to the right
 	@Test
 	void multipleMovements() throws FileNotFoundException{
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.RIGHT;
 		Player player = new Player(dungeon, 3, 1);

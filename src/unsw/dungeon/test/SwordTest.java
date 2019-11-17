@@ -16,7 +16,7 @@ public class SwordTest {
 	//Moving one square down into a sword and then into an enemy to kill
 	@Test
 	public void SwordCollectionKill() throws FileNotFoundException {
-		DungeonTestLoader test = new DungeonTestLoader("maze.json");
+		DungeonTestLoader test = new DungeonTestLoader("testMaze.json");
 		Dungeon dungeon = test.load();
 		KeyCode keycode = KeyCode.DOWN;
 		Player player = new Player(dungeon, 2, 3);
