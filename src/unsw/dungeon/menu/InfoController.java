@@ -62,6 +62,18 @@ public class InfoController extends Controller {
 		
 		addTitle("Visibility", 24);
 		addBody("/visibility_demo.png", "You can only see your immediate surroundings so beware when navigating the dungeon.");
+		
+		addTitle("Treasure", 24);
+		addBody("/gold_ingot.png", "Collect these to increase your score.");
+		
+		addTitle("Boulders", 24);
+		addBody("/fireball.png", "Move these by walking into them. You can only move one at a time.");
+		
+		addTitle("Floor Switches", 24);
+		addBody("/painting.png", "Activate these by pushing boulders onto them.");
+		
+		addTitle("Exit", 24);
+		addBody("/beacon.png", "Reach the exit.");		
 	}
 	
 	private void add(Node node) { 
