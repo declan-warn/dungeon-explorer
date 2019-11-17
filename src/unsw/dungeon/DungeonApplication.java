@@ -33,7 +33,6 @@ public class DungeonApplication extends Application {
     			try {
 					showSelection();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
     		} else if (val == "info") {
@@ -73,7 +72,6 @@ public class DungeonApplication extends Application {
 					showDungeon(val);
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -134,7 +132,6 @@ public class DungeonApplication extends Application {
     	
     	primaryStage.setScene(scene);
     	primaryStage.show();
-//    	primaryStage.setMaximized(true);
     	primaryStage.centerOnScreen();
     }
 

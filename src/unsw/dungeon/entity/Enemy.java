@@ -108,7 +108,6 @@ public class Enemy extends Entity implements Movable {
 	
 	public void handle(MovementEvent e) {
 		if (e.getX() == this.getX() && e.getY() == this.getY() && !dead) {
-			System.out.println(e.getX() + " " + this.getX());
 			if (dungeon.hasItem(Item.SWORD)) {
 				dead = true;
 				this.broadcast(new EnemyDeathEvent(this));

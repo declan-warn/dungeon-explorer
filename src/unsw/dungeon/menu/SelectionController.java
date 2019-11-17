@@ -24,7 +24,7 @@ public class SelectionController extends Controller {
 	public void initialize() {
 		grid.setPadding(new Insets(64));
 		grid.setPrefColumns(1);
-		
+			
 		try (Stream<Path> paths = Files.walk(Paths.get("./dungeons"))) {
 		    paths
 		        .filter(Files::isRegularFile)
@@ -37,7 +37,6 @@ public class SelectionController extends Controller {
 	}
 	
 	public void addDungeon(Path dungeonPath) {
-		System.out.println("WTF" + dungeonPath);
 		String dungeonFileName = dungeonPath.getFileName().toString();		
 		
 		Button btn = new SelectionButton(getDisplayName(dungeonFileName));

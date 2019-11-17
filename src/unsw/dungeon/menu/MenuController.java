@@ -36,17 +36,18 @@ public class MenuController extends Controller {
     	Region space = new Region();
     	space.setMinHeight(32);
     	
+    	Button play = new SelectionButton("Play");
+    	play.setOnMouseClicked(event -> {
+    		this.notify("play");
+    	});
+
     	Button info = new SelectionButton("Instructions");
     	info.setOnMouseClicked(event -> {
     		this.notify("info");
     	});
     	
-    	Button play = new SelectionButton("Play");
-    	play.setOnMouseClicked(event -> {
-    		this.notify("play");
-    	});
     	
-    	this.vbox.getChildren().addAll(title, space, info, play);
+    	this.vbox.getChildren().addAll(title, space, play, info);
     }
    
 }
