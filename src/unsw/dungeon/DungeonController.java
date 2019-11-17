@@ -156,13 +156,6 @@ public class DungeonController extends Controller implements EventListener {
         }
     }
     
-    @Override
-    public void handle(GoalCompletionEvent event) {
-    	if (dungeon.getGoal() == event.getGoal()) {
-    		this.showSelection();
-    	}
-    }
-    
     public void showSelection() {
     	this.notify("select");
     }
