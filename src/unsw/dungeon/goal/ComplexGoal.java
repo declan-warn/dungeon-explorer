@@ -9,6 +9,8 @@ import unsw.dungeon.event.GoalCompletionEvent;
 
 public class ComplexGoal extends Goal {
 	
+	private boolean wasComplete = false;
+	
 	public static ComplexGoal allRequired() {
 		return new ComplexGoal(new AndCompletionStrategy());
 	}
@@ -38,7 +40,8 @@ public class ComplexGoal extends Goal {
 	@Override
 	public void handle(GoalCompletionEvent event) {
 		if (this == event.getGoal()) return;
-		if (this.isComplete()) {
+		if (this.isComplete() && !this.wasComplete) {
+			this.wasComplete = true;
 			this.broadcast(new GoalCompletionEvent(this));
 		}
 	}
